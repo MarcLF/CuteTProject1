@@ -8,6 +8,7 @@ class MainWindow;
 class Rendering;
 }
 
+class Hierarchy;
 class Inspector;
 
 class MainWindow : public QMainWindow
@@ -26,6 +27,7 @@ private:
     Ui::MainWindow *ui;
     Ui::Rendering *uiRendering;
     Inspector *inspector;
+    Hierarchy *hierarchy;
 };
 
 #endif // MAINWINDOW_H

@@ -2,6 +2,8 @@
 #include "ui_mainwindow.h"
 #include "ui_rendering.h"
 #include "inspector.h"
+#include "hierarchy.h"
+
 #include <iostream>
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -12,6 +14,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     inspector = new Inspector();
     ui->Inspectorwidget->setWidget(inspector);
+
+    hierarchy = new Hierarchy();
+    ui->Hierarchywidget->setWidget(hierarchy);
 
 
     connect(ui->actionOpen_Project, SIGNAL(triggered()), this, SLOT(openProject()));

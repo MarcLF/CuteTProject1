@@ -28,16 +28,25 @@ SOURCES += \
         mainwindow.cpp \
     inspector.cpp \
     myopenglwidget.cpp \
-    mysuperwidget.cpp
+    mysuperwidget.cpp \
+    entity.cpp \
+    component.cpp \
+    componenttransform.cpp \
+    hierarchy.cpp
 
 HEADERS += \
         mainwindow.h \
     inspector.h \
     myopenglwidget.h \
-    mysuperwidget.h
+    mysuperwidget.h \
+    entity.h \
+    component.h \
+    componenttransform.h \
+    hierarchy.h
 
 FORMS += \
         mainwindow.ui \
     rendering.ui \
-    inspector.ui
+    inspector.ui \
+    hierarchy.ui
 LIBS += -lopengl32
