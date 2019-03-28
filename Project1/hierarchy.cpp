@@ -44,18 +44,28 @@ void Hierarchy::RemoveEntity()
     }
     if(selected != nullptr)
     {
-        entities.remove(selected);
+        std::cout << "Deleting from pos " + std::to_string(selectedPos) << std::endl;
+        entities.erase(entities.begin() + selectedPos);
         delete selected;
+        selected = nullptr;
     }
 }
 
 void Hierarchy::SelectEntity(QListWidgetItem* item)
 {
-    if(selectedItem != nullptr)
-    {
-        selectedItem->setSelected(false);
-    }
-    item->setSelected(true);
+    selectedPos = 0;
     selectedItem = item;
-    std::cout << "Selected item" + item->text().toStdString() << std::endl;
+    for(int i = 0; i < ui->EntityList->count(); i++)
+    {
+        if(ui->EntityList->item(i) == item)
+        {
+            selected = entities.at(selectedPos);
+            break;
+        }
+        else
+        {
+           selectedPos++;
+        }
+    }
+    std::cout << "Selected item" + selected->GetName() << std::endl;
 }

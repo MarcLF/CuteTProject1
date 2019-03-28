@@ -2,7 +2,7 @@
 #define HIERARCHY_H
 
 #include <QWidget>
-#include <list>
+#include <vector>
 #include <QListWidgetItem>
 
 class Entity;
@@ -26,8 +26,9 @@ public slots:
 
 private:
     Ui::Hierarchy *ui;
-    std::list<Entity*> entities;
+    std::vector<Entity*> entities;
     Entity* selected = nullptr;
+    int selectedPos = 0;
     QListWidgetItem* selectedItem = nullptr;
     int entityID = 1;
 };
