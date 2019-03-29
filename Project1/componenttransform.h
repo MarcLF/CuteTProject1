@@ -18,6 +18,12 @@ public:
 
     void setValues();
 
+    float GetPosY();
+    float GetPosX();
+    float GetRotX();
+    float GetRotY();
+    float GetScaleX();
+    float GetScaleY();
 public slots:
     void modifyXPos(double value);
     void modifyYPos(double value);

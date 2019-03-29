@@ -19,6 +19,8 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+    static MainWindow* GetWindow();
+
     Inspector *inspector;
     Hierarchy *hierarchy;
 public slots:
@@ -32,6 +34,7 @@ public slots:
 private:
     Ui::MainWindow *ui;
     Ui::Rendering *uiRendering;
+    static MainWindow *window;
 
 };
 

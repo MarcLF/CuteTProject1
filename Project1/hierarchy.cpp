@@ -50,7 +50,7 @@ void Hierarchy::RemoveEntity()
         entities.erase(entities.begin() + selectedPos);
         delete selected;
         selected = nullptr;
-        static_cast<MainWindow*>(parent())->inspector->SetNewEntity(nullptr);
+        MainWindow::GetWindow()->inspector->SetNewEntity(nullptr);
     }
 }
 
@@ -71,6 +71,11 @@ void Hierarchy::SelectEntity(QListWidgetItem* item)
         }
     }
 
-    static_cast<MainWindow*>(parent())->inspector->SetNewEntity(selected);
+    MainWindow::GetWindow()->inspector->SetNewEntity(selected);
     std::cout << "Selected item" + selected->GetName() << std::endl;
+}
+
+std::vector<Entity*> Hierarchy::GetEntityList()
+{
+    return entities;
 }

@@ -3,21 +3,22 @@
 #include "ui_rendering.h"
 #include "inspector.h"
 #include "hierarchy.h"
-
 #include <iostream>
+
+MainWindow *MainWindow::window;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    window = this;
 
     inspector = new Inspector(this);
     ui->Inspectorwidget->setWidget(inspector);
 
     hierarchy = new Hierarchy(this);
     ui->Hierarchywidget->setWidget(hierarchy);
-    hierarchy->setParent(this);
 
 
     connect(ui->actionOpen_Project, SIGNAL(triggered()), this, SLOT(openProject()));
@@ -43,4 +44,9 @@ void MainWindow::saveProject()
 Inspector *MainWindow::GetInspector()
 {
     return inspector;
+}
+
+MainWindow * MainWindow::GetWindow()
+{
+    return window;
 }

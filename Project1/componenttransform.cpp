@@ -75,3 +75,35 @@ void ComponentTransform::modifyYScale(double value)
 {
     scaleY = value;
 }
+
+float ComponentTransform::GetPosX()
+{
+    return posX;
+}
+
+float ComponentTransform::GetPosY()
+{
+    return posY;
+}
+
+float ComponentTransform::GetRotX()
+{
+    return rotX;
+}
+
+float ComponentTransform::GetRotY()
+{
+    return rotY;
+}
+
+float ComponentTransform::GetScaleX()
+{
+    return scaleX;
+}
+
+float ComponentTransform::GetScaleY()
+{
+    return scaleY;
+}
+
+

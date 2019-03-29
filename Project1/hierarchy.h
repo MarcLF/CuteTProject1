@@ -23,6 +23,7 @@ public slots:
     void AddEntity();
     void RemoveEntity();
     void SelectEntity(QListWidgetItem* item);
+    std::vector<Entity*> GetEntityList();
 
 private:
     Ui::Hierarchy *ui;

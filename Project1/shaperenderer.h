@@ -16,7 +16,15 @@ class ComponentShapeRenderer : public Component
 public:
     explicit ComponentShapeRenderer(QWidget *parent = nullptr);
     ~ComponentShapeRenderer();
+    QColor GetFillColor();
+    QColor GetStrokeColor();
 
+    double GetStrokeThickness();
+    Qt::PenStyle GetPenStyle();
+
+    int GetShapeIndex();
+
+    int GetShapeSize();
 public slots:
     void onFillColor();
     void changeFillColor();

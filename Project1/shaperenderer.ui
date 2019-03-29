@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -41,11 +41,6 @@
         </item>
         <item>
          <property name="text">
-          <string>Triangle</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
           <string>Square</string>
          </property>
         </item>
@@ -63,7 +58,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QDoubleSpinBox" name="SizeWidget"/>
+       <widget class="QSpinBox" name="SizeWidget"/>
       </item>
      </layout>
     </item>
