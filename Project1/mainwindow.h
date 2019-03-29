@@ -18,6 +18,9 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+
+    Inspector *inspector;
+    Hierarchy *hierarchy;
 public slots:
 
     void openProject();
@@ -25,11 +28,11 @@ public slots:
 
     Inspector* GetInspector();
 
+
 private:
     Ui::MainWindow *ui;
     Ui::Rendering *uiRendering;
-    Inspector *inspector;
-    Hierarchy *hierarchy;
+
 };
 
 #endif // MAINWINDOW_H

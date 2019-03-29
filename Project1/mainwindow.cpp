@@ -17,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     hierarchy = new Hierarchy(this);
     ui->Hierarchywidget->setWidget(hierarchy);
+    hierarchy->setParent(this);
 
 
     connect(ui->actionOpen_Project, SIGNAL(triggered()), this, SLOT(openProject()));

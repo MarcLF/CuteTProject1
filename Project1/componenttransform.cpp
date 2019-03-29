@@ -33,6 +33,19 @@ ComponentTransform::~ComponentTransform()
     delete ui;
 }
 
+void ComponentTransform::setValues()
+{
+    //Position
+    ui->XTranslate->setValue(posX);
+    ui->YTranslate->setValue(posY);
+    //Rotation
+    ui->XRotate->setValue(rotX);
+    ui->YRotate->setValue(rotY);
+    //Scale
+    ui->XScale->setValue(scaleX);
+    ui->YScale->setValue(scaleY);
+}
+
 void ComponentTransform::modifyXPos(double value)
 {
     posX = value;

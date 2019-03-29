@@ -32,7 +32,8 @@ SOURCES += \
     entity.cpp \
     hierarchy.cpp \
     componenttransform.cpp \
-    component.cpp
+    component.cpp \
+    shaperenderer.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -42,7 +43,8 @@ HEADERS += \
     entity.h \
     hierarchy.h \
     componenttransform.h \
-    component.h
+    component.h \
+    shaperenderer.h
 
 FORMS += \
         mainwindow.ui \
@@ -50,5 +52,6 @@ FORMS += \
     inspector.ui \
     hierarchy.ui \
     componenttransform.ui \
-    component.ui
+    component.ui \
+    shaperenderer.ui
 LIBS += -lopengl32

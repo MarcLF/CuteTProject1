@@ -10,7 +10,6 @@ Inspector::Inspector(QWidget *parent) :
     ui(new Ui::Inspector)
 {
     ui->setupUi(this);
-    compTransWidget = new ComponentTransform();
 }
 
 Inspector::~Inspector()
@@ -20,16 +19,32 @@ Inspector::~Inspector()
 
 void Inspector::SetNewEntity(Entity *selected)
 {
-    std::cout << "Hi bitches" << std::endl;
+    if(this->selected == selected)
+    {
+        return;
+    }
+
     if(selected != nullptr)
     {
-        std::cout << "I'm here" << std::endl;
-        //compTransWidget = static_cast<ComponentTransform*>(selected->GetComponent(ComponentType::Component_Transform));
-        ui->Layout->addWidget(compTransWidget);
-        std::cout << "Byeee" << std::endl;
+        if(this->selected != nullptr)
+        {
+            ui->Layout->removeWidget(compTransWidget);
+            compTransWidget->hide();
+        }
+
+        this->selected = selected;
+        compTransWidget = static_cast<ComponentTransform*>(selected->GetComponent(ComponentType::Component_Transform));
+        if(compTransWidget != nullptr)
+        {
+            ui->Layout->addWidget(compTransWidget);
+            compTransWidget->show();
+            compTransWidget->setValues();
+            std::cout << "I'm pretty" << std::endl;
+        }
     }
     else
     {
+        this->selected = nullptr;
         ui->Layout->removeWidget(compTransWidget);
     }
 }

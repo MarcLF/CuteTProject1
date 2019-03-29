@@ -20,10 +20,11 @@ public:
 
     void SetNewEntity(Entity* selected);
 
+    ComponentTransform* compTransWidget = nullptr;
+
 private:
     Ui::Inspector *ui;
     Entity* selected = nullptr;
-    ComponentTransform* compTransWidget;
 };
 
 #endif // INSPECTOR_H

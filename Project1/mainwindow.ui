@@ -35,6 +35,12 @@
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <widget class="QDockWidget" name="Hierarchywidget">
+   <property name="minimumSize">
+    <size>
+     <width>199</width>
+     <height>198</height>
+    </size>
+   </property>
    <property name="floating">
     <bool>false</bool>
    </property>

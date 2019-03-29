@@ -16,6 +16,8 @@ public:
     explicit ComponentTransform(QWidget *parent = nullptr);
     ~ComponentTransform();
 
+    void setValues();
+
 public slots:
     void modifyXPos(double value);
     void modifyYPos(double value);
