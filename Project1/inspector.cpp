@@ -31,6 +31,8 @@ void Inspector::SetNewEntity(Entity *selected)
         {
             ui->Layout->removeWidget(compTransWidget);
             compTransWidget->hide();
+            ui->Layout->removeWidget(compShapeRenderer);
+            compShapeRenderer->hide();
         }
 
         this->selected = selected;
@@ -39,13 +41,24 @@ void Inspector::SetNewEntity(Entity *selected)
         {
             ui->Layout->addWidget(compTransWidget);
             compTransWidget->show();
-            compTransWidget->setValues();
+            //compTransWidget->setValues();
             std::cout << "I'm pretty" << std::endl;
+        }
+
+        compShapeRenderer = static_cast<ComponentShapeRenderer*>(selected->GetComponent(ComponentType::Component_ShapeRenderer));
+        if(compShapeRenderer != nullptr)
+        {
+            ui->Layout->addWidget(compShapeRenderer);
+            compShapeRenderer->show();
+            std::cout << "I'm pretty2" << std::endl;
         }
     }
     else
     {
         this->selected = nullptr;
         ui->Layout->removeWidget(compTransWidget);
+        ui->Layout->removeWidget(compShapeRenderer);
+        compTransWidget->hide();
+        compShapeRenderer->hide();
     }
 }

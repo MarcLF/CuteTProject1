@@ -9,6 +9,7 @@ class Inspector;
 
 class Entity;
 class ComponentTransform;
+class ComponentShapeRenderer;
 
 class Inspector : public QWidget
 {
@@ -20,11 +21,11 @@ public:
 
     void SetNewEntity(Entity* selected);
 
-    ComponentTransform* compTransWidget = nullptr;
-
 private:
     Ui::Inspector *ui;
     Entity* selected = nullptr;
+    ComponentTransform* compTransWidget = nullptr;
+    ComponentShapeRenderer* compShapeRenderer = nullptr;
 };
 
 #endif // INSPECTOR_H

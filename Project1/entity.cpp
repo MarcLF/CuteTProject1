@@ -1,6 +1,6 @@
 #include "entity.h"
 #include "componenttransform.h"
-
+#include "shaperenderer.h"
 #include <iostream>
 
 Entity::Entity(int nameID)
@@ -8,6 +8,9 @@ Entity::Entity(int nameID)
     name += " " + std::to_string(nameID);
     ComponentTransform* trans = new ComponentTransform();
     components.push_back(trans);
+
+    ComponentShapeRenderer* renderer = new ComponentShapeRenderer();
+    components.push_back(renderer);
 }
 
 const std::string Entity::GetName()
