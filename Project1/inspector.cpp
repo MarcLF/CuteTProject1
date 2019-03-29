@@ -25,7 +25,7 @@ void Inspector::SetNewEntity(Entity *selected)
     {
         std::cout << "I'm here" << std::endl;
         //compTransWidget = static_cast<ComponentTransform*>(selected->GetComponent(ComponentType::Component_Transform));
-        ui->Layout->insertWidget(0,compTransWidget);
+        ui->Layout->addWidget(compTransWidget);
         std::cout << "Byeee" << std::endl;
     }
     else
