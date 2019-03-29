@@ -1,8 +1,8 @@
 #include "component.h"
+#include "ui_component.h"
 
-
-
-Component::Component(ComponentType type) : type(type)
+Component::Component(ComponentType type, QWidget *parent) :
+    type(type), QWidget(parent)
 {
     switch(type)
     {
@@ -17,5 +17,10 @@ Component::Component(ComponentType type) : type(type)
 
 Component::~Component()
 {
+    delete ui;
+}
 
+ComponentType Component::GetType()
+{
+    return type;
 }

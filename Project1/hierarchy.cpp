@@ -1,6 +1,8 @@
 #include "hierarchy.h"
 #include "ui_hierarchy.h"
 #include "entity.h"
+#include "mainwindow.h"
+#include "inspector.h"
 
 #include <iostream>
 
@@ -48,6 +50,7 @@ void Hierarchy::RemoveEntity()
         entities.erase(entities.begin() + selectedPos);
         delete selected;
         selected = nullptr;
+        static_cast<MainWindow*>(parent())->GetInspector()->SetNewEntity(nullptr);
     }
 }
 
@@ -67,5 +70,7 @@ void Hierarchy::SelectEntity(QListWidgetItem* item)
            selectedPos++;
         }
     }
+
+    static_cast<MainWindow*>(parent())->GetInspector()->SetNewEntity(selected);
     std::cout << "Selected item" + selected->GetName() << std::endl;
 }

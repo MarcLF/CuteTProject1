@@ -23,6 +23,8 @@ public slots:
     void openProject();
     void saveProject();
 
+    Inspector* GetInspector();
+
 private:
     Ui::MainWindow *ui;
     Ui::Rendering *uiRendering;

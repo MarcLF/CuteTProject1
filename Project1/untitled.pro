@@ -30,9 +30,9 @@ SOURCES += \
     myopenglwidget.cpp \
     mysuperwidget.cpp \
     entity.cpp \
-    component.cpp \
+    hierarchy.cpp \
     componenttransform.cpp \
-    hierarchy.cpp
+    component.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -40,13 +40,15 @@ HEADERS += \
     myopenglwidget.h \
     mysuperwidget.h \
     entity.h \
-    component.h \
+    hierarchy.h \
     componenttransform.h \
-    hierarchy.h
+    component.h
 
 FORMS += \
         mainwindow.ui \
     rendering.ui \
     inspector.ui \
-    hierarchy.ui
+    hierarchy.ui \
+    componenttransform.ui \
+    component.ui
 LIBS += -lopengl32

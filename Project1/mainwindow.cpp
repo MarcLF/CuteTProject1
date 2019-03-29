@@ -12,10 +12,10 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    inspector = new Inspector();
+    inspector = new Inspector(this);
     ui->Inspectorwidget->setWidget(inspector);
 
-    hierarchy = new Hierarchy();
+    hierarchy = new Hierarchy(this);
     ui->Hierarchywidget->setWidget(hierarchy);
 
 
@@ -37,4 +37,9 @@ void MainWindow::openProject()
 void MainWindow::saveProject()
 {
     std::cout << "Save project" << std::endl;
+}
+
+Inspector *MainWindow::GetInspector()
+{
+    return inspector;
 }

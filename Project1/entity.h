@@ -3,8 +3,7 @@
 
 #include <vector>
 #include <string>
-
-class Component;
+#include "component.h"
 
 class Entity
 {
@@ -12,6 +11,8 @@ public:
     Entity(int nameID);
 
     const std::string GetName();
+
+    Component* GetComponent(ComponentType type);
 
 protected:
     std::string name = "Entity";
