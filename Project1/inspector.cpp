@@ -2,6 +2,7 @@
 #include "ui_inspector.h"
 #include "entity.h"
 #include "componenttransform.h"
+#include "shaperenderer.h"
 
 #include <iostream>
 
