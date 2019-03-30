@@ -45,7 +45,7 @@ void MainWindow::saveProject()
 {
     std::cout << "Save project" << std::endl;
 
-    QFile saveFile("C:/Users/marcl/Documents/GitHub/Project1/save.json");
+    QFile saveFile("save.json");
 
     hierarchy->saveEntities(saveFile);
 
