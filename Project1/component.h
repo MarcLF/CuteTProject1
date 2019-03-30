@@ -22,6 +22,7 @@ public:
     ~Component();
 
     ComponentType GetType();
+    std::string GetName();
 
 protected:
     std::string name;

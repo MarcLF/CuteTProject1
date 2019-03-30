@@ -32,3 +32,8 @@ Component *Entity::GetComponent(ComponentType type)
     std::cout << "trololo" << std::endl;
     return nullptr;
 }
+
+std::vector<Component *> Entity::GetComponents()
+{
+    return components;
+}

@@ -13,6 +13,7 @@ public:
     const std::string GetName();
 
     Component* GetComponent(ComponentType type);
+    std::vector<Component*> GetComponents();
 
 protected:
     std::string name = "Entity";

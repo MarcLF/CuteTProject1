@@ -24,3 +24,8 @@ ComponentType Component::GetType()
 {
     return type;
 }
+
+std::string Component::GetName()
+{
+    return name;
+}

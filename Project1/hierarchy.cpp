@@ -5,6 +5,11 @@
 #include "inspector.h"
 
 #include <iostream>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonValue>
+#include <QJsonArray>
+#include <QString>
 
 Hierarchy::Hierarchy(QWidget *parent) :
     QWidget(parent),
@@ -25,6 +30,52 @@ Hierarchy::~Hierarchy()
         entities.pop_back();
     }
     delete ui;
+}
+
+void Hierarchy::saveEntities(QFile &saveFile)
+{
+    QJsonArray dataArray;
+    QJsonArray compArray;
+    QJsonArray emptyArray;
+
+    QJsonArray componentNameArray;
+    QJsonArray transfDataArray;
+
+    QJsonObject entNameObj;
+    QJsonObject emptyObj;
+
+    QJsonObject entCompNameObj;
+    QJsonObject entTransfDataObj;
+
+
+    for(uint i = 0; i < entities.size(); i++)
+    {
+        for(uint j = 0; j < entities[i]->GetComponents().size(); j++)
+        {
+            for(int n = 0; n < 3; n++)
+            {
+                transfDataArray.push_back("0");
+            }
+
+            entTransfDataObj.insert(QString(entities[i]->GetComponents()[j]->GetName().c_str()), QJsonValue(transfDataArray));
+            componentNameArray.push_back((entTransfDataObj));
+
+            transfDataArray = emptyArray;
+            entTransfDataObj = emptyObj;
+        }
+
+        entCompNameObj.insert(QString(entities[i]->GetName().c_str()), QJsonValue(componentNameArray));
+        dataArray.push_back((entCompNameObj));
+
+        componentNameArray = emptyArray;
+        entCompNameObj = emptyObj;
+    }
+
+    entNameObj.insert(QString("EntitiesData"), QJsonValue(dataArray));
+
+    QJsonDocument saveDocEnt(entNameObj);
+    saveFile.open(QIODevice::WriteOnly | QIODevice::Text);
+    saveFile.write(saveDocEnt.toJson());
 }
 
 void Hierarchy::AddEntity()

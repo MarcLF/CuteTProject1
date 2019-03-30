@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <vector>
 #include <QListWidgetItem>
+#include <QFile>
 
 class Entity;
 
@@ -18,6 +19,8 @@ class Hierarchy : public QWidget
 public:
     explicit Hierarchy(QWidget *parent = 0);
     ~Hierarchy();
+
+    void saveEntities(QFile &savefile);
 
 public slots:
     void AddEntity();

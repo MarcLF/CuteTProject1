@@ -3,6 +3,11 @@
 #include "ui_rendering.h"
 #include "inspector.h"
 #include "hierarchy.h"
+
+#include <QFile>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QJsonDocument>
 #include <iostream>
 
 MainWindow *MainWindow::window;
@@ -39,6 +44,11 @@ void MainWindow::openProject()
 void MainWindow::saveProject()
 {
     std::cout << "Save project" << std::endl;
+
+    QFile saveFile("C:/Users/marcl/Documents/GitHub/Project1/save.json");
+
+    hierarchy->saveEntities(saveFile);
+
 }
 
 Inspector *MainWindow::GetInspector()
