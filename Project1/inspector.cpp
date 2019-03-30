@@ -3,9 +3,12 @@
 #include "entity.h"
 #include "componenttransform.h"
 #include "shaperenderer.h"
+#include "mainwindow.h"
+#include "hierarchy.h"
 
 #include <QGroupBox>
 #include <QVBoxLayout>
+#include <QLineEdit>
 #include <iostream>
 
 Inspector::Inspector(QWidget *parent) :
@@ -26,8 +29,14 @@ Inspector::Inspector(QWidget *parent) :
     transformBox->setLayout(transformLayout);
     shapeBox->setLayout(shapeLayout);
 
+    entityName = new QLineEdit();
+    entityName->setEnabled(false);
+
+    ui->Layout->addWidget(entityName);
     ui->Layout->addWidget(transformBox);
     ui->Layout->addWidget(shapeBox);
+
+    connect(entityName, SIGNAL(editingFinished()), this, SLOT(NameChanged()));
 }
 
 Inspector::~Inspector()
@@ -53,6 +62,7 @@ void Inspector::SetNewEntity(Entity *selected)
         }
 
         this->selected = selected;
+
         compTransWidget = static_cast<ComponentTransform*>(selected->GetComponent(ComponentType::Component_Transform));
         if(compTransWidget != nullptr)
         {
@@ -69,6 +79,9 @@ void Inspector::SetNewEntity(Entity *selected)
             compShapeRenderer->show();
             std::cout << "I'm pretty2" << std::endl;
         }
+
+        entityName->setText(selected->GetName().c_str());
+        entityName->setEnabled(true);
     }
     else
     {
@@ -77,5 +90,16 @@ void Inspector::SetNewEntity(Entity *selected)
         shapeLayout->removeWidget(compShapeRenderer);
         compTransWidget->hide();
         compShapeRenderer->hide();
+        entityName->setText("");
+        entityName->setEnabled(false);
+    }
+}
+
+void Inspector::NameChanged()
+{
+    if(this->selected != nullptr)
+    {
+        this->selected->SetName(entityName->text().toStdString());
+        MainWindow::GetWindow()->GetHierarchy()->ChangeItemName(selected, entityName->text());
     }
 }

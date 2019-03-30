@@ -23,6 +23,8 @@ public:
     void saveEntities(QFile &savefile);
     void loadEntities(QString path);
 
+    void ChangeItemName(Entity* entity, QString name);
+
 public slots:
     void AddEntity();
     void RemoveEntity();

@@ -19,12 +19,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     window = this;
 
-    inspector = new Inspector(this);
-    ui->Inspectorwidget->setWidget(inspector);
-
     hierarchy = new Hierarchy(this);
     ui->Hierarchywidget->setWidget(hierarchy);
 
+    inspector = new Inspector(this);
+    ui->Inspectorwidget->setWidget(inspector);
 
     connect(ui->actionOpen_Project, SIGNAL(triggered()), this, SLOT(openProject()));
     connect(ui->actionSave_Project, SIGNAL(triggered()), this, SLOT(saveProject()));
@@ -57,6 +56,11 @@ void MainWindow::saveProject()
 Inspector *MainWindow::GetInspector()
 {
     return inspector;
+}
+
+Hierarchy *MainWindow::GetHierarchy()
+{
+    return hierarchy;
 }
 
 MainWindow * MainWindow::GetWindow()

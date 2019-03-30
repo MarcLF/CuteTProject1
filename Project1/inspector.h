@@ -12,6 +12,7 @@ class ComponentTransform;
 class ComponentShapeRenderer;
 class QGroupBox;
 class QVBoxLayout;
+class QLineEdit;
 
 class Inspector : public QWidget
 {
@@ -23,13 +24,19 @@ public:
 
     void SetNewEntity(Entity* selected);
 
+public slots:
+    void NameChanged();
+
 private:
     Ui::Inspector *ui;
     Entity* selected = nullptr;
+
     QGroupBox* transformBox = nullptr;
     QGroupBox* shapeBox = nullptr;
     QVBoxLayout* transformLayout = nullptr;
-     QVBoxLayout* shapeLayout = nullptr;
+    QVBoxLayout* shapeLayout = nullptr;
+    QLineEdit* entityName = nullptr;
+
     ComponentTransform* compTransWidget = nullptr;
     ComponentShapeRenderer* compShapeRenderer = nullptr;
 };

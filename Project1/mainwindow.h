@@ -21,20 +21,20 @@ public:
 
     static MainWindow* GetWindow();
 
-    Inspector *inspector;
-    Hierarchy *hierarchy;
+    Inspector* GetInspector();
+    Hierarchy* GetHierarchy();
 public slots:
 
     void openProject();
     void saveProject();
-
-    Inspector* GetInspector();
 
 
 private:
     Ui::MainWindow *ui;
     Ui::Rendering *uiRendering;
     static MainWindow *window;
+    Inspector *inspector;
+    Hierarchy *hierarchy;
 
 };
 

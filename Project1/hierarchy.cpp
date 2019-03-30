@@ -149,6 +149,17 @@ void Hierarchy::loadEntities(QString path)
 
 }
 
+void Hierarchy::ChangeItemName(Entity *entity, QString name)
+{
+    for(int i = 0; i < entities.size(); i++)
+    {
+        if(entities[i] == entity)
+        {
+            ui->EntityList->item(i)->setText(name);
+        }
+    }
+}
+
 void Hierarchy::AddEntity()
 {
     Entity* newEntity = new Entity(entityID++);
@@ -172,7 +183,7 @@ void Hierarchy::RemoveEntity()
         entities.erase(entities.begin() + selectedPos);
         delete selected;
         selected = nullptr;
-        MainWindow::GetWindow()->inspector->SetNewEntity(nullptr);
+        MainWindow::GetWindow()->GetInspector()->SetNewEntity(nullptr);
     }
 }
 
@@ -193,7 +204,7 @@ void Hierarchy::SelectEntity(QListWidgetItem* item)
         }
     }
 
-    MainWindow::GetWindow()->inspector->SetNewEntity(selected);
+    MainWindow::GetWindow()->GetInspector()->SetNewEntity(selected);
     std::cout << "Selected item" + selected->GetName() << std::endl;
 }
 
