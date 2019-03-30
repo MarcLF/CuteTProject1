@@ -4,6 +4,8 @@
 #include "componenttransform.h"
 #include "shaperenderer.h"
 
+#include <QGroupBox>
+#include <QVBoxLayout>
 #include <iostream>
 
 Inspector::Inspector(QWidget *parent) :
@@ -11,6 +13,21 @@ Inspector::Inspector(QWidget *parent) :
     ui(new Ui::Inspector)
 {
     ui->setupUi(this);
+
+    transformBox = new QGroupBox(tr("Transform"));
+    shapeBox = new QGroupBox(tr("Shape Renderer"));
+
+    transformLayout = new QVBoxLayout();
+    shapeLayout = new QVBoxLayout();
+
+    transformBox->setMaximumSize(235, 130);
+    shapeBox->setMaximumSize(235, 250);
+
+    transformBox->setLayout(transformLayout);
+    shapeBox->setLayout(shapeLayout);
+
+    ui->Layout->addWidget(transformBox);
+    ui->Layout->addWidget(shapeBox);
 }
 
 Inspector::~Inspector()
@@ -29,9 +46,9 @@ void Inspector::SetNewEntity(Entity *selected)
     {
         if(this->selected != nullptr)
         {
-            ui->Layout->removeWidget(compTransWidget);
+            transformLayout->removeWidget(compTransWidget);
             compTransWidget->hide();
-            ui->Layout->removeWidget(compShapeRenderer);
+            shapeLayout->removeWidget(compShapeRenderer);
             compShapeRenderer->hide();
         }
 
@@ -39,7 +56,7 @@ void Inspector::SetNewEntity(Entity *selected)
         compTransWidget = static_cast<ComponentTransform*>(selected->GetComponent(ComponentType::Component_Transform));
         if(compTransWidget != nullptr)
         {
-            ui->Layout->addWidget(compTransWidget);
+            transformLayout->addWidget(compTransWidget);
             compTransWidget->show();
             //compTransWidget->setValues();
             std::cout << "I'm pretty" << std::endl;
@@ -48,7 +65,7 @@ void Inspector::SetNewEntity(Entity *selected)
         compShapeRenderer = static_cast<ComponentShapeRenderer*>(selected->GetComponent(ComponentType::Component_ShapeRenderer));
         if(compShapeRenderer != nullptr)
         {
-            ui->Layout->addWidget(compShapeRenderer);
+            shapeLayout->addWidget(compShapeRenderer);
             compShapeRenderer->show();
             std::cout << "I'm pretty2" << std::endl;
         }
@@ -56,8 +73,8 @@ void Inspector::SetNewEntity(Entity *selected)
     else
     {
         this->selected = nullptr;
-        ui->Layout->removeWidget(compTransWidget);
-        ui->Layout->removeWidget(compShapeRenderer);
+        transformLayout->removeWidget(compTransWidget);
+        shapeLayout->removeWidget(compShapeRenderer);
         compTransWidget->hide();
         compShapeRenderer->hide();
     }

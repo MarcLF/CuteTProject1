@@ -58,7 +58,14 @@
        </widget>
       </item>
       <item>
-       <widget class="QSpinBox" name="SizeWidget"/>
+       <widget class="QSpinBox" name="SizeWidget">
+        <property name="minimum">
+         <number>1</number>
+        </property>
+        <property name="maximum">
+         <number>10000</number>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
@@ -108,7 +115,14 @@
        </widget>
       </item>
       <item>
-       <widget class="QDoubleSpinBox" name="StrokeThiccWidget"/>
+       <widget class="QDoubleSpinBox" name="StrokeThiccWidget">
+        <property name="minimum">
+         <double>-100.000000000000000</double>
+        </property>
+        <property name="maximum">
+         <double>100000.000000000000000</double>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>

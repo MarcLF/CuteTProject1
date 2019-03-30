@@ -10,6 +10,8 @@ class Inspector;
 class Entity;
 class ComponentTransform;
 class ComponentShapeRenderer;
+class QGroupBox;
+class QVBoxLayout;
 
 class Inspector : public QWidget
 {
@@ -24,6 +26,10 @@ public:
 private:
     Ui::Inspector *ui;
     Entity* selected = nullptr;
+    QGroupBox* transformBox = nullptr;
+    QGroupBox* shapeBox = nullptr;
+    QVBoxLayout* transformLayout = nullptr;
+     QVBoxLayout* shapeLayout = nullptr;
     ComponentTransform* compTransWidget = nullptr;
     ComponentShapeRenderer* compShapeRenderer = nullptr;
 };
