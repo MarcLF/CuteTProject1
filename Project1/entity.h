@@ -11,6 +11,7 @@ public:
     Entity(int nameID);
 
     const std::string GetName();
+    void SetName(std::string setName);
 
     Component* GetComponent(ComponentType type);
     std::vector<Component*> GetComponents();

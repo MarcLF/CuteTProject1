@@ -21,6 +21,7 @@ public:
     ~Hierarchy();
 
     void saveEntities(QFile &savefile);
+    void loadEntities(QString path);
 
 public slots:
     void AddEntity();

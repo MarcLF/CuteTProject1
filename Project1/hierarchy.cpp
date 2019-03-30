@@ -12,6 +12,8 @@
 #include <QJsonValue>
 #include <QJsonArray>
 #include <QString>
+#include <QDebug>
+#include <QJsonValueRef>
 
 Hierarchy::Hierarchy(QWidget *parent) :
     QWidget(parent),
@@ -112,6 +114,39 @@ void Hierarchy::saveEntities(QFile &saveFile)
     QJsonDocument saveDocEnt(entNameObj);
     saveFile.open(QIODevice::WriteOnly | QIODevice::Text);
     saveFile.write(saveDocEnt.toJson());
+    saveFile.close();
+}
+
+void Hierarchy::loadEntities(QString path)
+{
+    QFile loadFile(path);
+
+    QString data;
+    QJsonDocument loadDocEnt;
+
+    loadFile.open(QIODevice::ReadOnly | QIODevice::Text);
+    data = loadFile.readAll();
+    loadFile.close();
+
+    loadDocEnt = QJsonDocument::fromJson(data.toUtf8());
+
+    QJsonObject entitiesTest = loadDocEnt.object();
+
+    qDebug()<< loadDocEnt.object().value("EntitiesData").toArray()[0].toObject();
+
+    //std::cout << loadDocEnt.object().value("EntitiesData").toArray()[0].toObject().value("Entity").toArray()[0].toString().toStdString() << std::endl; Crashea
+
+    /*for(int i = 0; i < loadDocEnt.object().value("EntitiesData").toArray().size(); i++)
+    {
+        QString name = loadDocEnt.object().value("EntitiesData").toArray()[i].toString();
+        entities[i]->SetName(name.toStdString());
+    }*/
+
+   /* for(int i = 0; i < entitiesTest.size(); i++)
+    {
+
+    }*/
+
 }
 
 void Hierarchy::AddEntity()

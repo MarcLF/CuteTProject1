@@ -4,16 +4,30 @@
             "Entity 1": [
                 {
                     "Transform": [
-                        "0",
-                        "0",
-                        "0"
+                        {
+                            "posX": 0,
+                            "posY": 0,
+                            "rotX": 0,
+                            "rotY": 0,
+                            "scaleX": 1,
+                            "scaleY": 1
+                        }
                     ]
                 },
                 {
                     "Shape Renderer": [
-                        "0",
-                        "0",
-                        "0"
+                        {
+                            "Fill Color Blue Param": 255,
+                            "Fill Color Green Param": 255,
+                            "Fill Color Red Param": 255,
+                            "Shape Index": 0,
+                            "Shape Size": 0,
+                            "Stroke Color Blue Param": 255,
+                            "Stroke Color Green Param": 255,
+                            "Stroke Color Red Param": 255,
+                            "Stroke Style Index": 0,
+                            "Stroke Thickness": 0
+                        }
                     ]
                 }
             ]
@@ -22,16 +36,30 @@
             "Entity 2": [
                 {
                     "Transform": [
-                        "0",
-                        "0",
-                        "0"
+                        {
+                            "posX": 0,
+                            "posY": 0,
+                            "rotX": 0,
+                            "rotY": 0,
+                            "scaleX": 1,
+                            "scaleY": 1
+                        }
                     ]
                 },
                 {
                     "Shape Renderer": [
-                        "0",
-                        "0",
-                        "0"
+                        {
+                            "Fill Color Blue Param": 255,
+                            "Fill Color Green Param": 255,
+                            "Fill Color Red Param": 255,
+                            "Shape Index": 0,
+                            "Shape Size": 0,
+                            "Stroke Color Blue Param": 255,
+                            "Stroke Color Green Param": 255,
+                            "Stroke Color Red Param": 255,
+                            "Stroke Style Index": 0,
+                            "Stroke Thickness": 0
+                        }
                     ]
                 }
             ]
@@ -40,16 +68,30 @@
             "Entity 3": [
                 {
                     "Transform": [
-                        "0",
-                        "0",
-                        "0"
+                        {
+                            "posX": 0,
+                            "posY": 0,
+                            "rotX": 0,
+                            "rotY": 0,
+                            "scaleX": 1,
+                            "scaleY": 1
+                        }
                     ]
                 },
                 {
                     "Shape Renderer": [
-                        "0",
-                        "0",
-                        "0"
+                        {
+                            "Fill Color Blue Param": 255,
+                            "Fill Color Green Param": 255,
+                            "Fill Color Red Param": 255,
+                            "Shape Index": 0,
+                            "Shape Size": 0,
+                            "Stroke Color Blue Param": 255,
+                            "Stroke Color Green Param": 255,
+                            "Stroke Color Red Param": 255,
+                            "Stroke Style Index": 0,
+                            "Stroke Thickness": 0
+                        }
                     ]
                 }
             ]

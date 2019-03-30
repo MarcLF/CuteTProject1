@@ -38,7 +38,10 @@ MainWindow::~MainWindow()
 
 void MainWindow::openProject()
 {
-    std::cout << "Open project" << std::endl;
+    std::cout << "Open project" << std::endl;   
+
+    hierarchy->loadEntities("save.json");
+
 }
 
 void MainWindow::saveProject()
