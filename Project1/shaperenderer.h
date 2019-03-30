@@ -25,6 +25,7 @@ public:
     int GetShapeIndex();
 
     int GetShapeSize();
+    int GetStrokeStyleIndex();
 public slots:
     void onFillColor();
     void changeFillColor();

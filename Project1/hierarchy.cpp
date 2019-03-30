@@ -3,6 +3,8 @@
 #include "entity.h"
 #include "mainwindow.h"
 #include "inspector.h"
+#include "componenttransform.h"
+#include "shaperenderer.h"
 
 #include <iostream>
 #include <QJsonDocument>
@@ -50,11 +52,45 @@ void Hierarchy::saveEntities(QFile &saveFile)
 
     for(uint i = 0; i < entities.size(); i++)
     {
-        for(uint j = 0; j < entities[i]->GetComponents().size(); j++)
+        std::vector<Component*> components = entities[i]->GetComponents();
+
+        for(uint j = 0; j < components.size(); j++)
         {
-            for(int n = 0; n < 3; n++)
+            if(components[j]->GetType() == (ComponentType)Component_Transform)
             {
-                transfDataArray.push_back("0");
+                ComponentTransform *componentTrans = static_cast<ComponentTransform*>(components[j]);
+                QJsonObject TransformComponent;
+
+                TransformComponent["posX"] = componentTrans->GetPosX();
+                TransformComponent["posY"] = componentTrans->GetPosY();
+
+                TransformComponent["rotX"] = componentTrans->GetRotX();
+                TransformComponent["rotY"] = componentTrans->GetRotY();
+
+                TransformComponent["scaleX"] = componentTrans->GetScaleX();
+                TransformComponent["scaleY"] = componentTrans->GetScaleY();
+
+                transfDataArray.append(TransformComponent);
+            }
+            else if(components[j]->GetType() == (ComponentType)Component_ShapeRenderer)
+            {
+                ComponentShapeRenderer *componentShapeRenderer = static_cast<ComponentShapeRenderer*>(components[j]);
+                QJsonObject ShapeRendererComp;
+
+                ShapeRendererComp["Shape Index"] = componentShapeRenderer->GetShapeIndex();
+                ShapeRendererComp["Shape Size"] = componentShapeRenderer->GetShapeSize();
+
+                ShapeRendererComp["Fill Color Red Param"] = componentShapeRenderer->GetFillColor().red();
+                ShapeRendererComp["Fill Color Green Param"] = componentShapeRenderer->GetFillColor().green();
+                ShapeRendererComp["Fill Color Blue Param"] = componentShapeRenderer->GetFillColor().blue();
+
+                ShapeRendererComp["Stroke Color Red Param"] = componentShapeRenderer->GetStrokeColor().red();
+                ShapeRendererComp["Stroke Color Green Param"] = componentShapeRenderer->GetStrokeColor().green();
+                ShapeRendererComp["Stroke Color Blue Param"] = componentShapeRenderer->GetStrokeColor().blue();
+                ShapeRendererComp["Stroke Thickness"] = componentShapeRenderer->GetStrokeThickness();
+                ShapeRendererComp["Stroke Style Index"] = componentShapeRenderer->GetStrokeStyleIndex();
+
+                transfDataArray.append(ShapeRendererComp);
             }
 
             entTransfDataObj.insert(QString(entities[i]->GetComponents()[j]->GetName().c_str()), QJsonValue(transfDataArray));

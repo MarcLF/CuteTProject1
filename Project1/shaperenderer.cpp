@@ -91,3 +91,8 @@ int ComponentShapeRenderer::GetShapeSize()
 {
     return ui->SizeWidget->value();
 }
+
+int ComponentShapeRenderer::GetStrokeStyleIndex()
+{
+    return ui->StrokeStyleWidget->currentIndex();
+}
