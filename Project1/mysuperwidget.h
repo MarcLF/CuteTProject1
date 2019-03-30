@@ -16,6 +16,10 @@ signals:
 
 public slots:
     void paintEvent(QPaintEvent *event) override;
+    void myUpdate();
+
+private:
+    QTimer* updateTimer;
 };
 
 #endif // MYSUPERWIDGET_H

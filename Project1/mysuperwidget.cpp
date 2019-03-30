@@ -5,10 +5,15 @@
 #include "entity.h"
 #include "componenttransform.h"
 #include "shaperenderer.h"
+#include <QTimer>
 
 MySuperWidget::MySuperWidget(QWidget *parent) : QWidget(parent)
 {
     setAutoFillBackground(true);
+
+    updateTimer = new QTimer(this);
+    connect(updateTimer, SIGNAL(timeout()), this, SLOT(update()));
+    updateTimer->start(60);
 }
 
 QSize MySuperWidget::sizeHint() const
@@ -96,4 +101,9 @@ void MySuperWidget::paintEvent(QPaintEvent *)
     painter.drawEllipse(circleRect);*/
 
 
+}
+
+void MySuperWidget::myUpdate()
+{
+    this->update();
 }
