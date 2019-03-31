@@ -39,8 +39,6 @@ double ComponentShapeRenderer::GetStrokeThickness()
     return ui->StrokeThiccWidget->value();
 }
 
-
-
 void ComponentShapeRenderer::onFillColor()
 {
     fillColor->show();
@@ -99,25 +97,32 @@ int ComponentShapeRenderer::GetStrokeStyleIndex()
 
 void ComponentShapeRenderer::SetShapeSize(int newShape)
 {
-
+    ui->SizeWidget->setValue(newShape);
 }
 
 void ComponentShapeRenderer::SetShapeIndex(int newIndex)
 {
-
+    ui->ShapeWidget->setCurrentIndex(newIndex);
 }
 
 void ComponentShapeRenderer::SetFillColor(int newFillBlueColor, int newFillGreenColor, int newFillRedColor)
 {
-
+    QColor newColor = QColor(newFillRedColor, newFillGreenColor, newFillBlueColor);
+    fillColor->setCurrentColor(newColor);
 }
 
 void ComponentShapeRenderer::SetStrokeColor(int newFillBlueColor, int newFillGreenColor, int newFillRedColor)
 {
-
+    QColor newStrokeColor = QColor(newFillRedColor, newFillGreenColor, newFillBlueColor);
+    strokeColor->setCurrentColor(newStrokeColor);
 }
 
 void ComponentShapeRenderer::SetStrokeStyleIndex(int newStrokeStyleIndex)
 {
+    ui->StrokeStyleWidget->setCurrentIndex(newStrokeStyleIndex);
+}
 
+void ComponentShapeRenderer::SetStrokeThickness(int newStrokeThickness)
+{
+    ui->StrokeThiccWidget->setValue(newStrokeThickness);
 }

@@ -16,15 +16,13 @@ class ComponentShapeRenderer : public Component
 public:
     explicit ComponentShapeRenderer(QWidget *parent = nullptr);
     ~ComponentShapeRenderer();
+
     QColor GetFillColor();
     QColor GetStrokeColor();
-
     double GetStrokeThickness();
     Qt::PenStyle GetPenStyle();
-
     int GetShapeIndex();
     int GetShapeSize();
-
     int GetStrokeStyleIndex();
 
     void SetShapeSize(int newShape);
@@ -33,6 +31,7 @@ public:
     void SetFillColor(int newFillBlueColor, int newFillGreenColor, int newFillRedColor);
     void SetStrokeColor(int newFillBlueColor, int newFillGreenColor, int newFillRedColor);
     void SetStrokeStyleIndex(int newStrokeStyleIndex);
+    void SetStrokeThickness(int newStrokeThickness);
 
 public slots:
     void onFillColor();

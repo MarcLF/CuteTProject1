@@ -5,12 +5,12 @@
                 {
                     "Transform": [
                         {
-                            "posX": 5,
-                            "posY": 0,
+                            "posX": 10,
+                            "posY": 10,
                             "rotX": 0,
                             "rotY": 0,
-                            "scaleX": 1,
-                            "scaleY": 1
+                            "scaleX": 5,
+                            "scaleY": 5
                         }
                     ]
                 },
@@ -18,15 +18,15 @@
                     "Shape Renderer": [
                         {
                             "Fill Color Blue Param": 255,
-                            "Fill Color Green Param": 255,
-                            "Fill Color Red Param": 255,
-                            "Shape Index": 0,
-                            "Shape Size": 1,
+                            "Fill Color Green Param": 168,
+                            "Fill Color Red Param": 101,
+                            "Shape Index": 1,
+                            "Shape Size": 10,
                             "Stroke Color Blue Param": 255,
-                            "Stroke Color Green Param": 255,
-                            "Stroke Color Red Param": 255,
-                            "Stroke Style Index": 0,
-                            "Stroke Thickness": 0
+                            "Stroke Color Green Param": 162,
+                            "Stroke Color Red Param": 170,
+                            "Stroke Style Index": 1,
+                            "Stroke Thickness": 3
                         }
                     ]
                 }

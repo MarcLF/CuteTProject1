@@ -11,7 +11,7 @@ class Entity
 {
 public:
     Entity(int nameID);
-    Entity(int nameID, ComponentTransform* newCompTrans);
+    Entity(int nameID, ComponentTransform* newCompTrans, ComponentShapeRenderer* newCompShapeRend);
 
     const std::string GetName();
     void SetName(std::string setName);

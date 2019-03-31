@@ -15,17 +15,16 @@ Entity::Entity(int nameID)
     components.push_back(renderer);
 }
 
-Entity::Entity(int nameID, ComponentTransform* newCompTrans)
+Entity::Entity(int nameID, ComponentTransform* newCompTrans, ComponentShapeRenderer* newCompShapeRend)
 {
     name += " " + std::to_string(nameID);
 
     ComponentTransform* trans = new ComponentTransform();
     trans = newCompTrans;
-
-    qDebug() << trans->GetPosX();
     components.push_back(trans);
 
     ComponentShapeRenderer* renderer = new ComponentShapeRenderer();
+    renderer = newCompShapeRend;
     components.push_back(renderer);
 }
 
