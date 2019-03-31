@@ -1,76 +1,140 @@
 {
     "EntitiesData": [
         {
-            "Test": [
+            "Grass": [
                 {
                     "Transform": [
                         {
-                            "posX": 0,
-                            "posY": 0,
+                            "posX": -18,
+                            "posY": 550,
                             "rotX": 0,
                             "rotY": 0,
-                            "scaleX": 1,
-                            "scaleY": 1
+                            "scaleX": 9,
+                            "scaleY": 2
                         }
                     ]
                 },
                 {
                     "Shape Renderer": [
                         {
-                            "Fill Color Blue Param": 255,
-                            "Fill Color Green Param": 255,
-                            "Fill Color Red Param": 255,
-                            "Shape Index": 0,
-                            "Shape Size": 1,
-                            "Stroke Color Blue Param": 255,
-                            "Stroke Color Green Param": 255,
-                            "Stroke Color Red Param": 255,
-                            "Stroke Style Index": 0,
-                            "Stroke Thickness": 0
+                            "Fill Color Blue Param": 0,
+                            "Fill Color Green Param": 107,
+                            "Fill Color Red Param": 0,
+                            "Shape Index": 1,
+                            "Shape Size": 100,
+                            "Stroke Color Blue Param": 0,
+                            "Stroke Color Green Param": 65,
+                            "Stroke Color Red Param": 0,
+                            "Stroke Style Index": 1,
+                            "Stroke Thickness": 4
                         }
                     ]
                 }
             ]
         },
         {
-            "asd": [
+            "House": [
                 {
                     "Transform": [
                         {
-                            "posX": 0,
-                            "posY": 0,
+                            "posX": 230,
+                            "posY": 214,
                             "rotX": 0,
                             "rotY": 0,
-                            "scaleX": 1,
-                            "scaleY": 1
+                            "scaleX": 1.100000023841858,
+                            "scaleY": 1.2000000476837158
                         }
                     ]
                 },
                 {
                     "Shape Renderer": [
                         {
-                            "Fill Color Blue Param": 255,
-                            "Fill Color Green Param": 255,
-                            "Fill Color Red Param": 255,
-                            "Shape Index": 0,
-                            "Shape Size": 1,
-                            "Stroke Color Blue Param": 255,
-                            "Stroke Color Green Param": 255,
-                            "Stroke Color Red Param": 255,
+                            "Fill Color Blue Param": 170,
+                            "Fill Color Green Param": 208,
+                            "Fill Color Red Param": 226,
+                            "Shape Index": 1,
+                            "Shape Size": 300,
+                            "Stroke Color Blue Param": 81,
+                            "Stroke Color Green Param": 99,
+                            "Stroke Color Red Param": 108,
                             "Stroke Style Index": 0,
-                            "Stroke Thickness": 0
+                            "Stroke Thickness": 3
                         }
                     ]
                 }
             ]
         },
         {
-            "Entity 3": [
+            "Door": [
                 {
                     "Transform": [
                         {
-                            "posX": 0,
-                            "posY": 0,
+                            "posX": 334,
+                            "posY": 331,
+                            "rotX": 0,
+                            "rotY": 0,
+                            "scaleX": 0.6000000238418579,
+                            "scaleY": 1.2000000476837158
+                        }
+                    ]
+                },
+                {
+                    "Shape Renderer": [
+                        {
+                            "Fill Color Blue Param": 0,
+                            "Fill Color Green Param": 0,
+                            "Fill Color Red Param": 170,
+                            "Shape Index": 1,
+                            "Shape Size": 200,
+                            "Stroke Color Blue Param": 81,
+                            "Stroke Color Green Param": 99,
+                            "Stroke Color Red Param": 108,
+                            "Stroke Style Index": 0,
+                            "Stroke Thickness": 2
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "Roof": [
+                {
+                    "Transform": [
+                        {
+                            "posX": 228,
+                            "posY": 123,
+                            "rotX": 0,
+                            "rotY": 0,
+                            "scaleX": 1.1100000143051147,
+                            "scaleY": 0.30000001192092896
+                        }
+                    ]
+                },
+                {
+                    "Shape Renderer": [
+                        {
+                            "Fill Color Blue Param": 0,
+                            "Fill Color Green Param": 0,
+                            "Fill Color Red Param": 170,
+                            "Shape Index": 1,
+                            "Shape Size": 300,
+                            "Stroke Color Blue Param": 81,
+                            "Stroke Color Green Param": 99,
+                            "Stroke Color Red Param": 108,
+                            "Stroke Style Index": 0,
+                            "Stroke Thickness": 2
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "Sun": [
+                {
+                    "Transform": [
+                        {
+                            "posX": -23,
+                            "posY": -54,
                             "rotX": 0,
                             "rotY": 0,
                             "scaleX": 1,
@@ -81,16 +145,16 @@
                 {
                     "Shape Renderer": [
                         {
-                            "Fill Color Blue Param": 255,
-                            "Fill Color Green Param": 255,
+                            "Fill Color Blue Param": 0,
+                            "Fill Color Green Param": 170,
                             "Fill Color Red Param": 255,
                             "Shape Index": 0,
-                            "Shape Size": 1,
-                            "Stroke Color Blue Param": 255,
+                            "Shape Size": 100,
+                            "Stroke Color Blue Param": 0,
                             "Stroke Color Green Param": 255,
                             "Stroke Color Red Param": 255,
-                            "Stroke Style Index": 0,
-                            "Stroke Thickness": 0
+                            "Stroke Style Index": 2,
+                            "Stroke Thickness": 8
                         }
                     ]
                 }
