@@ -43,7 +43,7 @@ void MySuperWidget::paintEvent(QPaintEvent *)
     painter.drawRect(rect());
 
     //Iterating entities
-    std::vector<Entity*> entityList = MainWindow::GetWindow()->hierarchy->GetEntityList();
+    std::vector<Entity*> entityList = MainWindow::GetWindow()->GetHierarchy()->GetEntityList();
 
     for(int i = 0; i < entityList.size(); i++)
     {
@@ -81,26 +81,6 @@ void MySuperWidget::paintEvent(QPaintEvent *)
            painter.drawRect(NewShape);
         }
     }
-
-
-
-
-    /*brush.setColor(whiteColor);
-    pen.setWidth(4);
-    pen.setColor(blackColor);
-    pen.setStyle(Qt::PenStyle::DashLine);
-    painter.setBrush(brush);
-    painter.setPen(pen);
-
-    int r = 64;
-    int w = r*2;
-    int h = r*2;
-    int x = rect().width() / 2 - r;
-    int y = rect().height() / 2 - r;
-    QRect circleRect(x,y,w,h);
-    painter.drawEllipse(circleRect);*/
-
-
 }
 
 void MySuperWidget::myUpdate()
