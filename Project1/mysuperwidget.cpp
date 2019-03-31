@@ -62,6 +62,7 @@ void MySuperWidget::paintEvent(QPaintEvent *)
 
         ComponentTransform *CompTransform =  static_cast<ComponentTransform*>(entityList[i]->GetComponent(ComponentType::Component_Transform));
 
+        painter.resetTransform();
         painter.translate(CompTransform->GetPosX(),CompTransform->GetPosY());
         painter.rotate(CompTransform->GetRotX());
         painter.scale(CompTransform->GetScaleX(), CompTransform->GetScaleY());
