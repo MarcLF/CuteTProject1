@@ -132,7 +132,6 @@ void Hierarchy::loadEntities(QString path)
 
     QJsonObject root = loadDocEnt.object();
 
-
     QJsonObject shapeRendererComponents = root.value("EntitiesData").toArray()[0].toObject().value("Entity 1").toArray()[1].toObject().value("Shape Renderer").toArray()[0].toObject();
 
     double FCBlueParam = shapeRendererComponents.find("Fill Color Blue Param").value().toDouble();
@@ -173,6 +172,8 @@ void Hierarchy::loadEntities(QString path)
         componentTrans->modifyXScale(jsonScaleX);
         componentTrans->modifyYScale(jsonScaleY);
 
+        componentTrans->setValues();
+
         ComponentShapeRenderer *componentShapeRenderer = new ComponentShapeRenderer();
 
         componentShapeRenderer->SetFillColor(FCBlueParam, FCGreenParam, FCRedParam);
@@ -187,7 +188,6 @@ void Hierarchy::loadEntities(QString path)
         entity->SetName(entityName.toStdString());
         entities.push_back(entity);
         ui->EntityList->addItem(entity->GetName().c_str());
-
     }
 }
 

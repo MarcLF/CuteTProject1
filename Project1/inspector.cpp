@@ -69,8 +69,7 @@ void Inspector::SetNewEntity(Entity *selected)
         if(compTransWidget != nullptr)
         {
             transformLayout->addWidget(compTransWidget);
-            compTransWidget->show();
-            compTransWidget->setValues();
+            compTransWidget->show();           
             std::cout << "I'm pretty" << std::endl;
         }
 
