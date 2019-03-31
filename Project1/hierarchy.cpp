@@ -132,21 +132,6 @@ void Hierarchy::loadEntities(QString path)
 
     QJsonObject root = loadDocEnt.object();
 
-    QJsonObject shapeRendererComponents = root.value("EntitiesData").toArray()[0].toObject().value("Entity 1").toArray()[1].toObject().value("Shape Renderer").toArray()[0].toObject();
-
-    double FCBlueParam = shapeRendererComponents.find("Fill Color Blue Param").value().toDouble();
-    double FCGreenParam = shapeRendererComponents.find("Fill Color Green Param").value().toDouble();
-    double FCRedParam = shapeRendererComponents.find("Fill Color Red Param").value().toDouble();
-    double shapeIndex = shapeRendererComponents.find("Shape Index").value().toDouble();
-    double shapeSize = shapeRendererComponents.find("Shape Size").value().toDouble();
-    double SCBlueParam = shapeRendererComponents.find("Stroke Color Blue Param").value().toDouble();
-    double SCGreenParam = shapeRendererComponents.find("Stroke Color Green Param").value().toDouble();
-    double SCRedParam = shapeRendererComponents.find("Stroke Color Red Param").value().toDouble();
-    double SStyleIndex = shapeRendererComponents.find("Stroke Style Index").value().toDouble();
-    double SThickness = shapeRendererComponents.find("Stroke Thickness").value().toDouble();
-
-    qDebug()<< root.value("EntitiesData").toArray()[0].toObject().value("Entity 1").toArray()[1].toObject().value("Shape Renderer").toArray()[0].toObject().find("Fill Color Blue Param").value().toDouble();
-
     for(int i = 0; i <  root.value("EntitiesData").toArray().size(); i++)
     {
         QString entityName = "Entity ";
@@ -160,6 +145,19 @@ void Hierarchy::loadEntities(QString path)
         double jsonRotY = transformComponents.find("rotY").value().toDouble();
         double jsonScaleX = transformComponents.find("scaleX").value().toDouble();
         double jsonScaleY = transformComponents.find("scaleX").value().toDouble();
+
+        QJsonObject shapeRendererComponents = root.value("EntitiesData").toArray()[i].toObject().value(entityName).toArray()[1].toObject().value("Shape Renderer").toArray()[0].toObject();
+
+        double FCBlueParam = shapeRendererComponents.find("Fill Color Blue Param").value().toDouble();
+        double FCGreenParam = shapeRendererComponents.find("Fill Color Green Param").value().toDouble();
+        double FCRedParam = shapeRendererComponents.find("Fill Color Red Param").value().toDouble();
+        double shapeIndex = shapeRendererComponents.find("Shape Index").value().toDouble();
+        double shapeSize = shapeRendererComponents.find("Shape Size").value().toDouble();
+        double SCBlueParam = shapeRendererComponents.find("Stroke Color Blue Param").value().toDouble();
+        double SCGreenParam = shapeRendererComponents.find("Stroke Color Green Param").value().toDouble();
+        double SCRedParam = shapeRendererComponents.find("Stroke Color Red Param").value().toDouble();
+        double SStyleIndex = shapeRendererComponents.find("Stroke Style Index").value().toDouble();
+        double SThickness = shapeRendererComponents.find("Stroke Thickness").value().toDouble();
 
         ComponentTransform *componentTrans = new ComponentTransform();
 
