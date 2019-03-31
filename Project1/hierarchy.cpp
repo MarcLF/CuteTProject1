@@ -120,6 +120,9 @@ void Hierarchy::saveEntities(QFile &saveFile)
 
 void Hierarchy::loadEntities(QString path)
 {
+    selected = nullptr;
+    selectedItem = nullptr;
+
     while(!entities.empty())
     {
         delete entities.back();
