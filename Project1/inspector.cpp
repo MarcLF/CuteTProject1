@@ -70,7 +70,6 @@ void Inspector::SetNewEntity(Entity *selected)
         {
             transformLayout->addWidget(compTransWidget);
             compTransWidget->show();           
-            std::cout << "I'm pretty" << std::endl;
         }
 
         compShapeRenderer = static_cast<ComponentShapeRenderer*>(selected->GetComponent(ComponentType::Component_ShapeRenderer));
@@ -78,7 +77,6 @@ void Inspector::SetNewEntity(Entity *selected)
         {
             shapeLayout->addWidget(compShapeRenderer);
             compShapeRenderer->show();
-            std::cout << "I'm pretty2" << std::endl;
         }
 
         entityName->setText(selected->GetName().c_str());

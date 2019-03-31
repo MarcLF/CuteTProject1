@@ -230,11 +230,9 @@ void Hierarchy::RemoveEntity()
         ui->EntityList->removeItemWidget(selectedItem);
         delete selectedItem;
         selectedItem = nullptr;
-        std::cout << "item removed" << std::endl;
     }
     if(selected != nullptr)
     {
-        std::cout << "Deleting from pos " + std::to_string(selectedPos) << std::endl;
         entities.erase(entities.begin() + selectedPos);
         delete selected;
         selected = nullptr;
@@ -260,7 +258,6 @@ void Hierarchy::SelectEntity(QListWidgetItem* item)
     }
 
     MainWindow::GetWindow()->GetInspector()->SetNewEntity(selected);
-    std::cout << "Selected item" + selected->GetName() << std::endl;
 }
 
 std::vector<Entity*> Hierarchy::GetEntityList()

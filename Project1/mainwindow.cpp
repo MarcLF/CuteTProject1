@@ -37,20 +37,14 @@ MainWindow::~MainWindow()
 
 void MainWindow::openProject()
 {
-    std::cout << "Open project" << std::endl;   
-
     hierarchy->loadEntities("save.json");
-
 }
 
 void MainWindow::saveProject()
 {
-    std::cout << "Save project" << std::endl;
-
     QFile saveFile("save.json");
 
     hierarchy->saveEntities(saveFile);
-
 }
 
 Inspector *MainWindow::GetInspector()

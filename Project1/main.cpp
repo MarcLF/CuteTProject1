@@ -1,10 +1,13 @@
 #include "mainwindow.h"
+#include "framelesswindow/framelesswindow.h"
+#include "DarkStyle.h"
 #include <QApplication>
 
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    a.setStyle(new DarkStyle);
     MainWindow w;
     w.show();
 

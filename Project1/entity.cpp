@@ -39,12 +39,9 @@ Component *Entity::GetComponent(ComponentType type)
     {
         if(components[i]->GetType() == type)
         {
-            std::cout << "LALALA" << std::endl;
             return components[i];
         }
     }
-
-    std::cout << "trololo" << std::endl;
     return nullptr;
 }
 

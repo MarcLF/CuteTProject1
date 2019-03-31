@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/Darkfusion">
+        <file>darkstyle.qrc</file>
+        <file>framelesswindow.qrc</file>
+    </qresource>
+</RCC>

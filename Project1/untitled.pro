@@ -33,7 +33,8 @@ SOURCES += \
     hierarchy.cpp \
     componenttransform.cpp \
     component.cpp \
-    shaperenderer.cpp
+    shaperenderer.cpp \
+    DarkStyle.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -44,7 +45,8 @@ HEADERS += \
     hierarchy.h \
     componenttransform.h \
     component.h \
-    shaperenderer.h
+    shaperenderer.h \
+    DarkStyle.h
 
 FORMS += \
         mainwindow.ui \
@@ -55,3 +57,6 @@ FORMS += \
     component.ui \
     shaperenderer.ui
 LIBS += -lopengl32
+
+RESOURCES += \
+    resources.qrc
