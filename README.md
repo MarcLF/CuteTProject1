@@ -2,28 +2,38 @@
 
 Carmelita Engine is an Engine built in QT and C++ made by Marc López Fábregas, Adrián Castillo López and Daniel López López.
 
+![Carmelita](https://github.com/MarcLF/CuteTProject1/blob/master/DocumentationImages/CARMELITA.PNG?raw=true)
+
 ## Features:
 
 ### Hierarchy
 We have a Qlist of entities and you can add and remove them with the buttons that you can see in the picture.
 
-//FOTO
+![Hierarchy](https://github.com/MarcLF/CuteTProject1/blob/master/DocumentationImages/Hierarchy.PNG?raw=true)
 
 ### Inspector
 
 We have an inspector layout where you can check out and change entities' name and components.
 
+![Inspector](https://github.com/MarcLF/CuteTProject1/blob/master/DocumentationImages/Inspecto.PNG?raw=true)
+
 #### Component Transform
 
 The transform component allows you to see the position, rotation and scale of an entity and modify it dinamically.
+
+![Transform](https://github.com/MarcLF/CuteTProject1/blob/master/DocumentationImages/Trans.PNG?raw=true)
 
 #### Component Shape Renderer
 
 The shape renderer component makes possible to create shapes and modify it's size, colour...
 
+![ShapeRenderer](https://github.com/MarcLF/CuteTProject1/blob/master/DocumentationImages/SHRENDER.PNG?raw=true)
+
 ### Save and Load
 
 The current scene can be saved and loaded through the menu bar with the open project and save project actions. It generates a Json file with all the scene data.
+
+![Actions](https://github.com/MarcLF/CuteTProject1/blob/master/DocumentationImages/saveload.png?raw=true)
   
 ## QT Features
 
