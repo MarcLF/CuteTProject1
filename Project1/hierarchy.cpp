@@ -96,6 +96,7 @@ void Hierarchy::saveEntities(QFile &saveFile)
             }
 
             entTransfDataObj.insert(QString(entities[i]->GetComponents()[j]->GetName().c_str()), QJsonValue(transfDataArray));
+
             componentNameArray.push_back((entTransfDataObj));
 
             transfDataArray = emptyArray;
@@ -119,6 +120,16 @@ void Hierarchy::saveEntities(QFile &saveFile)
 
 void Hierarchy::loadEntities(QString path)
 {
+    while(!entities.empty())
+    {
+        delete entities.back();
+        entities.pop_back();
+    }
+
+    ui->EntityList->clear();
+
+    entityID = 1;
+
     QFile loadFile(path);
 
     QString data;
@@ -132,10 +143,11 @@ void Hierarchy::loadEntities(QString path)
 
     QJsonObject root = loadDocEnt.object();
 
-    for(int i = 0; i <  root.value("EntitiesData").toArray().size(); i++)
+    qDebug() << root.value("EntitiesData").toArray()[0].toObject().begin().key();
+
+    for(int i = 0; i < root.value("EntitiesData").toArray().size(); i++)
     {
-        QString entityName = "Entity ";
-        entityName += QString().setNum(entityID);
+        QString entityName = root.value("EntitiesData").toArray()[i].toObject().begin().key();
 
         QJsonObject transformComponents = root.value("EntitiesData").toArray()[i].toObject().value(entityName).toArray()[0].toObject().value("Transform").toArray()[0].toObject();
 
