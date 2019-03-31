@@ -130,9 +130,72 @@ void Hierarchy::loadEntities(QString path)
 
     loadDocEnt = QJsonDocument::fromJson(data.toUtf8());
 
-    QJsonObject entitiesTest = loadDocEnt.object();
+    QJsonObject root = loadDocEnt.object();
 
-    qDebug()<< loadDocEnt.object().value("EntitiesData").toArray()[0].toObject();
+    QJsonObject transformComponents = root.value("EntitiesData").toArray()[0].toObject().value("Entity 1").toArray()[0].toObject().value("Transform").toArray()[0].toObject();
+    QJsonObject shapeRendererComponents = root.value("EntitiesData").toArray()[0].toObject().value("Entity 1").toArray()[1].toObject().value("Shape Renderer").toArray()[0].toObject();
+
+    double jsonPosX = transformComponents.find("posX").value().toDouble();
+    double jsonPosY = transformComponents.find("posY").value().toDouble();
+    double jsonRotX = transformComponents.find("rotX").value().toDouble();
+    double jsonRotY = transformComponents.find("rotY").value().toDouble();
+    double jsonScaleX = transformComponents.find("scaleX").value().toDouble();
+    double jsonScaleY = transformComponents.find("scaleX").value().toDouble();
+
+    double FCBlueParam = shapeRendererComponents.find("Fill Color Blue Param").value().toDouble();
+    double FCGreenParam = shapeRendererComponents.find("Fill Color Green Param").value().toDouble();
+    double FCRedParam = shapeRendererComponents.find("Fill Color Red Param").value().toDouble();
+    double shapeIndex = shapeRendererComponents.find("Shape Index").value().toDouble();
+    double shapeSize = shapeRendererComponents.find("Shape Size").value().toDouble();
+    double SCBlueParam = shapeRendererComponents.find("Stroke Color Blue Param").value().toDouble();
+    double SCGreenParam = shapeRendererComponents.find("Stroke Color Green Param").value().toDouble();
+    double SCRedParam = shapeRendererComponents.find("Stroke Color Red Param").value().toDouble();
+    double SStileIndex = shapeRendererComponents.find("Stroke Style Index").value().toDouble();
+    double SThickness = shapeRendererComponents.find("Stroke Thickness").value().toDouble();
+
+
+    qDebug()<< root.value("EntitiesData").toArray()[0].toObject().value("Entity 1").toArray()[1].toObject().value("Shape Renderer").toArray()[0].toObject().find("Fill Color Blue Param").value().toDouble();
+
+    for(int i = 0; i <  root.value("EntitiesData").toArray().size(); i++)
+    {
+        QString entityName = "Entity ";
+        entityName += QString().setNum(i+1);
+
+        //qDebug() << root.value("EntitiesData").toObject().value("Entity 1").toString();
+
+        Entity* entity = new Entity(i);
+
+        entity->SetName(entityName.toStdString());
+        entities.push_back(entity);
+        ui->EntityList->addItem(entity->GetName().c_str());
+    }
+
+
+    ComponentTransform *componentTrans = new ComponentTransform();
+
+    componentTrans->modifyXPos(jsonPosX);
+    componentTrans->modifyYPos(jsonPosY);
+
+    componentTrans->modifyXRot(jsonRotX);
+    componentTrans->modifyYRot(jsonRotY);
+
+    componentTrans->modifyXScale(jsonScaleX);
+    componentTrans->modifyYScale(jsonScaleY);
+
+    /*ComponentShapeRenderer *componentShapeRenderer = new ComponentShapeRenderer();
+
+    componentShapeRenderer->GetShapeIndex();
+    componentShapeRenderer->GetShapeSize();
+
+    componentShapeRenderer->GetFillColor().red();
+    componentShapeRenderer->GetFillColor().green();
+    componentShapeRenderer->GetFillColor().blue();
+
+    componentShapeRenderer->GetStrokeColor().red();
+    componentShapeRenderer->GetStrokeColor().green();
+    componentShapeRenderer->GetStrokeColor().blue();
+    componentShapeRenderer->GetStrokeThickness();
+    componentShapeRenderer->GetStrokeStyleIndex();*/
 
     //std::cout << loadDocEnt.object().value("EntitiesData").toArray()[0].toObject().value("Entity").toArray()[0].toString().toStdString() << std::endl; Crashea
 

@@ -96,3 +96,28 @@ int ComponentShapeRenderer::GetStrokeStyleIndex()
 {
     return ui->StrokeStyleWidget->currentIndex();
 }
+
+void ComponentShapeRenderer::SetShapeSize(int newShape)
+{
+
+}
+
+void ComponentShapeRenderer::SetShapeIndex(int newIndex)
+{
+
+}
+
+void ComponentShapeRenderer::SetFillColor(int newFillBlueColor, int newFillGreenColor, int newFillRedColor)
+{
+
+}
+
+void ComponentShapeRenderer::SetStrokeColor(int newFillBlueColor, int newFillGreenColor, int newFillRedColor)
+{
+
+}
+
+void ComponentShapeRenderer::SetStrokeStyleIndex(int newStrokeStyleIndex)
+{
+
+}

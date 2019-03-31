@@ -23,9 +23,17 @@ public:
     Qt::PenStyle GetPenStyle();
 
     int GetShapeIndex();
-
     int GetShapeSize();
+
     int GetStrokeStyleIndex();
+
+    void SetShapeSize(int newShape);
+    void SetShapeIndex(int newIndex);
+
+    void SetFillColor(int newFillBlueColor, int newFillGreenColor, int newFillRedColor);
+    void SetStrokeColor(int newFillBlueColor, int newFillGreenColor, int newFillRedColor);
+    void SetStrokeStyleIndex(int newStrokeStyleIndex);
+
 public slots:
     void onFillColor();
     void changeFillColor();
