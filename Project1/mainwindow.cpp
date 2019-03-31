@@ -27,7 +27,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->actionOpen_Project, SIGNAL(triggered()), this, SLOT(openProject()));
     connect(ui->actionSave_Project, SIGNAL(triggered()), this, SLOT(saveProject()));
-    connect(ui->actionGFO, SIGNAL(triggered()), qApp, SLOT(quit()));
+    connect(ui->actionQuit, SIGNAL(triggered()), qApp, SLOT(quit()));
 }
 
 MainWindow::~MainWindow()

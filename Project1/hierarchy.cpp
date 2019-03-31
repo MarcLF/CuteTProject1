@@ -138,7 +138,11 @@ void Hierarchy::loadEntities(QString path)
     QString data;
     QJsonDocument loadDocEnt;
 
-    loadFile.open(QIODevice::ReadOnly | QIODevice::Text);
+    if(loadFile.open(QIODevice::ReadOnly | QIODevice::Text) == false)
+    {
+        return;
+    }
+
     data = loadFile.readAll();
     loadFile.close();
 
@@ -159,7 +163,7 @@ void Hierarchy::loadEntities(QString path)
         double jsonRotX = transformComponents.find("rotX").value().toDouble();
         double jsonRotY = transformComponents.find("rotY").value().toDouble();
         double jsonScaleX = transformComponents.find("scaleX").value().toDouble();
-        double jsonScaleY = transformComponents.find("scaleX").value().toDouble();
+        double jsonScaleY = transformComponents.find("scaleY").value().toDouble();
 
         QJsonObject shapeRendererComponents = root.value("EntitiesData").toArray()[i].toObject().value(entityName).toArray()[1].toObject().value("Shape Renderer").toArray()[0].toObject();
 
