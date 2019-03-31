@@ -132,15 +132,8 @@ void Hierarchy::loadEntities(QString path)
 
     QJsonObject root = loadDocEnt.object();
 
-    QJsonObject transformComponents = root.value("EntitiesData").toArray()[0].toObject().value("Entity 1").toArray()[0].toObject().value("Transform").toArray()[0].toObject();
-    QJsonObject shapeRendererComponents = root.value("EntitiesData").toArray()[0].toObject().value("Entity 1").toArray()[1].toObject().value("Shape Renderer").toArray()[0].toObject();
 
-    double jsonPosX = transformComponents.find("posX").value().toDouble();
-    double jsonPosY = transformComponents.find("posY").value().toDouble();
-    double jsonRotX = transformComponents.find("rotX").value().toDouble();
-    double jsonRotY = transformComponents.find("rotY").value().toDouble();
-    double jsonScaleX = transformComponents.find("scaleX").value().toDouble();
-    double jsonScaleY = transformComponents.find("scaleX").value().toDouble();
+    QJsonObject shapeRendererComponents = root.value("EntitiesData").toArray()[0].toObject().value("Entity 1").toArray()[1].toObject().value("Shape Renderer").toArray()[0].toObject();
 
     double FCBlueParam = shapeRendererComponents.find("Fill Color Blue Param").value().toDouble();
     double FCGreenParam = shapeRendererComponents.find("Fill Color Green Param").value().toDouble();
@@ -153,7 +146,6 @@ void Hierarchy::loadEntities(QString path)
     double SStileIndex = shapeRendererComponents.find("Stroke Style Index").value().toDouble();
     double SThickness = shapeRendererComponents.find("Stroke Thickness").value().toDouble();
 
-
     qDebug()<< root.value("EntitiesData").toArray()[0].toObject().value("Entity 1").toArray()[1].toObject().value("Shape Renderer").toArray()[0].toObject().find("Fill Color Blue Param").value().toDouble();
 
     for(int i = 0; i <  root.value("EntitiesData").toArray().size(); i++)
@@ -161,17 +153,38 @@ void Hierarchy::loadEntities(QString path)
         QString entityName = "Entity ";
         entityName += QString().setNum(i+1);
 
-        //qDebug() << root.value("EntitiesData").toObject().value("Entity 1").toString();
+        QJsonObject transformComponents = root.value("EntitiesData").toArray()[i].toObject().value(entityName).toArray()[0].toObject().value("Transform").toArray()[0].toObject();
 
-        Entity* entity = new Entity(i);
+        double jsonPosX = transformComponents.find("posX").value().toDouble();
+        double jsonPosY = transformComponents.find("posY").value().toDouble();
+        double jsonRotX = transformComponents.find("rotX").value().toDouble();
+        double jsonRotY = transformComponents.find("rotY").value().toDouble();
+        double jsonScaleX = transformComponents.find("scaleX").value().toDouble();
+        double jsonScaleY = transformComponents.find("scaleX").value().toDouble();
+
+        ComponentTransform *componentTrans = new ComponentTransform();
+
+        componentTrans->modifyXPos(jsonPosX);
+        componentTrans->modifyYPos(jsonPosY);
+
+        componentTrans->modifyXRot(jsonRotX);
+        componentTrans->modifyYRot(jsonRotY);
+
+        componentTrans->modifyXScale(jsonScaleX);
+        componentTrans->modifyYScale(jsonScaleY);
+
+        qDebug() << componentTrans->GetPosX();
+
+        Entity* entity = new Entity(i, componentTrans);
 
         entity->SetName(entityName.toStdString());
         entities.push_back(entity);
         ui->EntityList->addItem(entity->GetName().c_str());
+
     }
 
 
-    ComponentTransform *componentTrans = new ComponentTransform();
+    /*ComponentTransform *componentTrans = new ComponentTransform();
 
     componentTrans->modifyXPos(jsonPosX);
     componentTrans->modifyYPos(jsonPosY);
@@ -180,7 +193,7 @@ void Hierarchy::loadEntities(QString path)
     componentTrans->modifyYRot(jsonRotY);
 
     componentTrans->modifyXScale(jsonScaleX);
-    componentTrans->modifyYScale(jsonScaleY);
+    componentTrans->modifyYScale(jsonScaleY);/
 
     /*ComponentShapeRenderer *componentShapeRenderer = new ComponentShapeRenderer();
 

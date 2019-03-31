@@ -10,6 +10,7 @@
 #include <QVBoxLayout>
 #include <QLineEdit>
 #include <iostream>
+#include <QDebug>
 
 Inspector::Inspector(QWidget *parent) :
     QWidget(parent),
@@ -64,11 +65,12 @@ void Inspector::SetNewEntity(Entity *selected)
         this->selected = selected;
 
         compTransWidget = static_cast<ComponentTransform*>(selected->GetComponent(ComponentType::Component_Transform));
+
         if(compTransWidget != nullptr)
         {
             transformLayout->addWidget(compTransWidget);
             compTransWidget->show();
-            //compTransWidget->setValues();
+            compTransWidget->setValues();
             std::cout << "I'm pretty" << std::endl;
         }
 

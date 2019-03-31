@@ -5,7 +5,9 @@
 #include "entity.h"
 #include "componenttransform.h"
 #include "shaperenderer.h"
+
 #include <QTimer>
+#include <QDebug>
 
 MySuperWidget::MySuperWidget(QWidget *parent) : QWidget(parent)
 {

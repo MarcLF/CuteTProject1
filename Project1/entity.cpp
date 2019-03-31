@@ -1,12 +1,28 @@
 #include "entity.h"
 #include "componenttransform.h"
 #include "shaperenderer.h"
+
 #include <iostream>
+#include <QDebug>
 
 Entity::Entity(int nameID)
 {
     name += " " + std::to_string(nameID);
     ComponentTransform* trans = new ComponentTransform();
+    components.push_back(trans);
+
+    ComponentShapeRenderer* renderer = new ComponentShapeRenderer();
+    components.push_back(renderer);
+}
+
+Entity::Entity(int nameID, ComponentTransform* newCompTrans)
+{
+    name += " " + std::to_string(nameID);
+
+    ComponentTransform* trans = new ComponentTransform();
+    trans = newCompTrans;
+
+    qDebug() << trans->GetPosX();
     components.push_back(trans);
 
     ComponentShapeRenderer* renderer = new ComponentShapeRenderer();
