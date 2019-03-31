@@ -19,13 +19,8 @@ Entity::Entity(int nameID, ComponentTransform* newCompTrans, ComponentShapeRende
 {
     name += " " + std::to_string(nameID);
 
-    ComponentTransform* trans = new ComponentTransform();
-    trans = newCompTrans;
-    components.push_back(trans);
-
-    ComponentShapeRenderer* renderer = new ComponentShapeRenderer();
-    renderer = newCompShapeRend;
-    components.push_back(renderer);
+    components.push_back(newCompTrans);
+    components.push_back(newCompShapeRend);
 }
 
 const std::string Entity::GetName()

@@ -151,7 +151,7 @@ void Hierarchy::loadEntities(QString path)
     for(int i = 0; i <  root.value("EntitiesData").toArray().size(); i++)
     {
         QString entityName = "Entity ";
-        entityName += QString().setNum(i+1);
+        entityName += QString().setNum(entityID);
 
         QJsonObject transformComponents = root.value("EntitiesData").toArray()[i].toObject().value(entityName).toArray()[0].toObject().value("Transform").toArray()[0].toObject();
 
@@ -182,7 +182,7 @@ void Hierarchy::loadEntities(QString path)
         componentShapeRenderer->SetStrokeStyleIndex(SStyleIndex);
         componentShapeRenderer->SetStrokeThickness(SThickness);
 
-        Entity* entity = new Entity(i, componentTrans, componentShapeRenderer);
+        Entity* entity = new Entity(entityID++, componentTrans, componentShapeRenderer);
 
         entity->SetName(entityName.toStdString());
         entities.push_back(entity);

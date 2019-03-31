@@ -109,12 +109,14 @@ void ComponentShapeRenderer::SetFillColor(int newFillBlueColor, int newFillGreen
 {
     QColor newColor = QColor(newFillRedColor, newFillGreenColor, newFillBlueColor);
     fillColor->setCurrentColor(newColor);
+    changeFillColor();
 }
 
 void ComponentShapeRenderer::SetStrokeColor(int newFillBlueColor, int newFillGreenColor, int newFillRedColor)
 {
     QColor newStrokeColor = QColor(newFillRedColor, newFillGreenColor, newFillBlueColor);
     strokeColor->setCurrentColor(newStrokeColor);
+    changeStrokeColor();
 }
 
 void ComponentShapeRenderer::SetStrokeStyleIndex(int newStrokeStyleIndex)
