@@ -34,7 +34,10 @@ SOURCES += \
     componenttransform.cpp \
     component.cpp \
     shaperenderer.cpp \
-    DarkStyle.cpp
+    DarkStyle.cpp \
+    mesh.cpp \
+    resource.cpp \
+    submesh.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -46,7 +49,11 @@ HEADERS += \
     componenttransform.h \
     component.h \
     shaperenderer.h \
-    DarkStyle.h
+    DarkStyle.h \
+    mesh.h \
+    resource.h \
+    vertexformat.h \
+    submesh.h
 
 FORMS += \
         mainwindow.ui \
