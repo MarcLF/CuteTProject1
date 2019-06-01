@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>213</width>
-    <height>100</height>
+    <width>292</width>
+    <height>171</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,8 +18,8 @@
     <rect>
      <x>0</x>
      <y>10</y>
-     <width>212</width>
-     <height>80</height>
+     <width>289</width>
+     <height>160</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -44,6 +44,16 @@
       </item>
       <item>
        <widget class="QDoubleSpinBox" name="YTranslate">
+        <property name="minimum">
+         <double>-100.000000000000000</double>
+        </property>
+        <property name="maximum">
+         <double>10000.000000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QDoubleSpinBox" name="ZTranslate">
         <property name="minimum">
          <double>-100.000000000000000</double>
         </property>
@@ -89,6 +99,16 @@
         </property>
        </widget>
       </item>
+      <item>
+       <widget class="QDoubleSpinBox" name="ZRotate">
+        <property name="minimum">
+         <double>-100.000000000000000</double>
+        </property>
+        <property name="maximum">
+         <double>10000.000000000000000</double>
+        </property>
+       </widget>
+      </item>
      </layout>
     </item>
     <item>
@@ -118,6 +138,16 @@
       </item>
       <item>
        <widget class="QDoubleSpinBox" name="YScale">
+        <property name="minimum">
+         <double>-100.000000000000000</double>
+        </property>
+        <property name="maximum">
+         <double>10000.000000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QDoubleSpinBox" name="ZScale">
         <property name="minimum">
          <double>-100.000000000000000</double>
         </property>

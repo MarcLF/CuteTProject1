@@ -65,12 +65,15 @@ void Hierarchy::saveEntities(QFile &saveFile)
 
                 TransformComponent["posX"] = componentTrans->GetPosX();
                 TransformComponent["posY"] = componentTrans->GetPosY();
+                TransformComponent["posZ"] = componentTrans->GetPosZ();
 
                 TransformComponent["rotX"] = componentTrans->GetRotX();
                 TransformComponent["rotY"] = componentTrans->GetRotY();
+                TransformComponent["rotZ"] = componentTrans->GetRotZ();
 
                 TransformComponent["scaleX"] = componentTrans->GetScaleX();
                 TransformComponent["scaleY"] = componentTrans->GetScaleY();
+                TransformComponent["scaleZ"] = componentTrans->GetScaleZ();
 
                 transfDataArray.append(TransformComponent);
             }
@@ -160,10 +163,15 @@ void Hierarchy::loadEntities(QString path)
 
         double jsonPosX = transformComponents.find("posX").value().toDouble();
         double jsonPosY = transformComponents.find("posY").value().toDouble();
+        double jsonPosZ = transformComponents.find("posZ").value().toDouble();
+
         double jsonRotX = transformComponents.find("rotX").value().toDouble();
         double jsonRotY = transformComponents.find("rotY").value().toDouble();
+        double jsonRotZ = transformComponents.find("rotZ").value().toDouble();
+
         double jsonScaleX = transformComponents.find("scaleX").value().toDouble();
         double jsonScaleY = transformComponents.find("scaleY").value().toDouble();
+        double jsonScaleZ = transformComponents.find("scaleZ").value().toDouble();
 
         QJsonObject shapeRendererComponents = root.value("EntitiesData").toArray()[i].toObject().value(entityName).toArray()[1].toObject().value("Shape Renderer").toArray()[0].toObject();
 
@@ -182,12 +190,15 @@ void Hierarchy::loadEntities(QString path)
 
         componentTrans->modifyXPos(jsonPosX);
         componentTrans->modifyYPos(jsonPosY);
+        componentTrans->modifyZPos(jsonPosZ);
 
         componentTrans->modifyXRot(jsonRotX);
         componentTrans->modifyYRot(jsonRotY);
+        componentTrans->modifyZRot(jsonRotZ);
 
         componentTrans->modifyXScale(jsonScaleX);
         componentTrans->modifyYScale(jsonScaleY);
+        componentTrans->modifyZScale(jsonScaleZ);
 
         componentTrans->setValues();
 
