@@ -1,6 +1,8 @@
 #ifndef VERTEXFORMAT_H
 #define VERTEXFORMAT_H
 
+static const int MAX_VERTEX_ATTRIBUTES = 3;
+
 struct VertexAttribute
 {
     bool enabled = false;

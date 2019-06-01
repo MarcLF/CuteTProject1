@@ -22,7 +22,7 @@ public:
 
     void setValues();
 
-    const QMatrix4x4 GetTransMatrix()const;
+    const QMatrix4x4* GetTransMatrix()const;
 
     float GetPosX();
     float GetPosY();

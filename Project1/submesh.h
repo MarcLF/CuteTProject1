@@ -5,12 +5,14 @@
 
 #include <QOpenGLBuffer>
 #include <QOpenGLVertexArrayObject>
+#include <QOpenGLFramebufferObject>
+#include<QtOpenGL/QtOpenGL>
 
 class SubMesh
 {
 public:
-    SubMesh(VertexFormat vertexFormat, void *data, int size);
-    SubMesh(VertexFormat vertexFormat, void *data, int size, unsigned int *indices, int indices_count);
+    SubMesh(VertexFormat newvertexFormat, void *newdata, int size);
+    SubMesh(VertexFormat newvertexFormat, void *newdata, int size, unsigned int *indices, int indices_count);
     ~SubMesh();
 
     void update();
@@ -28,6 +30,8 @@ private:
     QOpenGLBuffer vbo;
     QOpenGLBuffer ibo;
     QOpenGLVertexArrayObject vao;
+
+    QOpenGLFunctions *glfuncs = nullptr;
 };
 
 #endif // SUBMESH_H

@@ -73,7 +73,7 @@ void ComponentTransform::setValues()
     ui->ZScale->setValue(scaleZ);
 }
 
-const QMatrix4x4 ComponentTransform::GetTransMatrix() const
+const QMatrix4x4* ComponentTransform::GetTransMatrix() const
 {
     return &transformMatrix;
 }
