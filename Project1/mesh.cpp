@@ -1,11 +1,11 @@
 #include "mesh.h"
-#include <assimp/Importer.hpp>
-#include <assimp/scene.h>
-#include <assimp/postprocess.h>
 #include <qfile.h>
 #include <qiodevice.h>
 #include <iostream>
 #include <vertexformat.h>
+#include "assimp/Importer.hpp"
+#include "assimp/scene.h"
+#include "assimp/postprocess.h"
 #include "submesh.h"
 #include "mysuperwidget.h"
 #include "mainwindow.h"
@@ -69,7 +69,7 @@ void Mesh::processNode(aiNode *node, const aiScene *scene)
     }
 }
 
-SubMesh * Mesh::processMesh(aiMesh *mesh, const aiScene *scene)
+SubMesh* Mesh::processMesh(aiMesh *mesh, const aiScene *scene)
 {
     QVector<float> vertices;
     QVector<unsigned int> indices;
@@ -104,15 +104,14 @@ SubMesh * Mesh::processMesh(aiMesh *mesh, const aiScene *scene)
 
     VertexFormat vertexFormat;
     vertexFormat.setVertexAttribute(0,0,3);
-    vertexFormat.setVertexAttribute(1,3 *sizeof (float), 3);
+    vertexFormat.setVertexAttribute(1,3 * sizeof(float), 3);
 
     if(hasTexCoords)
     {
-        vertexFormat.setVertexAttribute(2, 6* sizeof (float), 3);
+        vertexFormat.setVertexAttribute(2, 6 * sizeof(float), 3);
     }
 
     return new SubMesh(vertexFormat, &vertices[0], vertices.size()*sizeof (float), &indices[0], indices.size());
-
-
-
 }
+
+

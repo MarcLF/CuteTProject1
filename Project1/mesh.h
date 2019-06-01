@@ -6,7 +6,6 @@
 #include "submesh.h"
 
 #include <QVector>
-#include <assimp/scene.h>
 
 struct aiNode;
 struct aiMesh;
@@ -30,12 +29,10 @@ public:
     bool needsUpdate = false;
 
 private:
-    //Assimp
-
-   void processNode(aiNode *node, const aiScene *scene);
-   SubMesh *processMesh(aiMesh *mesh, const aiScene *scene);
    const char *filename = nullptr;
 
+   void processNode(aiNode *node, const aiScene *scene);
+   SubMesh* processMesh(aiMesh *mesh, const aiScene *scene);
 };
 
 #endif // MESH_H
