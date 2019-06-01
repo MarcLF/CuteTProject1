@@ -3,6 +3,8 @@
 
 #include <QWidget>
 #include "component.h"
+#include <QMatrix4x4>
+#include <QQuaternion>
 
 namespace Ui {
 class ComponentTransform;
@@ -14,9 +16,13 @@ class ComponentTransform : public Component
 
 public:
     explicit ComponentTransform(QWidget *parent = nullptr);
-    ~ComponentTransform();
+    ~ComponentTransform() override;
+
+    void Update();
 
     void setValues();
+
+    const QMatrix4x4 GetTransMatrix()const;
 
     float GetPosX();
     float GetPosY();
@@ -46,8 +52,14 @@ public slots:
 
 private:
     Ui::ComponentTransform *ui;
+
+    bool updateTrans = true;
+
+    QMatrix4x4 transformMatrix;
+
     float posX = 0, posY = 0, posZ = 0;
     float rotX = 0, rotY = 0, rotZ = 0;
+    QQuaternion rotQuaternion;
     float scaleX = 1, scaleY = 1, scaleZ = 1;
 };
 
