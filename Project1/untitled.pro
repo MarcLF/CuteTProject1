@@ -37,7 +37,8 @@ SOURCES += \
     DarkStyle.cpp \
     mesh.cpp \
     resource.cpp \
-    submesh.cpp
+    submesh.cpp \
+    camera.cpp 
 
 HEADERS += \
         mainwindow.h \
@@ -53,7 +54,8 @@ HEADERS += \
     mesh.h \
     resource.h \
     vertexformat.h \
-    submesh.h
+    submesh.h \
+    camera.h 
 
 FORMS += \
         mainwindow.ui \

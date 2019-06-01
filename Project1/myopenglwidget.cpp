@@ -1,8 +1,11 @@
 #include "myopenglwidget.h"
 
-
-
 MyOpenGLWidget::MyOpenGLWidget(QWidget *parent) : QOpenGLWidget(parent)
+{
+
+}
+
+MyOpenGLWidget::~MyOpenGLWidget()
 {
 
 }
