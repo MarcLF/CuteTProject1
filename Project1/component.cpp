@@ -12,6 +12,9 @@ Component::Component(ComponentType type, QWidget *parent) :
     case Component_ShapeRenderer:
         name = "Shape Renderer";
         break;
+    case Component_Render:
+        name = "Render";
+        break;
     }
 }
 

@@ -10,6 +10,7 @@ class Rendering;
 
 class Hierarchy;
 class Inspector;
+class MyOpenGLWidget;
 
 class MainWindow : public QMainWindow
 {
@@ -35,6 +36,7 @@ private:
     static MainWindow *window;
     Inspector *inspector;
     Hierarchy *hierarchy;
+    MyOpenGLWidget *openGLWidget;
 
 };
 

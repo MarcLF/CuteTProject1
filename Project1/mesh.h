@@ -20,6 +20,7 @@ public:
 
     void update() override;
     void destroy() override;
+    void draw();
 
     void addSubmesh(VertexFormat vertexFormat, void *data, int bytes);
     void addSubmesh(VertexFormat vertexFormat, void *data, int bytes, unsigned int *indexes, int bytesIndexes);

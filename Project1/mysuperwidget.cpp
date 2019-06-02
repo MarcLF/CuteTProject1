@@ -16,9 +16,6 @@ MySuperWidget::MySuperWidget(QWidget *parent) : QWidget(parent)
     updateTimer = new QTimer(this);
     connect(updateTimer, SIGNAL(timeout()), this, SLOT(update()));
     updateTimer->start(60);
-
-    //mainCamera = new Camera(100, 100);
-    //mainCamera->projectionMatrix = QMatrix4x4((1.0f/tan(DEGTORAD(field_of_view)/2))/aspect_ratio, 0, 0, 0, 0, (1.0f/tan( DEGTORAD(field_of_view)/2)), 0 ,0 ,0 ,0, ((far_plane_distance + near_plane_distance)/(near_plane_distance - far_plane_distance)), ((2*near_plane_distance*far_plane_distance)/(near_plane_distance - far_plane_distance)),0,0,-1,0);
 }
 
 QSize MySuperWidget::sizeHint() const

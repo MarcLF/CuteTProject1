@@ -17,13 +17,18 @@ SubMesh::SubMesh(VertexFormat newvertexFormat, void *newdata, int size, unsigned
     data = new unsigned char[dataSize];
     std::memcpy(data, newdata, dataSize);
     indicesCount = static_cast<size_t>(indices_count);
-    indices = new unsigned int[indicesCount];
+    this->indices = new unsigned int[indicesCount];
     std::memcpy(this->indices, indices, indicesCount * sizeof(unsigned int));
     glfuncs = QOpenGLContext::currentContext()->functions();
 }
 
 void SubMesh::update()
 {
+    if(vao.isCreated())
+    {
+        return;
+    }
+
     vao.create();
     vao.bind();
 
@@ -67,6 +72,7 @@ void SubMesh::update()
 void SubMesh::draw()
 {
     int num_vertices = dataSize / vertexFormat.size;
+
     vao.bind();
     if(indicesCount > 0)
     {
@@ -76,6 +82,8 @@ void SubMesh::draw()
     {
         glfuncs->glDrawArrays(GL_TRIANGLES, 0 , num_vertices);
     }
+
+    vao.release();
 }
 
 void SubMesh::destroy()

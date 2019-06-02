@@ -3,6 +3,7 @@
 #include "ui_rendering.h"
 #include "inspector.h"
 #include "hierarchy.h"
+#include "myopenglwidget.h"
 
 #include <QFile>
 #include <QJsonObject>
@@ -24,6 +25,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     inspector = new Inspector(this);
     ui->Inspectorwidget->setWidget(inspector);
+
+    openGLWidget = new MyOpenGLWidget(this);
+    ui->Scene->setWidget(openGLWidget);
 
     connect(ui->actionOpen_Project, SIGNAL(triggered()), this, SLOT(openProject()));
     connect(ui->actionSave_Project, SIGNAL(triggered()), this, SLOT(saveProject()));

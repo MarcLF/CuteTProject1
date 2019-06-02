@@ -1,6 +1,7 @@
 #include "entity.h"
 #include "componenttransform.h"
 #include "shaperenderer.h"
+#include "componentrender.h"
 
 #include <iostream>
 #include <QDebug>
@@ -11,16 +12,17 @@ Entity::Entity(int nameID)
     ComponentTransform* trans = new ComponentTransform();
     components.push_back(trans);
 
-    ComponentShapeRenderer* renderer = new ComponentShapeRenderer();
-    components.push_back(renderer);
+    ComponentRender* render = new ComponentRender();
+    render->AddMesh("Sphere");
+    components.push_back(render);
 }
 
-Entity::Entity(int nameID, ComponentTransform* newCompTrans, ComponentShapeRenderer* newCompShapeRend)
+Entity::Entity(int nameID, ComponentTransform* newCompTrans, ComponentRender* newCompRender)
 {
     name += " " + std::to_string(nameID);
 
     components.push_back(newCompTrans);
-    components.push_back(newCompShapeRend);
+    components.push_back(newCompRender);
 }
 
 const std::string Entity::GetName()

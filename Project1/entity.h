@@ -4,14 +4,15 @@
 #include <vector>
 #include <string>
 #include "component.h"
-#include "componenttransform.h"
-#include "shaperenderer.h"
+
+class ComponentTransform;
+class ComponentRender;
 
 class Entity
 {
 public:
     Entity(int nameID);
-    Entity(int nameID, ComponentTransform* newCompTrans, ComponentShapeRenderer* newCompShapeRend);
+    Entity(int nameID, ComponentTransform* newCompTrans, ComponentRender* newCompRender);
 
     const std::string GetName();
     void SetName(std::string setName);

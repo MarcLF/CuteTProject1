@@ -6,8 +6,12 @@
 #define DEGTORAD(angle_in_degrees) (angle_in_degrees*PI)/180.0f
 
 #include <QOpenGLWidget>
+#include <QOpenGLFunctions_3_3_Core>
+#include <QOpenGLShaderProgram>
 
-class MyOpenGLWidget : public QOpenGLWidget
+class Camera;
+
+class MyOpenGLWidget : public QOpenGLWidget, protected QOpenGLFunctions_3_3_Core
 {
     Q_OBJECT
 public:
@@ -18,15 +22,25 @@ public:
     void resizeGL(int width, int height) override;
     void paintGL() override;
 
+public:
+    QOpenGLShaderProgram program;
+
+private:
+    Camera* mainCamera = nullptr;
+
+    float FOV = 90.0f;
+    float aspectRatio = 0.0f;
+    float nearPlane = 0.1f;
+    float farPlane = 150.0f;
+
+        QTimer* updateTimer;
+
+
 signals:
 
 public slots:
+    void myUpdate();
 
-private:
-    float aspect_ratio = 0.0f;
-    float field_of_view = 90.0f; //radiants
-    float near_plane_distance = 0.1f;
-    float far_plane_distance = 150.0f;
 };
 
 #endif // MYOPENGLWIDGET_H

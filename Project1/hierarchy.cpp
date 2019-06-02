@@ -123,7 +123,7 @@ void Hierarchy::saveEntities(QFile &saveFile)
 
 void Hierarchy::loadEntities(QString path)
 {
-    selected = nullptr;
+    /*selected = nullptr;
     selectedItem = nullptr;
 
     while(!entities.empty())
@@ -216,7 +216,7 @@ void Hierarchy::loadEntities(QString path)
         entity->SetName(entityName.toStdString());
         entities.push_back(entity);
         ui->EntityList->addItem(entity->GetName().c_str());
-    }
+    }*/
 }
 
 void Hierarchy::ChangeItemName(Entity *entity, QString name)

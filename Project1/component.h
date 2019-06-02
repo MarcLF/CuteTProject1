@@ -6,7 +6,8 @@
 enum ComponentType
 {
     Component_Transform,
-    Component_ShapeRenderer
+    Component_ShapeRenderer,
+    Component_Render
 };
 
 namespace Ui {

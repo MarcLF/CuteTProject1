@@ -22,12 +22,27 @@ Mesh::~Mesh()
 
 void Mesh::update()
 {
-
+    if(needsUpdate == true)
+    {
+        for(int i = 0; i < subMeshes.size(); i++)
+        {
+            subMeshes.at(i)->update();
+        }
+        needsUpdate = false;
+    }
 }
 
 void Mesh::destroy()
 {
 
+}
+
+void Mesh::draw()
+{
+    for(int i = 0; i < subMeshes.size(); i++)
+    {
+        subMeshes.at(i)->draw();
+    }
 }
 
 void Mesh::loadModel(const char *filename)
@@ -108,7 +123,7 @@ SubMesh* Mesh::processMesh(aiMesh *mesh, const aiScene *scene)
 
     if(hasTexCoords)
     {
-        vertexFormat.setVertexAttribute(2, 6 * sizeof(float), 3);
+        vertexFormat.setVertexAttribute(2, 6 * sizeof(float), 2);
     }
 
     return new SubMesh(vertexFormat, &vertices[0], vertices.size()*sizeof (float), &indices[0], indices.size());
