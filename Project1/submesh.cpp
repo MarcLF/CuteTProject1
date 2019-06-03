@@ -5,6 +5,7 @@ SubMesh::SubMesh(VertexFormat newvertexFormat, void *newdata, int size)
 {
     vertexFormat = newvertexFormat;
     data = static_cast<unsigned char*>(newdata);
+    memcpy(data, newdata, size);
     dataSize = static_cast<size_t>(size);
     glfuncs = QOpenGLContext::currentContext()->functions();
 }
@@ -18,6 +19,7 @@ SubMesh::SubMesh(VertexFormat newvertexFormat, void *newdata, int size, unsigned
     dataSize = static_cast<size_t>(size);
     data = new unsigned char[dataSize];
     std::memcpy(data, newdata, dataSize);
+
     indicesCount = static_cast<size_t>(indices_count);
     this->indices = new unsigned int[indicesCount];
     std::memcpy(this->indices, indices, indicesCount * sizeof(unsigned int));
@@ -37,6 +39,7 @@ void SubMesh::update()
     vbo.bind();
     vbo.setUsagePattern(QOpenGLBuffer::UsagePattern::StaticDraw);
     vbo.allocate(data, int(dataSize));
+
     delete[] data;
     data = nullptr;
 
@@ -46,6 +49,7 @@ void SubMesh::update()
         ibo.bind();
         ibo.setUsagePattern(QOpenGLBuffer::UsagePattern::StaticDraw);
         ibo.allocate(indices, int(indicesCount * sizeof(unsigned int)));
+
         delete [] indices;
         indices = nullptr;
     }
