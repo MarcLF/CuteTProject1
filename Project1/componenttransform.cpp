@@ -43,18 +43,13 @@ ComponentTransform::~ComponentTransform()
 
 void ComponentTransform::Update()
 {
-    if(updateTrans == true)
-    {
-        transformMatrix.setToIdentity();
+    transformMatrix.setToIdentity();
 
-        transformMatrix.translate(posX, posY, posZ);
-        transformMatrix.rotate(rotX, QVector3D(1, 0, 0));
-        transformMatrix.rotate(rotY, QVector3D(0, 1, 0));
-        transformMatrix.rotate(rotZ, QVector3D(0, 0, 1));
-        transformMatrix.scale(scaleX, scaleY, scaleZ);
-
-        updateTrans = false;
-    }
+    transformMatrix.translate(posX, posY, posZ);
+    transformMatrix.rotate(rotX, QVector3D(1, 0, 0));
+    transformMatrix.rotate(rotY, QVector3D(0, 1, 0));
+    transformMatrix.rotate(rotZ, QVector3D(0, 0, 1));
+    transformMatrix.scale(scaleX, scaleY, scaleZ);
 }
 
 void ComponentTransform::setValues()
@@ -73,118 +68,118 @@ void ComponentTransform::setValues()
     ui->ZScale->setValue(scaleZ);
 }
 
-const QMatrix4x4* ComponentTransform::GetTransMatrix() const
+QMatrix4x4 ComponentTransform::GetTransMatrix()
 {
-    return &transformMatrix;
+    return transformMatrix;
 }
 
 void ComponentTransform::modifyXPos(double value)
 {
     posX = value;
-    updateTrans = true;
+    Update();
 }
 
 void ComponentTransform::modifyYPos(double value)
 {
     posY = value;
-    updateTrans = true;
+    Update();
 }
 
 void ComponentTransform::modifyZPos(double value)
 {
     posZ = value;
-    updateTrans = true;
+    Update();
 }
 
 void ComponentTransform::modifyXRot(double value)
 {
     rotX = value;
-    updateTrans = true;
+    Update();
 }
 
 void ComponentTransform::modifyYRot(double value)
 {
     rotY = value;
-    updateTrans = true;
+    Update();
 }
 
 void ComponentTransform::modifyZRot(double value)
 {
     rotZ = value;
-    updateTrans = true;
+    Update();
 }
 
 void ComponentTransform::modifyXScale(double value)
 {
     scaleX = value;
-    updateTrans = true;
+    Update();
 }
 
 void ComponentTransform::modifyYScale(double value)
 {
     scaleY = value;
-    updateTrans = true;
+    Update();
 }
 
 void ComponentTransform::modifyZScale(double value)
 {
     scaleZ = value;
-    updateTrans = true;
+    Update();
 }
 
 
 float ComponentTransform::GetPosX()
 {
     return posX;
-    updateTrans = true;
+    Update();
 }
 
 float ComponentTransform::GetPosY()
 {
     return posY;
-    updateTrans = true;
+    Update();
 }
 
 float ComponentTransform::GetPosZ()
 {
     return posZ;
-    updateTrans = true;
+    Update();
 }
 
 float ComponentTransform::GetRotX()
 {
     return rotX;
-    updateTrans = true;
+    Update();
 }
 
 float ComponentTransform::GetRotY()
 {
     return rotY;
-    updateTrans = true;
+    Update();
 }
 
 float ComponentTransform::GetRotZ()
 {
     return rotZ;
-    updateTrans = true;
+    Update();
 }
 
 float ComponentTransform::GetScaleX()
 {
     return scaleX;
-    updateTrans = true;
+    Update();
 }
 
 float ComponentTransform::GetScaleY()
 {
     return scaleY;
-    updateTrans = true;
+    Update();
 }
 
 float ComponentTransform::GetScaleZ()
 {
     return scaleZ;
-    updateTrans = true;
+    Update();
 }
 
 

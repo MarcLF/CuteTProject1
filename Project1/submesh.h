@@ -32,6 +32,8 @@ private:
     QOpenGLVertexArrayObject vao;
 
     QOpenGLFunctions *glfuncs = nullptr;
+
+    bool done = false;
 };
 
 #endif // SUBMESH_H

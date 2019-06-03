@@ -11,6 +11,8 @@ SubMesh::SubMesh(VertexFormat newvertexFormat, void *newdata, int size)
 
 SubMesh::SubMesh(VertexFormat newvertexFormat, void *newdata, int size, unsigned int *indices, int indices_count)
 {
+    glfuncs = QOpenGLContext::currentContext()->functions();
+
     vertexFormat = newvertexFormat;
 
     dataSize = static_cast<size_t>(size);
@@ -19,15 +21,14 @@ SubMesh::SubMesh(VertexFormat newvertexFormat, void *newdata, int size, unsigned
     indicesCount = static_cast<size_t>(indices_count);
     this->indices = new unsigned int[indicesCount];
     std::memcpy(this->indices, indices, indicesCount * sizeof(unsigned int));
-    glfuncs = QOpenGLContext::currentContext()->functions();
 }
 
 void SubMesh::update()
 {
-    if(vao.isCreated())
-    {
+    if(done == true)
         return;
-    }
+
+    qDebug("Size of indices %u", sizeof(&indices));
 
     vao.create();
     vao.bind();
@@ -49,7 +50,7 @@ void SubMesh::update()
         indices = nullptr;
     }
 
-    for(int location = 0; location < MAX_VERTEX_ATTRIBUTES; ++location)
+    for(int location = 0; location < MAX_VERTEX_ATTRIBUTES; location++)
     {
         VertexAttribute &attr = vertexFormat.attribute[location];
 
@@ -67,12 +68,14 @@ void SubMesh::update()
     {
         ibo.release();
     }
+
+    done = true;
 }
 
 void SubMesh::draw()
 {
     int num_vertices = dataSize / vertexFormat.size;
-
+    update();
     vao.bind();
     if(indicesCount > 0)
     {

@@ -90,6 +90,20 @@ SubMesh* Mesh::processMesh(aiMesh *mesh, const aiScene *scene)
     QVector<unsigned int> indices;
 
     bool hasTexCoords = false;
+    bool hasBitangents = false;
+
+    int size = 0;
+
+    if (mesh->HasTangentsAndBitangents()){
+        hasBitangents = true;
+        size = mesh->mNumVertices * 12;
+    }
+    else
+    {
+        size = mesh->mNumVertices * 6;
+    }
+
+    vertices.reserve(size);
 
     for(unsigned int i = 0; i < mesh->mNumVertices; i++)
     {
@@ -106,7 +120,19 @@ SubMesh* Mesh::processMesh(aiMesh *mesh, const aiScene *scene)
           vertices.push_back(mesh->mTextureCoords[0][i].x);
           vertices.push_back(mesh->mTextureCoords[0][i].y);
         }
+
+        if(hasBitangents)
+        {
+            vertices.push_back(mesh->mTangents[i].x);
+            vertices.push_back(mesh->mTangents[i].y);
+            vertices.push_back(mesh->mTangents[i].z);
+            vertices.push_back(mesh->mBitangents[i].x);
+            vertices.push_back(mesh->mBitangents[i].y);
+            vertices.push_back(mesh->mBitangents[i].z);
+        }
     }
+
+    indices.reserve(mesh->mNumFaces * 3);
 
     for (unsigned int i = 0; i < mesh->mNumFaces; i++)
     {
@@ -118,12 +144,18 @@ SubMesh* Mesh::processMesh(aiMesh *mesh, const aiScene *scene)
     }
 
     VertexFormat vertexFormat;
-    vertexFormat.setVertexAttribute(0,0,3);
-    vertexFormat.setVertexAttribute(1,3 * sizeof(float), 3);
+    vertexFormat.setVertexAttribute(0, 0, 3);
+    vertexFormat.setVertexAttribute(1, 3 * sizeof(float), 3);
 
     if(hasTexCoords)
     {
         vertexFormat.setVertexAttribute(2, 6 * sizeof(float), 2);
+    }
+
+    if(hasBitangents)
+    {
+        vertexFormat.setVertexAttribute(3, 9 * sizeof(float),3);
+        vertexFormat.setVertexAttribute(4, 12 * sizeof(float), 3);
     }
 
     return new SubMesh(vertexFormat, &vertices[0], vertices.size()*sizeof (float), &indices[0], indices.size());

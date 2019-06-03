@@ -22,6 +22,8 @@ public:
     void resizeGL(int width, int height) override;
     void paintGL() override;
 
+    void InitBuffers();
+
 public:
     QOpenGLShaderProgram program;
 
@@ -33,7 +35,12 @@ private:
     float nearPlane = 0.1f;
     float farPlane = 150.0f;
 
-        QTimer* updateTimer;
+    GLuint colorTexture;
+    GLuint depthTexture;
+    GLuint normalTexture;
+    GLuint fbo;
+
+    QTimer* updateTimer;
 
 
 signals:
