@@ -17,6 +17,10 @@ public:
 
     void PrepareMatrices();
 
+    void Move(QVector3D movement);
+
+    void Rotate(float x, float y);
+
 public:
     int viewportWidth;
     int viewportHeight;

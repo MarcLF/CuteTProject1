@@ -1,7 +1,7 @@
 #ifndef VERTEXFORMAT_H
 #define VERTEXFORMAT_H
 
-static const int MAX_VERTEX_ATTRIBUTES = 8;
+#define MAX_VERTEX_ATTRIBUTES 8
 
 struct VertexAttribute
 {
@@ -22,7 +22,7 @@ public:
         size += ncomp * sizeof(float);
     }
 
-    VertexAttribute attribute[3];
+    VertexAttribute attribute[MAX_VERTEX_ATTRIBUTES];
     int size = 0;
 
 };

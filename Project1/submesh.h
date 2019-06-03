@@ -19,11 +19,11 @@ public:
     void draw();
     void destroy();
 
-private:
-    unsigned char *data = nullptr;
+public:
+    unsigned char *data;
     size_t dataSize = 0;
 
-    unsigned int *indices = nullptr;
+    unsigned int *indices;
     size_t indicesCount = 0;
 
     VertexFormat vertexFormat;

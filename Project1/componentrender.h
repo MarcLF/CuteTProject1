@@ -20,6 +20,7 @@ public:
 
     void AddMesh(const char* fileName);
     void Draw();
+    void WorkMeshes();
 
 private:
     Ui::ComponentRender *ui;

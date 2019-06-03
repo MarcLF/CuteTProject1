@@ -19,23 +19,16 @@ Inspector::Inspector(QWidget *parent) :
     ui->setupUi(this);
 
     transformBox = new QGroupBox(tr("Transform"));
-    shapeBox = new QGroupBox(tr("Shape Renderer"));
 
     transformLayout = new QVBoxLayout();
-    shapeLayout = new QVBoxLayout();
-
-    transformBox->setMaximumSize(235, 130);
-    shapeBox->setMaximumSize(235, 250);
 
     transformBox->setLayout(transformLayout);
-    shapeBox->setLayout(shapeLayout);
 
     entityName = new QLineEdit();
     entityName->setEnabled(false);
 
     ui->Layout->addWidget(entityName);
     ui->Layout->addWidget(transformBox);
-    ui->Layout->addWidget(shapeBox);
 
     connect(entityName, SIGNAL(editingFinished()), this, SLOT(NameChanged()));
 }

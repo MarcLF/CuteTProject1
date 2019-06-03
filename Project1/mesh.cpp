@@ -7,8 +7,8 @@
 #include "assimp/scene.h"
 #include "assimp/postprocess.h"
 #include "submesh.h"
-#include "mysuperwidget.h"
 #include "mainwindow.h"
+#include "myopenglwidget.h"
 
 Mesh::Mesh()
 {
@@ -22,14 +22,10 @@ Mesh::~Mesh()
 
 void Mesh::update()
 {
-    if(needsUpdate == true)
-    {
         for(int i = 0; i < subMeshes.size(); i++)
         {
-            subMeshes.at(i)->update();
+            subMeshes[i]->update();
         }
-        needsUpdate = false;
-    }
 }
 
 void Mesh::destroy()
@@ -41,44 +37,61 @@ void Mesh::draw()
 {
     for(int i = 0; i < subMeshes.size(); i++)
     {
-        subMeshes.at(i)->draw();
+        subMeshes[i]->draw();
     }
 }
 
 void Mesh::loadModel(const char *filename)
 {
-    Assimp::Importer import;
+    QFile f(filename);
 
-    QFile file(filename);
-    if(!file.open(QIODevice::ReadOnly))
+    if(!f.open(QIODevice::ReadOnly))
     {
-        //std::cout<< "Could no open file for read" << filename << std::endl;
+        std::cout << "Not Read Only" << std::endl;
         return;
     }
 
-    QByteArray data = file.readAll();
+    //
+    QByteArray data = f.readAll();
 
-    const aiScene *scene = import.ReadFileFromMemory(data.data(), data.size(), aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_GenSmoothNormals | aiProcess_OptimizeMeshes | aiProcess_PreTransformVertices | aiProcess_ImproveCacheLocality , ".obj");
+    Assimp::Importer import;
+
+    const aiScene *scene = import.ReadFileFromMemory(
+                data.data(), data.size(),
+                aiProcess_Triangulate|
+                aiProcess_FlipUVs|
+                aiProcess_GenSmoothNormals|
+                aiProcess_OptimizeMeshes|
+                aiProcess_PreTransformVertices|
+                aiProcess_ImproveCacheLocality,
+                ".obj");
 
     if(!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
     {
-        //
+        std::cout << "ERROR::ASSIMP::" << import.GetErrorString() << std::endl;
         return;
     }
 
+    std::cout << "ProcessNode" << std::endl;
     processNode(scene->mRootNode, scene);
-    needsUpdate = true;
+
+    std::cout << "End Porcess Node" << std::endl;
+
+    f.close();
+
+    return;
 }
 
 void Mesh::processNode(aiNode *node, const aiScene *scene)
 {
+    // process all the node's meshes (if any)
     for(unsigned int i = 0; i < node->mNumMeshes; i++)
     {
         aiMesh *mesh = scene->mMeshes[node->mMeshes[i]];
-        subMeshes.push_back(processMesh(mesh, scene));
+        subMeshes.push_back(processMesh(mesh,scene));
     }
 
-    for (unsigned int i = 0; i < node->mNumChildren; i++)
+    for(unsigned int i = 0; i < node->mNumChildren; i++)
     {
         processNode(node->mChildren[i], scene);
     }
@@ -90,22 +103,16 @@ SubMesh* Mesh::processMesh(aiMesh *mesh, const aiScene *scene)
     QVector<unsigned int> indices;
 
     bool hasTexCoords = false;
-    bool hasBitangents = false;
+    bool hasTangBitang = false;
 
     int size = 0;
-
     if (mesh->HasTangentsAndBitangents()){
-        hasBitangents = true;
-        size = mesh->mNumVertices * 12;
+        hasTangBitang = true;
+        size = mesh->mNumVertices*12;
     }
-    else
-    {
-        size = mesh->mNumVertices * 6;
-    }
+    else size = mesh->mNumVertices*6;
 
-    vertices.reserve(size);
-
-    for(unsigned int i = 0; i < mesh->mNumVertices; i++)
+    for(int i = 0; i < mesh->mNumVertices; i++)
     {
         vertices.push_back(mesh->mVertices[i].x);
         vertices.push_back(mesh->mVertices[i].y);
@@ -116,12 +123,12 @@ SubMesh* Mesh::processMesh(aiMesh *mesh, const aiScene *scene)
 
         if(mesh->mTextureCoords[0])
         {
-          hasTexCoords = true;
-          vertices.push_back(mesh->mTextureCoords[0][i].x);
-          vertices.push_back(mesh->mTextureCoords[0][i].y);
+            hasTexCoords = true;
+            vertices.push_back(mesh->mTextureCoords[0][i].x);
+            vertices.push_back(mesh->mTextureCoords[0][i].y);
         }
 
-        if(hasBitangents)
+        if(hasTangBitang)
         {
             vertices.push_back(mesh->mTangents[i].x);
             vertices.push_back(mesh->mTangents[i].y);
@@ -132,33 +139,27 @@ SubMesh* Mesh::processMesh(aiMesh *mesh, const aiScene *scene)
         }
     }
 
-    indices.reserve(mesh->mNumFaces * 3);
-
-    for (unsigned int i = 0; i < mesh->mNumFaces; i++)
+    for(int i = 0; i < mesh->mNumFaces; i++)
     {
         aiFace face = mesh->mFaces[i];
-        for(unsigned int j = 0; j < face.mNumIndices; j++)
+        for (int j = 0; j < face.mNumIndices; j++)
         {
             indices.push_back(face.mIndices[j]);
         }
     }
 
     VertexFormat vertexFormat;
-    vertexFormat.setVertexAttribute(0, 0, 3);
-    vertexFormat.setVertexAttribute(1, 3 * sizeof(float), 3);
-
+    vertexFormat.setVertexAttribute(0,0,3);
+    vertexFormat.setVertexAttribute(1,3*sizeof(float), 3);
     if(hasTexCoords)
+        vertexFormat.setVertexAttribute(2,6*sizeof(float), 2);
+    if(hasTangBitang)
     {
-        vertexFormat.setVertexAttribute(2, 6 * sizeof(float), 2);
+        vertexFormat.setVertexAttribute(3,9*sizeof(float),3);
+        vertexFormat.setVertexAttribute(4,12*sizeof(float), 3);
     }
 
-    if(hasBitangents)
-    {
-        vertexFormat.setVertexAttribute(3, 9 * sizeof(float),3);
-        vertexFormat.setVertexAttribute(4, 12 * sizeof(float), 3);
-    }
-
-    return new SubMesh(vertexFormat, &vertices[0], vertices.size()*sizeof (float), &indices[0], indices.size());
+    return new SubMesh(vertexFormat, &vertices[0], vertices.size()*sizeof(float), &indices[0], indices.size());
 }
 
 

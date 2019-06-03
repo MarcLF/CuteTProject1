@@ -76,3 +76,11 @@ void ComponentRender::Draw()
         myMesh->draw();
     }
 }
+
+void ComponentRender::WorkMeshes()
+{
+    if(myMesh != nullptr)
+    {
+        myMesh->update();
+    }
+}

@@ -13,7 +13,7 @@ Entity::Entity(int nameID)
     components.push_back(trans);
 
     ComponentRender* render = new ComponentRender();
-    render->AddMesh("Sphere");
+    render->AddMesh("dani");
     components.push_back(render);
 }
 

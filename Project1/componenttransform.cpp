@@ -70,6 +70,7 @@ void ComponentTransform::setValues()
 
 QMatrix4x4 ComponentTransform::GetTransMatrix()
 {
+    Update();
     return transformMatrix;
 }
 

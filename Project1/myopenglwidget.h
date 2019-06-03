@@ -42,6 +42,20 @@ private:
 
     QTimer* updateTimer;
 
+    float mouseX = 0;
+    float mouseY = 0;
+    float motionX = 0;
+    float motionY = 0;
+    bool isRotating = false;
+
+private:
+    void keyPressEvent(QKeyEvent* event) override;
+    void keyReleaseEvent(QKeyEvent* event) override;
+
+    void mousePressEvent(QMouseEvent* event) override;
+    void mouseMoveEvent(QMouseEvent* event) override;
+    void mouseReleaseEvent(QMouseEvent* event) override;
+
 
 signals:
 
@@ -49,5 +63,7 @@ public slots:
     void myUpdate();
 
 };
+
+extern QOpenGLFunctions_3_3_Core *gl;
 
 #endif // MYOPENGLWIDGET_H

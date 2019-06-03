@@ -6,21 +6,22 @@
 
 Camera::Camera(int width, int height)
 {
+    position = QVector3D(0, 0, 0);
+
     viewportWidth = width;
     viewportHeight = height;
 
-     viewportWidth = 128;
-     viewportHeight = 128;
-
-    fov = 90.0f;
-    zNear = 0.1f;
-    zFar = 150.0f;
+    fov = 60.0f;
+    zNear = 0.5f;
+    zFar = 10000.0f;
     yaw = 0.0f;
     pitch = 0.0f;
-    speed = 0.5f;
+    speed = 10.0f;
 
     worldMatrix = QMatrix4x4(1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1);
     viewMatrix =  QMatrix4x4(1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1);
+
+    PrepareMatrices();
 }
 
 QVector4D Camera::GetLeftRightBottomTop()
@@ -65,4 +66,49 @@ void Camera::PrepareMatrices()
 
     projectionMatrix.setToIdentity();
     projectionMatrix.perspective(fov,float(viewportWidth)/viewportHeight, zNear, zFar);
+}
+
+void Camera::Move(QVector3D movement)
+{
+    QVector3D moveVec = QVector3D(0.0f, 0.0f, 0.0f);
+    //press W
+    if(movement == QVector3D(0,0,1))
+    {
+        moveVec += QVector3D(-sinf(qDegreesToRadians(yaw)) * cosf(qDegreesToRadians(pitch)),
+                         sinf(qDegreesToRadians(pitch)),
+                         -cosf(qDegreesToRadians(yaw)) * cosf(qDegreesToRadians(pitch)));
+    }
+
+    //press S
+    if(movement == QVector3D(0,0,-1))
+    {
+        moveVec += QVector3D(sinf(qDegreesToRadians(yaw)) * cosf(qDegreesToRadians(pitch)),
+                            -sinf(qDegreesToRadians(pitch)),
+                            cosf(qDegreesToRadians(yaw)) * cosf(qDegreesToRadians(pitch)));
+    }
+
+    //press A
+    if(movement == QVector3D(-1,0,0))
+    {
+        moveVec += QVector3D(-cosf(qDegreesToRadians(yaw)),
+                             0.0f,
+                             sinf(qDegreesToRadians(yaw)));
+    }
+
+    //press D
+    if(movement == QVector3D(1,0,0))
+    {
+        moveVec += QVector3D(cosf(qDegreesToRadians(yaw)),
+                             0.0f,
+                             -sinf(qDegreesToRadians(yaw)));
+    }
+
+
+    position += moveVec;
+}
+
+void Camera::Rotate(float x, float y)
+{
+    yaw -= x;
+    pitch -= y;
 }
