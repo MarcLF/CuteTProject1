@@ -9,6 +9,11 @@
 #include <QOpenGLFunctions_3_3_Core>
 #include <QOpenGLShaderProgram>
 
+#include <QOpenGLBuffer>
+#include <QOpenGLVertexArrayObject>
+#include <QOpenGLFramebufferObject>
+#include<QtOpenGL/QtOpenGL>
+
 class Camera;
 
 class MyOpenGLWidget : public QOpenGLWidget, protected QOpenGLFunctions_3_3_Core
@@ -21,7 +26,7 @@ public:
     void initializeGL() override;
     void resizeGL(int width, int height) override;
     void paintGL() override;
-
+    void ChargeTextureToProgram(QOpenGLTexture text);
     void InitBuffers();
 
 public:
