@@ -37,8 +37,8 @@ void MyOpenGLWidget::initializeGL()
     connect(context(), SIGNAL(aboutToBeDestroyed()), this, SLOT(finalizeGL()));
 
     program.create();
-    program.addShaderFromSourceFile(QOpenGLShader::Vertex, "C:/Users/DANIEL H/Documents/GitHub/CuteTProject1/Project1/shaders/vertex_shader.vert");
-    program.addShaderFromSourceFile(QOpenGLShader::Fragment, "C:/Users/DANIEL H/Documents/GitHub/CuteTProject1/Project1/shaders/fragment_shader.frag");
+    program.addShaderFromSourceFile(QOpenGLShader::Vertex, "C:/Users/Usuario/Documents/GitHub/CuteTProject1/Project1/shaders/vertex_shader.vert");
+    program.addShaderFromSourceFile(QOpenGLShader::Fragment, "C:/Users/Usuario/Documents/GitHub/CuteTProject1/Project1/shaders/fragment_shader.frag");
     program.link();
     InitBuffers();
     program.bind();

@@ -57,15 +57,15 @@ void Mesh::loadModel(const char *filename)
 
     Assimp::Importer import;
 
-    const aiScene *scene = import.ReadFileFromMemory(
-                data.data(), data.size(),
-                aiProcess_Triangulate|
-                aiProcess_FlipUVs|
-                aiProcess_GenSmoothNormals|
-                aiProcess_OptimizeMeshes|
-                aiProcess_PreTransformVertices|
-                aiProcess_ImproveCacheLocality,
-                ".obj");
+    const aiScene *scene = import.ReadFile(
+                filename,
+                aiProcess_Triangulate |
+                aiProcess_GenSmoothNormals |
+                aiProcess_FixInfacingNormals |
+                aiProcess_JoinIdenticalVertices |
+                aiProcess_PreTransformVertices |
+                aiProcess_FlipUVs |
+                aiProcess_OptimizeMeshes);
 
     if(!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
     {
@@ -165,25 +165,17 @@ SubMesh* Mesh::processMesh(aiMesh *mesh, const aiScene *scene)
 
     if(scene->HasMaterials())
     {
-         std::cout<<"HASMATERIALS"<<std::endl;
-         aiString material_path = aiString("");
-         scene->mMaterials[mesh->mMaterialIndex]->GetTexture(aiTextureType_DIFFUSE, 0, &material_path);
-         std::cout<<"HASTA AQUI"<<std::endl;
+        aiMaterial* mat = scene->mMaterials[mesh->mMaterialIndex];
 
-         std::string str = filename;
-         std::cout<<"HASTA AQUI2"<<std::endl;
-                  std::cout<<str <<std::endl;
-         int pos = str.find_last_of("/");
-         str = str.substr(0, pos + 1);
+        aiString material_path;
+        scene->mMaterials[mesh->mMaterialIndex]->GetTexture(aiTextureType_DIFFUSE, 0, &material_path);
 
-         std::cout<<material_path.C_Str() <<std::endl;
-         str += material_path.C_Str();
-         //submesh->OGLTexAlbedo = new QOpenGLTexture(QImage(str.c_str()));
-         int pos1 = str.find_last_of("/");
-         std::string texName = str.substr(pos1 + 1, str.length()).c_str();
+        std::string str = filename;
+        int pos = str.find_last_of("/");
+        str = str.substr(0, pos + 1);
+        str += material_path.C_Str();
 
-         std::cout<<texName <<std::endl;
-         newSubMesh->AddTexture(texName);
+        newSubMesh->AddTexture(str);
     }
 
     return newSubMesh;
