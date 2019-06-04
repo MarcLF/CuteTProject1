@@ -33,8 +33,6 @@ public:
 
     QOpenGLFunctions *glfuncs = nullptr;
 
-    QOpenGLTexture* texture;
-
     bool done = false;
 };
 

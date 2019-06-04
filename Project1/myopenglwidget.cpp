@@ -37,8 +37,8 @@ void MyOpenGLWidget::initializeGL()
     connect(context(), SIGNAL(aboutToBeDestroyed()), this, SLOT(finalizeGL()));
 
     program.create();
-    program.addShaderFromSourceFile(QOpenGLShader::Vertex, "shaders/vertex_shader.vert");
-    program.addShaderFromSourceFile(QOpenGLShader::Fragment, "shaders/fragment_shader.frag");
+    program.addShaderFromSourceFile(QOpenGLShader::Vertex, "C:/Users/Usuario/Desktop/ColorinesGLSL-Programming-master/JopeShaderEngine/vertex_shader.vert");
+    program.addShaderFromSourceFile(QOpenGLShader::Fragment, "C:/Users/Usuario/Desktop/ColorinesGLSL-Programming-master/JopeShaderEngine/fragment_shader.frag");
     program.link();
     InitBuffers();
     program.bind();
@@ -99,12 +99,6 @@ void MyOpenGLWidget::paintGL()
 
         program.release();
     }
-}
-
-void MyOpenGLWidget::ChargeTextureToProgram(QOpenGLTexture text)
-{
-    program.setUniformValue("albedoTexture", 0 );
-    glBindTexture(GL_TEXTURE_2D, 0);
 }
 
 void MyOpenGLWidget::InitBuffers()
