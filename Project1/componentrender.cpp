@@ -65,7 +65,7 @@ void ComponentRender::AddMesh(const char *fileName)
     else
     {
         myMesh = new Mesh();
-        myMesh->loadModel("C:/Users/Usuario/Documents/GitHub/CuteTProject1/Project1/Models/Patrick.obj");
+        myMesh->loadModel("Models/sponza.obj");
     }
 }
 

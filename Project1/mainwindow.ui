@@ -75,7 +75,17 @@
     <addaction name="separator"/>
     <addaction name="actionQuit"/>
    </widget>
+   <widget class="QMenu" name="menuRenderer">
+    <property name="title">
+     <string>Renderer</string>
+    </property>
+    <addaction name="actionAlbedo"/>
+    <addaction name="actionLighting"/>
+    <addaction name="actionNormals"/>
+    <addaction name="actionDepth_test"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuRenderer"/>
   </widget>
   <widget class="QDockWidget" name="Scene">
    <property name="minimumSize">
@@ -105,6 +115,26 @@
   <action name="actionQuit">
    <property name="text">
     <string>Quit</string>
+   </property>
+  </action>
+  <action name="actionAlbedo">
+   <property name="text">
+    <string>Albedo</string>
+   </property>
+  </action>
+  <action name="actionLighting">
+   <property name="text">
+    <string>Lighting</string>
+   </property>
+  </action>
+  <action name="actionNormals">
+   <property name="text">
+    <string>Normals</string>
+   </property>
+  </action>
+  <action name="actionDepth_test">
+   <property name="text">
+    <string>Depth test</string>
    </property>
   </action>
  </widget>

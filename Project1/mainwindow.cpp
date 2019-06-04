@@ -32,6 +32,11 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionOpen_Project, SIGNAL(triggered()), this, SLOT(openProject()));
     connect(ui->actionSave_Project, SIGNAL(triggered()), this, SLOT(saveProject()));
     connect(ui->actionQuit, SIGNAL(triggered()), qApp, SLOT(quit()));
+
+    connect(ui->actionAlbedo, SIGNAL(triggered()), this, SLOT(changeRender(0)));
+    connect(ui->actionLighting, SIGNAL(triggered()), this, SLOT(changeRender(1)));
+    connect(ui->actionNormals, SIGNAL(triggered()), this, SLOT(changeRender(2)));
+    connect(ui->actionDepth_test, SIGNAL(triggered()), this, SLOT(changeRender(3)));
 }
 
 MainWindow::~MainWindow()
@@ -49,6 +54,11 @@ void MainWindow::saveProject()
     QFile saveFile("save.json");
 
     hierarchy->saveEntities(saveFile);
+}
+
+void MainWindow::ChangeRender(int newMode)
+{
+    openGLWidget->SetRendererDisplay(newMode);
 }
 
 Inspector *MainWindow::GetInspector()

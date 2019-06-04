@@ -28,6 +28,7 @@ public slots:
 
     void openProject();
     void saveProject();
+    void ChangeRender(int newMode);
 
 
 private:

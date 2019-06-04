@@ -13,7 +13,6 @@
 
 MyOpenGLWidget::MyOpenGLWidget(QWidget *parent) : QOpenGLWidget(parent)
 {
-
     updateTimer = new QTimer(this);
     connect(updateTimer, SIGNAL(timeout()), this, SLOT(myUpdate()));
     updateTimer->start(60);
@@ -37,8 +36,8 @@ void MyOpenGLWidget::initializeGL()
     connect(context(), SIGNAL(aboutToBeDestroyed()), this, SLOT(finalizeGL()));
 
     program.create();
-    program.addShaderFromSourceFile(QOpenGLShader::Vertex, "C:/Users/Usuario/Documents/GitHub/CuteTProject1/Project1/shaders/vertex_shader.vert");
-    program.addShaderFromSourceFile(QOpenGLShader::Fragment, "C:/Users/Usuario/Documents/GitHub/CuteTProject1/Project1/shaders/fragment_shader.frag");
+    program.addShaderFromSourceFile(QOpenGLShader::Vertex, "shaders/vertex_shader.vert");
+    program.addShaderFromSourceFile(QOpenGLShader::Fragment, "shaders/fragment_shader.frag");
     program.link();
     InitBuffers();
     program.bind();
@@ -80,6 +79,8 @@ void MyOpenGLWidget::paintGL()
         program.setUniformValue("projectionMatrix", mainCamera->projectionMatrix);
         QMatrix4x4 cameraTransfrom = mainCamera->viewMatrix;
 
+        program.setUniformValue("lightingOn", 2);
+
         program.setUniformValue("albedoTexture", 0 );
         glBindTexture(GL_TEXTURE_2D, 0);
 
@@ -92,6 +93,7 @@ void MyOpenGLWidget::paintGL()
             {
                 makeCurrent();
                 rendToDraw->WorkMeshes();
+                program.setUniformValue("modelMatrix", static_cast<ComponentTransform*>(toDraw[i]->GetComponent(ComponentType::Component_Transform))->GetTransMatrix());
                 program.setUniformValue("worldViewMatrix", cameraTransfrom * static_cast<ComponentTransform*>(toDraw[i]->GetComponent(ComponentType::Component_Transform))->GetTransMatrix());
                 rendToDraw->Draw();
             }
@@ -136,8 +138,8 @@ void MyOpenGLWidget::InitBuffers()
 
     switch (status)
     {
-    case GL_FRAMEBUFFER_COMPLETE://Everything'sOK
-        qDebug() << "Framebuffer is Veri gut patates amb suc";
+    case GL_FRAMEBUFFER_COMPLETE:
+        qDebug() << "Framebuffer is good :D";
         break;
     case GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT:
         qDebug() << "FramebufferERROR: GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT";
@@ -218,4 +220,9 @@ void MyOpenGLWidget::mouseReleaseEvent(QMouseEvent *event)
 void MyOpenGLWidget::myUpdate()
 {
     this->update();
+}
+
+void MyOpenGLWidget::SetRendererDisplay(int mode)
+{
+    this->mode = RendererMode(mode);
 }

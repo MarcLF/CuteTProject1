@@ -9,8 +9,7 @@ layout(location=4) in vec3 bitangent;
 
 uniform mat4 projectionMatrix;
 uniform mat4 worldViewMatrix;
-
-//uniform sampler2D normalMap;
+uniform mat4 modelMatrix;
 
 out Data
 {
@@ -23,8 +22,8 @@ void main(void)
 {
     VSOut.textCoord = textCoords;
 
-    VSOut.normalLocalspace = (worldViewMatrix*vec4(normal,0)).xyz;
-    VSOut.positionViewspace = (worldViewMatrix*vec4(position, 1)).xyz;
+    VSOut.normalLocalspace = (modelMatrix * vec4(normal,0)).xyz;
+    VSOut.positionViewspace = (projectionMatrix * vec4(position, 1)).xyz;
 
-    gl_Position = projectionMatrix*vec4(VSOut.positionViewspace, 1.0);
+    gl_Position = projectionMatrix * worldViewMatrix * vec4(position, 1.0);
 }

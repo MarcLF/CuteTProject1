@@ -11,6 +11,14 @@
 
 class Camera;
 
+enum RendererMode
+{
+    Albedo = 0,
+    Lighting,
+    Normals,
+    DepthTest
+};
+
 class MyOpenGLWidget : public QOpenGLWidget, protected QOpenGLFunctions_3_3_Core
 {
     Q_OBJECT
@@ -23,6 +31,8 @@ public:
     void paintGL() override;
 
     void InitBuffers();
+
+    void SetRendererDisplay(int mode);
 
 public:
     QOpenGLShaderProgram program;
@@ -47,6 +57,8 @@ private:
     float motionX = 0;
     float motionY = 0;
     bool isRotating = false;
+
+    RendererMode mode = RendererMode::Lighting;
 
 private:
     void keyPressEvent(QKeyEvent* event) override;
