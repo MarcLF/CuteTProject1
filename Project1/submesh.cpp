@@ -12,6 +12,7 @@ SubMesh::SubMesh(VertexFormat newVertexFormat, void *newData, int vSize):ibo(QOp
     memcpy(data, newData, vSize);
     dataSize = vSize;
 
+    texture = new QOpenGLTexture(QImage(QString("C:/Users/DANIEL H/Documents/GitHub/CuteTProject1/Project1/images/test.png")));
 }
 
 SubMesh::SubMesh(VertexFormat newVertexFormat, void *newData, int vSize, unsigned int *newIndices, int iSize) : ibo(QOpenGLBuffer::IndexBuffer)
@@ -27,6 +28,8 @@ SubMesh::SubMesh(VertexFormat newVertexFormat, void *newData, int vSize, unsigne
     indices = new unsigned int[iSize];
     memcpy(indices, newIndices, iSize * sizeof (unsigned int));
     indicesCount = iSize;
+
+    texture = new QOpenGLTexture(QImage(QString("C:/Users/DANIEL H/Documents/GitHub/CuteTProject1/Project1/images/test.png")));
 }
 
 SubMesh::~SubMesh()
@@ -85,6 +88,8 @@ void SubMesh::draw()
     {
         return;
     }
+
+    texture->bind();
 
     glfuncs = QOpenGLContext::currentContext()->functions();
 
