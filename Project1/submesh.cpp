@@ -37,6 +37,15 @@ SubMesh::~SubMesh()
     destroy();
 }
 
+void SubMesh::AddTexture(std::string texName)
+{
+    if(texture != nullptr)
+    {
+        delete[] texture;
+    }
+        texture = new QOpenGLTexture(QImage(QString(texName.c_str())));
+}
+
 void SubMesh::update()
 {
     if(vao.isCreated())
@@ -88,8 +97,10 @@ void SubMesh::draw()
     {
         return;
     }
-
+    if(texture != nullptr)
+    {
     texture->bind();
+    }
 
     glfuncs = QOpenGLContext::currentContext()->functions();
 

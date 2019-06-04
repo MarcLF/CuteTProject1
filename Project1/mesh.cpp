@@ -43,6 +43,7 @@ void Mesh::draw()
 
 void Mesh::loadModel(const char *filename)
 {
+    this->filename = filename;
     QFile f(filename);
 
     if(!f.open(QIODevice::ReadOnly))
@@ -90,6 +91,7 @@ void Mesh::processNode(aiNode *node, const aiScene *scene)
         aiMesh *mesh = scene->mMeshes[node->mMeshes[i]];
         subMeshes.push_back(processMesh(mesh,scene));
     }
+
 
     for(unsigned int i = 0; i < node->mNumChildren; i++)
     {
@@ -157,9 +159,34 @@ SubMesh* Mesh::processMesh(aiMesh *mesh, const aiScene *scene)
     {
         vertexFormat.setVertexAttribute(3,9*sizeof(float),3);
         vertexFormat.setVertexAttribute(4,12*sizeof(float), 3);
+
+    }
+    SubMesh* newSubMesh = new SubMesh(vertexFormat, &vertices[0], vertices.size()*sizeof(float), &indices[0], indices.size());
+
+    if(scene->HasMaterials())
+    {
+         std::cout<<"HASMATERIALS"<<std::endl;
+         aiString material_path = aiString("");
+         scene->mMaterials[mesh->mMaterialIndex]->GetTexture(aiTextureType_DIFFUSE, 0, &material_path);
+         std::cout<<"HASTA AQUI"<<std::endl;
+
+         std::string str = filename;
+         std::cout<<"HASTA AQUI2"<<std::endl;
+                  std::cout<<str <<std::endl;
+         int pos = str.find_last_of("/");
+         str = str.substr(0, pos + 1);
+
+         std::cout<<material_path.C_Str() <<std::endl;
+         str += material_path.C_Str();
+         //submesh->OGLTexAlbedo = new QOpenGLTexture(QImage(str.c_str()));
+         int pos1 = str.find_last_of("/");
+         std::string texName = str.substr(pos1 + 1, str.length()).c_str();
+
+         std::cout<<texName <<std::endl;
+         newSubMesh->AddTexture(texName);
     }
 
-    return new SubMesh(vertexFormat, &vertices[0], vertices.size()*sizeof(float), &indices[0], indices.size());
+    return newSubMesh;
 }
 
 

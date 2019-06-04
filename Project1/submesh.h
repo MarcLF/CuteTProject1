@@ -19,6 +19,8 @@ public:
     void draw();
     void destroy();
 
+    void AddTexture(std::string texname);
+
 public:
     unsigned char *data;
     size_t dataSize = 0;
