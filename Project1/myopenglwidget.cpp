@@ -25,8 +25,9 @@ MyOpenGLWidget::MyOpenGLWidget(QWidget *parent) : QOpenGLWidget(parent)
 
     mainCamera = new Camera(width(), height());
 
-
-
+    lightColor.setX(1.0f);
+    lightColor.setY(1.0f);
+    lightColor.setZ(1.0f);
 }
 
 MyOpenGLWidget::~MyOpenGLWidget()
@@ -183,6 +184,7 @@ void MyOpenGLWidget::paintGL()
         glBindTexture(GL_TEXTURE_2D, 0);
 
         program.setUniformValue("lightDir", QVector3D(xLightDir, yLightDir, zLightDir));
+        program.setUniformValue("lightColor", lightColor);
 
         std::vector<Entity*> toDraw = MainWindow::GetWindow()->GetHierarchy()->GetEntityList();
 
@@ -358,4 +360,9 @@ void MyOpenGLWidget::SetLightDirection(QVector3D lightDir)
     xLightDir = lightDir.x();
     yLightDir = lightDir.y();
     zLightDir = lightDir.z();
+}
+
+void MyOpenGLWidget::SetLightColor(QVector3D lightColor)
+{
+    this->lightColor = lightColor;
 }

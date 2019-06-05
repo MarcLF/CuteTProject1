@@ -99,7 +99,7 @@ void MainWindow::onLightColor()
 
 void MainWindow::changeLightColor()
 {
-    //openGLWidget->SetLightColor(QVector3D(lightColorPicker->currentColor().red()/255.0f, lightColorPicker->currentColor().green()/255.0f, lightColorPicker->currentColor().blue()/255.0f));
+    openGLWidget->SetLightColor(QVector3D(lightColorPicker->currentColor().red()/255.0f, lightColorPicker->currentColor().green()/255.0f, lightColorPicker->currentColor().blue()/255.0f));
 }
 
 Inspector *MainWindow::GetInspector()

@@ -41,6 +41,8 @@ public:
     void SetRendererDisplay(int mode);
 
     void SetLightDirection(QVector3D lightDir);
+    void SetLightColor(QVector3D lightColor);
+
 public:
     QOpenGLShaderProgram program;
 
@@ -87,6 +89,8 @@ private:
     float xLightDir = 0;
     float yLightDir = 1;
     float zLightDir = 0;
+
+    QVector3D lightColor;
 
     QOpenGLTexture *textureForBlur = nullptr;
 
