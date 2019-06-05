@@ -89,18 +89,22 @@ void SubMesh::update()
 
 void SubMesh::draw()
 {
+    qDebug("gogogo");
     if(!vao.isCreated())
     {
         return;
     }
+        qDebug("gogogo2");
     if(texture->isCreated())
     {
         texture->bind();
     }
+            qDebug("gogogo2");
 
     glfuncs = QOpenGLContext::currentContext()->functions();
-
+    qDebug("gogogo3");
     int numVertices = dataSize/vertexFormat.size;
+    qDebug("%i",numVertices);
     vao.bind();
     if(indicesCount > 0)
     {

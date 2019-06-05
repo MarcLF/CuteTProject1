@@ -41,6 +41,13 @@ void Mesh::draw()
     }
 }
 
+void Mesh::addSubmesh(VertexFormat vertexFormat, void *data, int bytes, unsigned int *indexes, int bytesIndexes)
+{
+    SubMesh* newSubMesh = new SubMesh(vertexFormat, data, bytes, &indexes[0], bytesIndexes);
+
+    subMeshes.push_back(newSubMesh);
+}
+
 void Mesh::loadModel(const char *filename)
 {
     this->filename = filename;

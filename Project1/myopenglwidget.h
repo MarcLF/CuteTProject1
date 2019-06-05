@@ -8,8 +8,14 @@
 #include <QOpenGLWidget>
 #include <QOpenGLFunctions_3_3_Core>
 #include <QOpenGLShaderProgram>
+#include <QOpenGLBuffer>
+#include<QtOpenGL/QtOpenGL>
+
+#include "qopengl.h"
+
 
 class Camera;
+class Mesh;
 
 enum RendererMode
 {
@@ -38,6 +44,10 @@ public:
 public:
     QOpenGLShaderProgram program;
 
+    QOpenGLShaderProgram blurProgram;
+    QOpenGLBuffer vboblur;
+    QOpenGLBuffer vaoblur;
+
 private:
     Camera* mainCamera = nullptr;
 
@@ -50,6 +60,10 @@ private:
     GLuint depthTexture;
     GLuint normalTexture;
     GLuint fbo;
+    GLuint partialBlurTexture;
+    GLuint partialBlurfbo;
+    GLuint completeBlurTexture;
+    GLuint completeBlurFbo;
 
     QTimer* updateTimer;
 
@@ -61,6 +75,7 @@ private:
 
     RendererMode mode = RendererMode::Lighting;
 
+    Mesh *quadMesh = nullptr;
 private:
     void keyPressEvent(QKeyEvent* event) override;
     void keyReleaseEvent(QKeyEvent* event) override;
@@ -72,6 +87,8 @@ private:
     float xLightDir = 0;
     float yLightDir = 1;
     float zLightDir = 0;
+
+    QOpenGLTexture *textureForBlur = nullptr;
 
 signals:
 

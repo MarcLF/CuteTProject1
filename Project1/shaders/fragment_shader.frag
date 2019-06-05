@@ -23,7 +23,6 @@ void main(void)
 
     vec4 albedo;
     vec4 ambient;
-
     albedo = texture2D(albedoTexture, FSIn.textCoord);
     ambient = albedo * ambientTerm;
     ambient.a = 1.0f;

@@ -16,7 +16,7 @@ Camera::Camera(int width, int height)
     zFar = 10000.0f;
     yaw = 0.0f;
     pitch = 0.0f;
-    speed = 10.0f;
+    speed = 1.0f;
 
     worldMatrix = QMatrix4x4(1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1);
     viewMatrix =  QMatrix4x4(1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1);
