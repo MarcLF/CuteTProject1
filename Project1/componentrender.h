@@ -25,6 +25,11 @@ public:
 private:
     Ui::ComponentRender *ui;
     Mesh* myMesh = nullptr;
+
+signals:
+
+public slots:
+    void ChangeModel(int index);
 };
 
 #endif // COMPONENTRENDER_H

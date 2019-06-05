@@ -2,6 +2,7 @@
 #include "ui_inspector.h"
 #include "entity.h"
 #include "componenttransform.h"
+#include "componentrender.h"
 #include "shaperenderer.h"
 #include "mainwindow.h"
 #include "hierarchy.h"
@@ -19,16 +20,20 @@ Inspector::Inspector(QWidget *parent) :
     ui->setupUi(this);
 
     transformBox = new QGroupBox(tr("Transform"));
+    renderBox = new QGroupBox(tr("Render"));
 
     transformLayout = new QVBoxLayout();
+    renderLayout = new QVBoxLayout();
 
     transformBox->setLayout(transformLayout);
+    renderBox->setLayout(renderLayout);
 
     entityName = new QLineEdit();
     entityName->setEnabled(false);
 
     ui->Layout->addWidget(entityName);
     ui->Layout->addWidget(transformBox);
+    ui->Layout->addWidget(renderBox);
 
     connect(entityName, SIGNAL(editingFinished()), this, SLOT(NameChanged()));
 }
@@ -51,8 +56,8 @@ void Inspector::SetNewEntity(Entity *selected)
         {
             transformLayout->removeWidget(compTransWidget);
             compTransWidget->hide();
-            shapeLayout->removeWidget(compShapeRenderer);
-            compShapeRenderer->hide();
+            renderLayout->removeWidget(compRenderer);
+            compRenderer->hide();
         }
 
         this->selected = selected;
@@ -65,11 +70,11 @@ void Inspector::SetNewEntity(Entity *selected)
             compTransWidget->show();           
         }
 
-        compShapeRenderer = static_cast<ComponentShapeRenderer*>(selected->GetComponent(ComponentType::Component_ShapeRenderer));
-        if(compShapeRenderer != nullptr)
+        compRenderer = static_cast<ComponentRender*>(selected->GetComponent(ComponentType::Component_Render));
+        if(compRenderer != nullptr)
         {
-            shapeLayout->addWidget(compShapeRenderer);
-            compShapeRenderer->show();
+            renderLayout->addWidget(compRenderer);
+            compRenderer->show();
         }
 
         entityName->setText(selected->GetName().c_str());
@@ -79,9 +84,9 @@ void Inspector::SetNewEntity(Entity *selected)
     {
         this->selected = nullptr;
         transformLayout->removeWidget(compTransWidget);
-        shapeLayout->removeWidget(compShapeRenderer);
+        renderLayout->removeWidget(compRenderer);
         compTransWidget->hide();
-        compShapeRenderer->hide();
+        compRenderer->hide();
         entityName->setText("");
         entityName->setEnabled(false);
     }

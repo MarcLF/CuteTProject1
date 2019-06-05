@@ -12,7 +12,7 @@
 
 Mesh::Mesh()
 {
-
+    qDeleteAll(subMeshes.begin(), subMeshes.end());
 }
 
 Mesh::~Mesh()

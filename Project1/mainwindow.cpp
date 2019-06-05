@@ -32,6 +32,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
     lightDirection = new LightDirection(openGLWidget);
 
+    lightColorPicker = new QColorDialog();
+
+    connect(ui->actionLightColor, SIGNAL(triggered()), this, SLOT(onLightColor()));
+    connect(lightColorPicker, SIGNAL(accepted()), this, SLOT(changeLightColor()));
+
 
     connect(ui->actionOpen_Project, SIGNAL(triggered()), this, SLOT(openProject()));
     connect(ui->actionSave_Project, SIGNAL(triggered()), this, SLOT(saveProject()));
@@ -85,6 +90,16 @@ void MainWindow::ChangeToDepthTest()
 void MainWindow::OpenLightSettings()
 {
     lightDirection->show();
+}
+
+void MainWindow::onLightColor()
+{
+    lightColorPicker->show();
+}
+
+void MainWindow::changeLightColor()
+{
+    //openGLWidget->SetLightColor(QVector3D(lightColorPicker->currentColor().red()/255.0f, lightColorPicker->currentColor().green()/255.0f, lightColorPicker->currentColor().blue()/255.0f));
 }
 
 Inspector *MainWindow::GetInspector()

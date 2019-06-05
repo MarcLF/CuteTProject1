@@ -1,21 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <author/>
- <comment/>
- <exportmacro/>
  <class>ComponentRender</class>
- <widget name="ComponentRender" class="QWidget">
+ <widget class="QWidget" name="ComponentRender">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>182</width>
+    <height>117</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <widget class="QWidget" name="horizontalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>160</width>
+     <height>80</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QLabel" name="label">
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Model</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QComboBox" name="modelSelector">
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <item>
+       <property name="text">
+        <string>None</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Patrick</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Sponza</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Palmtree</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+   </layout>
+  </widget>
  </widget>
- <pixmapfunction/>
+ <resources/>
  <connections/>
 </ui>

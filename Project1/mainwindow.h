@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QColorDialog>
 
 namespace Ui {
 class MainWindow;
@@ -37,6 +38,9 @@ public slots:
 
     void OpenLightSettings();
 
+    void onLightColor();
+    void changeLightColor();
+
 private:
     Ui::MainWindow *ui;
     Ui::Rendering *uiRendering;
@@ -45,6 +49,7 @@ private:
     Hierarchy *hierarchy;
     MyOpenGLWidget *openGLWidget;
     LightDirection *lightDirection;
+    QColorDialog* lightColorPicker;
 };
 
 #endif // MAINWINDOW_H

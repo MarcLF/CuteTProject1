@@ -89,7 +89,7 @@
      <string>Light</string>
     </property>
     <addaction name="actionLight_Settings"/>
-    <addaction name="actionColor"/>
+    <addaction name="actionLightColor"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuRenderer"/>
@@ -150,7 +150,7 @@
     <string>Light Direction</string>
    </property>
   </action>
-  <action name="actionColor">
+  <action name="actionLightColor">
    <property name="text">
     <string>Light Color</string>
    </property>

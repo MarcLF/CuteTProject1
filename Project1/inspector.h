@@ -10,6 +10,7 @@ class Inspector;
 class Entity;
 class ComponentTransform;
 class ComponentShapeRenderer;
+class ComponentRender;
 class QGroupBox;
 class QVBoxLayout;
 class QLineEdit;
@@ -32,13 +33,13 @@ private:
     Entity* selected = nullptr;
 
     QGroupBox* transformBox = nullptr;
-    QGroupBox* shapeBox = nullptr;
+    QGroupBox* renderBox = nullptr;
     QVBoxLayout* transformLayout = nullptr;
-    QVBoxLayout* shapeLayout = nullptr;
+    QVBoxLayout* renderLayout = nullptr;
     QLineEdit* entityName = nullptr;
 
     ComponentTransform* compTransWidget = nullptr;
-    ComponentShapeRenderer* compShapeRenderer = nullptr;
+    ComponentRender* compRenderer = nullptr;
 };
 
 #endif // INSPECTOR_H

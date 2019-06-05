@@ -10,6 +10,8 @@ ComponentRender::ComponentRender(QWidget *parent) :
     ui(new Ui::ComponentRender)
 {
     ui->setupUi(this);
+
+    connect(ui->modelSelector, SIGNAL(currentIndexChanged(int)), this, SLOT(ChangeModel(int)));
 }
 
 ComponentRender::~ComponentRender()
@@ -64,8 +66,8 @@ void ComponentRender::AddMesh(const char *fileName)
     }
     else
     {
-        myMesh = new Mesh();
-        myMesh->loadModel("Models/Patrick.obj");
+        //myMesh = new Mesh();
+        //myMesh->loadModel("Models/Patrick.obj");
     }
 }
 
@@ -82,5 +84,25 @@ void ComponentRender::WorkMeshes()
     if(myMesh != nullptr)
     {
         myMesh->update();
+    }
+}
+
+void ComponentRender::ChangeModel(int index)
+{
+    if(myMesh != nullptr)
+    {
+        delete myMesh;
+    }
+    myMesh = new Mesh();
+    switch(index)
+    {
+    case 0:
+        return;
+        break;
+    case 1:
+        myMesh->loadModel("Models/Patrick.obj");
+        break;
+    case 2:
+        myMesh->loadModel("Models/sponza.obj");
     }
 }
