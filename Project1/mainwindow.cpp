@@ -33,10 +33,10 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionSave_Project, SIGNAL(triggered()), this, SLOT(saveProject()));
     connect(ui->actionQuit, SIGNAL(triggered()), qApp, SLOT(quit()));
 
-    connect(ui->actionAlbedo, SIGNAL(triggered()), this, SLOT(changeRender(0)));
-    connect(ui->actionLighting, SIGNAL(triggered()), this, SLOT(changeRender(1)));
-    connect(ui->actionNormals, SIGNAL(triggered()), this, SLOT(changeRender(2)));
-    connect(ui->actionDepth_test, SIGNAL(triggered()), this, SLOT(changeRender(3)));
+    connect(ui->actionAlbedo, SIGNAL(triggered()), this, SLOT(ChangeToAlbedo()));
+    connect(ui->actionLighting, SIGNAL(triggered()), this, SLOT(ChangeToLighting()));
+    connect(ui->actionNormals, SIGNAL(triggered()), this, SLOT(ChangeToNormals()));
+    connect(ui->actionDepth_test, SIGNAL(triggered()), this, SLOT(ChangeToDepthTest()));
 }
 
 MainWindow::~MainWindow()
@@ -56,9 +56,24 @@ void MainWindow::saveProject()
     hierarchy->saveEntities(saveFile);
 }
 
-void MainWindow::ChangeRender(int newMode)
+void MainWindow::ChangeToAlbedo()
 {
-    openGLWidget->SetRendererDisplay(newMode);
+    openGLWidget->SetRendererDisplay(0);
+}
+
+void MainWindow::ChangeToLighting()
+{
+    openGLWidget->SetRendererDisplay(1);
+}
+
+void MainWindow::ChangeToNormals()
+{
+    openGLWidget->SetRendererDisplay(2);
+}
+
+void MainWindow::ChangeToDepthTest()
+{
+    openGLWidget->SetRendererDisplay(3);
 }
 
 Inspector *MainWindow::GetInspector()

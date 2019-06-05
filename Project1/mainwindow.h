@@ -28,7 +28,10 @@ public slots:
 
     void openProject();
     void saveProject();
-    void ChangeRender(int newMode);
+    void ChangeToAlbedo();
+    void ChangeToLighting();
+    void ChangeToNormals();
+    void ChangeToDepthTest();
 
 
 private:

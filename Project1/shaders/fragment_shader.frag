@@ -48,6 +48,6 @@ void main(void)
     }
     else if(rendererMode == 3)
     {
-        outColor = vec4(vec3(gl_FragCoord.z), gl_FragCoord.z);
+        outColor = vec4(vec3(gl_FragCoord.z) * vec3(0.36f, 0.75f, 0.72f), gl_FragCoord.z);
     }
 }
