@@ -39,7 +39,8 @@ SOURCES += \
     resource.cpp \
     submesh.cpp \
     camera.cpp \  
-    componentrender.cpp
+    componentrender.cpp \
+    lightdirection.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -57,7 +58,8 @@ HEADERS += \
     vertexformat.h \
     submesh.h \
     camera.h \  
-    componentrender.h
+    componentrender.h \
+    lightdirection.h
 
 FORMS += \
         mainwindow.ui \
@@ -67,7 +69,8 @@ FORMS += \
     componenttransform.ui \
     component.ui \
     shaperenderer.ui \
-    componentrender.ui
+    componentrender.ui \
+    lightdirection.ui
 LIBS += -lopengl32
 
 RESOURCES += \

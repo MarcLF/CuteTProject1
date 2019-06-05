@@ -84,8 +84,16 @@
     <addaction name="actionNormals"/>
     <addaction name="actionDepth_test"/>
    </widget>
+   <widget class="QMenu" name="menuLight_Settings">
+    <property name="title">
+     <string>Light</string>
+    </property>
+    <addaction name="actionLight_Settings"/>
+    <addaction name="actionColor"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuRenderer"/>
+   <addaction name="menuLight_Settings"/>
   </widget>
   <widget class="QDockWidget" name="Scene">
    <property name="minimumSize">
@@ -135,6 +143,16 @@
   <action name="actionDepth_test">
    <property name="text">
     <string>Depth test</string>
+   </property>
+  </action>
+  <action name="actionLight_Settings">
+   <property name="text">
+    <string>Light Direction</string>
+   </property>
+  </action>
+  <action name="actionColor">
+   <property name="text">
+    <string>Light Color</string>
    </property>
   </action>
  </widget>

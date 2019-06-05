@@ -95,6 +95,8 @@ void MyOpenGLWidget::paintGL()
         program.setUniformValue("albedoTexture", 0 );
         glBindTexture(GL_TEXTURE_2D, 0);
 
+        program.setUniformValue("lightDir", QVector3D(xLightDir, yLightDir, zLightDir));
+
         std::vector<Entity*> toDraw = MainWindow::GetWindow()->GetHierarchy()->GetEntityList();
 
         for(int i = 0; i < toDraw.size(); i++)
@@ -236,4 +238,11 @@ void MyOpenGLWidget::myUpdate()
 void MyOpenGLWidget::SetRendererDisplay(int mode)
 {
     this->mode = RendererMode(mode);
+}
+
+void MyOpenGLWidget::SetLightDirection(QVector3D lightDir)
+{
+    xLightDir = lightDir.x();
+    yLightDir = lightDir.y();
+    zLightDir = lightDir.z();
 }

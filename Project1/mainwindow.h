@@ -11,6 +11,8 @@ class Rendering;
 class Hierarchy;
 class Inspector;
 class MyOpenGLWidget;
+class LightDirection;
+
 
 class MainWindow : public QMainWindow
 {
@@ -33,6 +35,7 @@ public slots:
     void ChangeToNormals();
     void ChangeToDepthTest();
 
+    void OpenLightSettings();
 
 private:
     Ui::MainWindow *ui;
@@ -41,7 +44,7 @@ private:
     Inspector *inspector;
     Hierarchy *hierarchy;
     MyOpenGLWidget *openGLWidget;
-
+    LightDirection *lightDirection;
 };
 
 #endif // MAINWINDOW_H

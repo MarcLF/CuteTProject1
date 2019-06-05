@@ -34,6 +34,7 @@ public:
 
     void SetRendererDisplay(int mode);
 
+    void SetLightDirection(QVector3D lightDir);
 public:
     QOpenGLShaderProgram program;
 
@@ -68,6 +69,9 @@ private:
     void mouseMoveEvent(QMouseEvent* event) override;
     void mouseReleaseEvent(QMouseEvent* event) override;
 
+    float xLightDir = 0;
+    float yLightDir = 1;
+    float zLightDir = 0;
 
 signals:
 

@@ -15,6 +15,8 @@ uniform sampler2D albedoTexture;
 
 uniform int rendererMode;
 
+uniform vec3 lightDir;
+
 void main(void)
 {
     float ambientTerm = 0.05f;
@@ -33,7 +35,6 @@ void main(void)
     }
     else if (rendererMode == 1)
     {
-        vec3 lightDir = vec3(0.0f,1.0f,0.0f);
         vec3 lightColor = vec3(1.0f,1.0f,1.0f);
 
         outColor.rgb = ambient.rgb + albedo.rgb * dot(lightDir,FSIn.normalLocalspace) * lightColor;
