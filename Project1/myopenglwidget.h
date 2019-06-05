@@ -37,11 +37,14 @@ public:
     void paintGL() override;
 
     void InitBuffers();
+    void GenerateQuad();
 
     void SetRendererDisplay(int mode);
 
     void SetLightDirection(QVector3D lightDir);
     void SetLightColor(QVector3D lightColor);
+
+    void SwitchBlur();
 
     void blurShader();
 
@@ -50,8 +53,8 @@ public:
     QOpenGLShaderProgram quadProgram;
     QOpenGLShaderProgram blurProgram;
 
-    QOpenGLBuffer vboblur;
-    QOpenGLVertexArrayObject vaoblur;
+    QOpenGLBuffer vboQuadBlur;
+    QOpenGLVertexArrayObject vaoQuadBlur;
 
 private:
     Camera* mainCamera = nullptr;
@@ -83,14 +86,13 @@ private:
     bool isRotating = false;
 
     RendererMode mode = RendererMode::Lighting;
+    bool blurIsOn = false;
 
     Mesh *quadMesh = nullptr;
 
     int screenWidth, screenHeight;
 private:
     void keyPressEvent(QKeyEvent* event) override;
-    void keyReleaseEvent(QKeyEvent* event) override;
-
     void mousePressEvent(QMouseEvent* event) override;
     void mouseMoveEvent(QMouseEvent* event) override;
     void mouseReleaseEvent(QMouseEvent* event) override;

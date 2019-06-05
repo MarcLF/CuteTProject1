@@ -90,35 +90,25 @@ void SubMesh::update()
 
 void SubMesh::draw()
 {
-    qDebug("gogogo");
     if(!vao.isCreated())
     {
         return;
     }
-        qDebug("gogogo2");
     if(texture->isCreated())
     {
-        texture->bind(0);
+        texture->bind();
     }
-            qDebug("gogogo2");
 
-    glfuncs = QOpenGLContext::currentContext()->functions();
-    qDebug("gogogo3");
     int numVertices = dataSize/vertexFormat.size;
-    qDebug("%i",numVertices);
     vao.bind();
     if(indicesCount > 0)
     {
-        glfuncs->glDrawElements(GL_TRIANGLES, indicesCount, GL_UNSIGNED_INT, nullptr);
+        glDrawElements(GL_TRIANGLES, indicesCount, GL_UNSIGNED_INT, nullptr);
     }
     else {
-        glfuncs->glDrawArrays(GL_TRIANGLES, 0, numVertices);
+        glDrawArrays(GL_TRIANGLES, 0, numVertices);
     }
     vao.release();
-
-    gl->glBindTexture(GL_TEXTURE_2D, 0);
-
-    glfuncs = QOpenGLContext::currentContext()->functions();
 }
 
 void SubMesh::destroy()

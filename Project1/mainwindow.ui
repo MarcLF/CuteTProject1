@@ -6,14 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1045</width>
-    <height>742</height>
+    <width>1100</width>
+    <height>800</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>1045</width>
-    <height>742</height>
+    <width>1100</width>
+    <height>800</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -24,7 +24,7 @@
   <widget class="QDockWidget" name="Hierarchywidget">
    <property name="minimumSize">
     <size>
-     <width>199</width>
+     <width>300</width>
      <height>200</height>
     </size>
    </property>
@@ -42,7 +42,7 @@
   <widget class="QDockWidget" name="Inspectorwidget">
    <property name="minimumSize">
     <size>
-     <width>250</width>
+     <width>300</width>
      <height>450</height>
     </size>
    </property>
@@ -62,7 +62,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1045</width>
+     <width>1100</width>
      <height>21</height>
     </rect>
    </property>
@@ -83,6 +83,8 @@
     <addaction name="actionLighting"/>
     <addaction name="actionNormals"/>
     <addaction name="actionDepth_test"/>
+    <addaction name="separator"/>
+    <addaction name="actionBlur"/>
    </widget>
    <widget class="QMenu" name="menuLight_Settings">
     <property name="title">
@@ -153,6 +155,14 @@
   <action name="actionLightColor">
    <property name="text">
     <string>Light Color</string>
+   </property>
+  </action>
+  <action name="actionBlur">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Blur</string>
    </property>
   </action>
  </widget>

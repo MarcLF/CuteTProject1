@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>337</width>
+    <width>303</width>
     <height>257</height>
    </rect>
   </property>
@@ -18,7 +18,7 @@
     <rect>
      <x>0</x>
      <y>10</y>
-     <width>331</width>
+     <width>291</width>
      <height>241</height>
     </rect>
    </property>
@@ -34,6 +34,12 @@
       </item>
       <item>
        <widget class="QDoubleSpinBox" name="XTranslate">
+        <property name="maximumSize">
+         <size>
+          <width>60</width>
+          <height>16777215</height>
+         </size>
+        </property>
         <property name="minimum">
          <double>-100.000000000000000</double>
         </property>
@@ -44,6 +50,12 @@
       </item>
       <item>
        <widget class="QDoubleSpinBox" name="YTranslate">
+        <property name="maximumSize">
+         <size>
+          <width>60</width>
+          <height>16777215</height>
+         </size>
+        </property>
         <property name="minimum">
          <double>-100.000000000000000</double>
         </property>
@@ -54,6 +66,12 @@
       </item>
       <item>
        <widget class="QDoubleSpinBox" name="ZTranslate">
+        <property name="maximumSize">
+         <size>
+          <width>60</width>
+          <height>16777215</height>
+         </size>
+        </property>
         <property name="minimum">
          <double>-100.000000000000000</double>
         </property>
@@ -61,6 +79,19 @@
          <double>10000.000000000000000</double>
         </property>
        </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
       </item>
      </layout>
     </item>
@@ -81,6 +112,12 @@
       </item>
       <item>
        <widget class="QDoubleSpinBox" name="XRotate">
+        <property name="maximumSize">
+         <size>
+          <width>60</width>
+          <height>16777215</height>
+         </size>
+        </property>
         <property name="minimum">
          <double>-100.000000000000000</double>
         </property>
@@ -91,6 +128,12 @@
       </item>
       <item>
        <widget class="QDoubleSpinBox" name="YRotate">
+        <property name="maximumSize">
+         <size>
+          <width>60</width>
+          <height>16777215</height>
+         </size>
+        </property>
         <property name="minimum">
          <double>-100.000000000000000</double>
         </property>
@@ -101,6 +144,12 @@
       </item>
       <item>
        <widget class="QDoubleSpinBox" name="ZRotate">
+        <property name="maximumSize">
+         <size>
+          <width>60</width>
+          <height>16777215</height>
+         </size>
+        </property>
         <property name="minimum">
          <double>-100.000000000000000</double>
         </property>
@@ -108,6 +157,19 @@
          <double>10000.000000000000000</double>
         </property>
        </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>458</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
       </item>
      </layout>
     </item>
@@ -128,6 +190,12 @@
       </item>
       <item>
        <widget class="QDoubleSpinBox" name="XScale">
+        <property name="maximumSize">
+         <size>
+          <width>60</width>
+          <height>16777215</height>
+         </size>
+        </property>
         <property name="minimum">
          <double>-100.000000000000000</double>
         </property>
@@ -138,6 +206,12 @@
       </item>
       <item>
        <widget class="QDoubleSpinBox" name="YScale">
+        <property name="maximumSize">
+         <size>
+          <width>60</width>
+          <height>16777215</height>
+         </size>
+        </property>
         <property name="minimum">
          <double>-100.000000000000000</double>
         </property>
@@ -148,6 +222,12 @@
       </item>
       <item>
        <widget class="QDoubleSpinBox" name="ZScale">
+        <property name="maximumSize">
+         <size>
+          <width>60</width>
+          <height>16777215</height>
+         </size>
+        </property>
         <property name="minimum">
          <double>-100.000000000000000</double>
         </property>
@@ -155,6 +235,19 @@
          <double>10000.000000000000000</double>
         </property>
        </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_3">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
       </item>
      </layout>
     </item>

@@ -41,6 +41,8 @@ public slots:
     void onLightColor();
     void changeLightColor();
 
+    void SwitchBlur();
+
 private:
     Ui::MainWindow *ui;
     Ui::Rendering *uiRendering;

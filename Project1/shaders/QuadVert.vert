@@ -7,12 +7,8 @@ layout(location = 2) in vec2 uv;
 
 out Data
 {
-    vec3 color;
     vec2 texCoord;
 } VSOut;
-
-uniform sampler2D tex;
-uniform sampler2D normalMap;
 
 void main(void)
 {

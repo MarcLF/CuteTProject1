@@ -46,6 +46,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionLighting, SIGNAL(triggered()), this, SLOT(ChangeToLighting()));
     connect(ui->actionNormals, SIGNAL(triggered()), this, SLOT(ChangeToNormals()));
     connect(ui->actionDepth_test, SIGNAL(triggered()), this, SLOT(ChangeToDepthTest()));
+    connect(ui->actionBlur, SIGNAL(triggered()), this, SLOT(SwitchBlur()));
 
     connect(ui->actionLight_Settings, SIGNAL(triggered()), this, SLOT(OpenLightSettings()));
 }
@@ -100,6 +101,11 @@ void MainWindow::onLightColor()
 void MainWindow::changeLightColor()
 {
     openGLWidget->SetLightColor(QVector3D(lightColorPicker->currentColor().red()/255.0f, lightColorPicker->currentColor().green()/255.0f, lightColorPicker->currentColor().blue()/255.0f));
+}
+
+void MainWindow::SwitchBlur()
+{
+    openGLWidget->SwitchBlur();
 }
 
 Inspector *MainWindow::GetInspector()

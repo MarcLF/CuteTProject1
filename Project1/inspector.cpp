@@ -28,6 +28,8 @@ Inspector::Inspector(QWidget *parent) :
     transformBox->setLayout(transformLayout);
     renderBox->setLayout(renderLayout);
 
+    renderBox->setMaximumSize(300, 100);
+
     entityName = new QLineEdit();
     entityName->setEnabled(false);
 
