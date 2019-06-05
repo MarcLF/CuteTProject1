@@ -60,7 +60,7 @@ void MyOpenGLWidget::initializeGL()
 
     initializeOpenGLFunctions();
 
-    //connect(context(), SIGNAL(aboutToBeDestroyed()), this, SLOT(finalizeGL()));
+    connect(context(), SIGNAL(aboutToBeDestroyed()), this, SLOT(finalizeGL()));
 
     program.create();
     program.addShaderFromSourceFile(QOpenGLShader::Vertex, "shaders/vertex_shader.vert");
@@ -70,7 +70,7 @@ void MyOpenGLWidget::initializeGL()
     program.bind();
     program.release();
 
-    /*blurProgram.create();
+    blurProgram.create();
     blurProgram.addShaderFromSourceFile(QOpenGLShader::Vertex, "shaders/vertex_shader_blur.vert");
     blurProgram.addShaderFromSourceFile(QOpenGLShader::Fragment, "shaders/fragment_shader_blur.frag");
     blurProgram.link();
@@ -129,12 +129,7 @@ void MyOpenGLWidget::initializeGL()
     glVertexAttribPointer(1,compCount,GL_FLOAT, GL_FALSE, strideBytes, (void*)(offsetBytes1));
 
     vaoblur.release();
-    vboblur.release();*/
-
-    //glDisable(GL_CULL_FACE);
-
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    vboblur.release();
 }
 
 void MyOpenGLWidget::resizeGL(int width, int height)
@@ -156,13 +151,8 @@ void MyOpenGLWidget::paintGL()
 
     mainCamera->PrepareMatrices();
 
-    QOpenGLFunctions* gl_functions = QOpenGLContext::currentContext()->functions();
-
-    gl_functions->glBindFramebuffer(GL_FRAMEBUFFER, fbo);
-
+    glBindFramebuffer(GL_FRAMEBUFFER,fbo);
     glClearDepth(1.0);
-    gl_functions->glClearColor(0.0f, 0.0f, 0.0f,1.0f);
-    gl_functions->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     if(mode == 3)
     {
@@ -210,42 +200,11 @@ void MyOpenGLWidget::paintGL()
                 rendToDraw->Draw();
             }
         }
-        //Trying render to texture with blur
-        /*QOpenGLFunctions* gl_functions = QOpenGLContext::currentContext()->functions();
+        program.release();
 
-        gl_functions->glBindFramebuffer(GL_FRAMEBUFFER, fbo);
+        glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-        GLuint quad_VertexArrayID;
-        glGenVertexArrays(1, &quad_VertexArrayID);
-        glBindVertexArray(quad_VertexArrayID);
-
-        static const GLfloat g_quad_vertex_buffer_data[] = {
-            -1.0f, -1.0f, 0.0f,
-            1.0f, -1.0f, 0.0f,
-            -1.0f,  1.0f, 0.0f,
-            -1.0f,  1.0f, 0.0f,
-            1.0f, -1.0f, 0.0f,
-            1.0f,  1.0f, 0.0f,
-        };
-
-        GLuint quad_vertexbuffer;
-        glGenBuffers(1, &quad_vertexbuffer);
-        glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(g_quad_vertex_buffer_data), g_quad_vertex_buffer_data, GL_STATIC_DRAW);
-
-        glClearDepth(1.0);
-        gl_functions->glClearColor(0.0f, 0.0f, 0.0f,1.0f);
-        gl_functions->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-        gl_functions->glActiveTexture(GL_TEXTURE0);
-        gl_functions->glBindTexture(GL_TEXTURE_2D, colorTexture);
-
-        //vao.bind();
-        gl_functions->glDrawArrays(GL_TRIANGLES, 0,6);
-        //vao.release();
-        */
-
-        /*if(blurProgram.bind())
+        if(blurProgram.bind())
         {
 
            glBindFramebuffer(GL_FRAMEBUFFER,partialBlurfbo);
@@ -268,9 +227,7 @@ void MyOpenGLWidget::paintGL()
            vaoblur.release();
 
            blurProgram.release();
-        }*/
-        program.release();
-
+        }
     }
 }
 
@@ -299,6 +256,11 @@ void MyOpenGLWidget::InitBuffers()
     glFramebufferTexture2D(GL_FRAMEBUFFER,GL_COLOR_ATTACHMENT0,GL_TEXTURE_2D, colorTexture,0);
     glFramebufferTexture2D(GL_FRAMEBUFFER,GL_DEPTH_ATTACHMENT,GL_TEXTURE_2D, depthTexture,0);
     glDrawBuffer(GL_COLOR_ATTACHMENT0);
+
+
+
+    //GLenum buffers[] = {GL_COLOR_ATTACHMENT0};
+    //glDrawBuffers(1,buffers);
 
     GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
 
