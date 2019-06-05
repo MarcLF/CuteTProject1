@@ -1,4 +1,5 @@
 #include "submesh.h"
+#include "myopenglwidget.h"
 
 #include <iostream>
 
@@ -97,7 +98,7 @@ void SubMesh::draw()
         qDebug("gogogo2");
     if(texture->isCreated())
     {
-        texture->bind();
+        texture->bind(0);
     }
             qDebug("gogogo2");
 
@@ -114,6 +115,8 @@ void SubMesh::draw()
         glfuncs->glDrawArrays(GL_TRIANGLES, 0, numVertices);
     }
     vao.release();
+
+    gl->glBindTexture(GL_TEXTURE_2D, 0);
 
     glfuncs = QOpenGLContext::currentContext()->functions();
 }

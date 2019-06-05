@@ -43,12 +43,15 @@ public:
     void SetLightDirection(QVector3D lightDir);
     void SetLightColor(QVector3D lightColor);
 
+    void blurShader();
+
 public:
     QOpenGLShaderProgram program;
-
+    QOpenGLShaderProgram quadProgram;
     QOpenGLShaderProgram blurProgram;
+
     QOpenGLBuffer vboblur;
-    QOpenGLBuffer vaoblur;
+    QOpenGLVertexArrayObject vaoblur;
 
 private:
     Camera* mainCamera = nullptr;
@@ -61,11 +64,15 @@ private:
     GLuint colorTexture;
     GLuint depthTexture;
     GLuint normalTexture;
+    GLuint posTexture;
     GLuint fbo;
     GLuint partialBlurTexture;
-    GLuint partialBlurfbo;
-    GLuint completeBlurTexture;
-    GLuint completeBlurFbo;
+    GLuint BlurTexture;
+    GLuint partialBlurFbo;
+    GLuint blurFbo;
+
+    QOpenGLBuffer vbo;
+    QOpenGLVertexArrayObject vao;
 
     QTimer* updateTimer;
 
@@ -78,6 +85,8 @@ private:
     RendererMode mode = RendererMode::Lighting;
 
     Mesh *quadMesh = nullptr;
+
+    int screenWidth, screenHeight;
 private:
     void keyPressEvent(QKeyEvent* event) override;
     void keyReleaseEvent(QKeyEvent* event) override;
@@ -92,13 +101,10 @@ private:
 
     QVector3D lightColor;
 
-    QOpenGLTexture *textureForBlur = nullptr;
-
 signals:
 
 public slots:
     void myUpdate();
-
 };
 
 extern QOpenGLFunctions_3_3_Core *gl;
