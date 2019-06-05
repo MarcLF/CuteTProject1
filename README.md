@@ -43,6 +43,11 @@ The more distinguishable a darker object is.
 
 ![DepthTest](https://gyazo.com/c3b9f8825eed1c026397f9888165883c.PNG?raw=true)
 
+### Blur
+Blur effect mudges/blurs every object in the scene.
+
+![Blur](https://gyazo.com/6a56571522beb1c1a60b6f598791d47d.PNG?raw=true)
+
 ## Features P1:
 ![Carmelita](https://github.com/MarcLF/CuteTProject1/blob/master/DocumentationImages/CARMELITA.PNG?raw=true)
 
