@@ -104,7 +104,9 @@ void ComponentRender::ChangeModel(int index)
         break;
     case 2:
         myMesh->loadModel("Models/sponza.obj");
+        break;
     case 3:
         myMesh->loadModel("Models/PalmTree.obj");
+        break;
     }
 }
