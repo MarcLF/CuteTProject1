@@ -20,6 +20,7 @@ public:
     Component* GetComponent(ComponentType type);
     std::vector<Component*> GetComponents();
     void AddComponent(Component newComponent);
+    void LoadObjModel(QString fileName);
 
 protected:
     std::string name = "Entity";

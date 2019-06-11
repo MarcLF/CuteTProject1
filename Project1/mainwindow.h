@@ -27,6 +27,8 @@ public:
 
     Inspector* GetInspector();
     Hierarchy* GetHierarchy();
+    void       dragEnterEvent(QDragEnterEvent *e);
+    void       dropEvent(QDropEvent *e);
 public slots:
 
     void openProject();

@@ -238,6 +238,15 @@ void Hierarchy::AddEntity()
     ui->EntityList->addItem(newEntity->GetName().c_str());
 }
 
+void Hierarchy::AddEntityWithObj(QString fileName)
+{
+    Entity* newEntity = new Entity(entityID++);
+
+    entities.push_back(newEntity);
+    ui->EntityList->addItem(newEntity->GetName().c_str());
+    newEntity->LoadObjModel(fileName);
+}
+
 void Hierarchy::RemoveEntity()
 {
     if(selectedItem != nullptr)

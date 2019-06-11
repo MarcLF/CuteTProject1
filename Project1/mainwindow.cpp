@@ -49,6 +49,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionBlur, SIGNAL(triggered()), this, SLOT(SwitchBlur()));
 
     connect(ui->actionLight_Settings, SIGNAL(triggered()), this, SLOT(OpenLightSettings()));
+
+    setAcceptDrops(true);
 }
 
 MainWindow::~MainWindow()
@@ -122,3 +124,25 @@ MainWindow * MainWindow::GetWindow()
 {
     return window;
 }
+
+void MainWindow::dragEnterEvent(QDragEnterEvent *e)
+{
+    if (e->mimeData()->hasUrls()) {
+        e->acceptProposedAction();
+    }
+}
+
+void MainWindow::dropEvent(QDropEvent *e)
+{
+    foreach (const QUrl &url, e->mimeData()->urls()) {
+        QString fileName = url.toLocalFile();
+        QString extension = fileName.section('.', -1);
+
+        if(extension == "obj")
+        {
+         hierarchy->AddEntityWithObj(fileName);
+        }
+    }
+}
+
+

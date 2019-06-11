@@ -27,6 +27,7 @@ public:
 
 public slots:
     void AddEntity();
+    void AddEntityWithObj(QString fileName);
     void RemoveEntity();
     void SelectEntity(QListWidgetItem* item);
     std::vector<Entity*> GetEntityList();

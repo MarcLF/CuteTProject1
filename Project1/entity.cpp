@@ -13,7 +13,6 @@ Entity::Entity(int nameID)
     components.push_back(trans);
 
     ComponentRender* render = new ComponentRender();
-    render->AddMesh("dani");
     components.push_back(render);
 }
 
@@ -50,4 +49,11 @@ Component *Entity::GetComponent(ComponentType type)
 std::vector<Component *> Entity::GetComponents()
 {
     return components;
+}
+
+void Entity::LoadObjModel(QString fileName)
+{
+    ComponentRender* renderComp = (ComponentRender*)GetComponent(Component_Render);
+
+    renderComp->AddMesh(fileName.toLocal8Bit().data());
 }
