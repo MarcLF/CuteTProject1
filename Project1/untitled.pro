@@ -24,6 +24,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
+    dofoptions.cpp \
     main.cpp \
     mainwindow.cpp \
     inspector.cpp \
@@ -43,6 +44,7 @@ SOURCES += \
     lightdirection.cpp
 
 HEADERS += \
+    dofoptions.h \
         mainwindow.h \
     inspector.h \
     myopenglwidget.h \
@@ -62,6 +64,7 @@ HEADERS += \
     lightdirection.h
 
 FORMS += \
+    dofoptions.ui \
         mainwindow.ui \
     rendering.ui \
     inspector.ui \

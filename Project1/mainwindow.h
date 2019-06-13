@@ -13,6 +13,7 @@ class Hierarchy;
 class Inspector;
 class MyOpenGLWidget;
 class LightDirection;
+class DoFOptions;
 
 
 class MainWindow : public QMainWindow
@@ -39,11 +40,13 @@ public slots:
     void ChangeToDepthTest();
 
     void OpenLightSettings();
+    void OpenDoFSettings();
 
     void onLightColor();
     void changeLightColor();
 
     void SwitchBlur();
+    void SwitchDoF();
 
 private:
     Ui::MainWindow *ui;
@@ -53,6 +56,7 @@ private:
     Hierarchy *hierarchy;
     MyOpenGLWidget *openGLWidget;
     LightDirection *lightDirection;
+    DoFOptions* dofOptions;
     QColorDialog* lightColorPicker;
 };
 

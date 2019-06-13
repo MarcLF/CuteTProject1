@@ -63,7 +63,7 @@
      <x>0</x>
      <y>0</y>
      <width>1100</width>
-     <height>21</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -85,6 +85,7 @@
     <addaction name="actionDepth_test"/>
     <addaction name="separator"/>
     <addaction name="actionBlur"/>
+    <addaction name="actionDepth_of_Field"/>
    </widget>
    <widget class="QMenu" name="menuLight_Settings">
     <property name="title">
@@ -93,9 +94,16 @@
     <addaction name="actionLight_Settings"/>
     <addaction name="actionLightColor"/>
    </widget>
+   <widget class="QMenu" name="menuDoF_Options">
+    <property name="title">
+     <string>DoF Options</string>
+    </property>
+    <addaction name="actionOptions"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuRenderer"/>
    <addaction name="menuLight_Settings"/>
+   <addaction name="menuDoF_Options"/>
   </widget>
   <widget class="QDockWidget" name="Scene">
    <property name="minimumSize">
@@ -163,6 +171,16 @@
    </property>
    <property name="text">
     <string>Blur</string>
+   </property>
+  </action>
+  <action name="actionDepth_of_Field">
+   <property name="text">
+    <string>Depth of Field</string>
+   </property>
+  </action>
+  <action name="actionOptions">
+   <property name="text">
+    <string>Options</string>
    </property>
   </action>
  </widget>

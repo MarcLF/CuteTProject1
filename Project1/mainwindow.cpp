@@ -5,6 +5,7 @@
 #include "hierarchy.h"
 #include "myopenglwidget.h"
 #include "lightdirection.h"
+#include "dofoptions.h"
 
 #include <QFile>
 #include <QJsonObject>
@@ -37,6 +38,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionLightColor, SIGNAL(triggered()), this, SLOT(onLightColor()));
     connect(lightColorPicker, SIGNAL(accepted()), this, SLOT(changeLightColor()));
 
+    dofOptions = new DoFOptions(openGLWidget);
 
     connect(ui->actionOpen_Project, SIGNAL(triggered()), this, SLOT(openProject()));
     connect(ui->actionSave_Project, SIGNAL(triggered()), this, SLOT(saveProject()));
@@ -47,8 +49,10 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionNormals, SIGNAL(triggered()), this, SLOT(ChangeToNormals()));
     connect(ui->actionDepth_test, SIGNAL(triggered()), this, SLOT(ChangeToDepthTest()));
     connect(ui->actionBlur, SIGNAL(triggered()), this, SLOT(SwitchBlur()));
+    connect(ui->actionDepth_of_Field, SIGNAL(triggered()), this, SLOT(SwitchDoF()));
 
     connect(ui->actionLight_Settings, SIGNAL(triggered()), this, SLOT(OpenLightSettings()));
+    connect(ui->actionOptions, SIGNAL(triggered()), this, SLOT(OpenDoFSettings()));
 
     setAcceptDrops(true);
 }
@@ -95,6 +99,11 @@ void MainWindow::OpenLightSettings()
     lightDirection->show();
 }
 
+void MainWindow::OpenDoFSettings()
+{
+    dofOptions->show();
+}
+
 void MainWindow::onLightColor()
 {
     lightColorPicker->show();
@@ -108,6 +117,11 @@ void MainWindow::changeLightColor()
 void MainWindow::SwitchBlur()
 {
     openGLWidget->SwitchBlur();
+}
+
+void MainWindow::SwitchDoF()
+{
+    openGLWidget->SwitchDoF();
 }
 
 Inspector *MainWindow::GetInspector()

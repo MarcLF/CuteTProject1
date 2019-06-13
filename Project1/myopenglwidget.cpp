@@ -83,6 +83,11 @@ void MyOpenGLWidget::initializeGL()
 
     blurProgram.release();
 
+    depthProgram.create();
+    depthProgram.addShaderFromSourceFile(QOpenGLShader::Vertex, "shaders/DepthVert.vert");
+    depthProgram.addShaderFromSourceFile(QOpenGLShader::Fragment, "shaders/DepthFrag.frag");
+    depthProgram.link();
+
     GenerateQuad();
 }
 
@@ -105,6 +110,9 @@ void MyOpenGLWidget::resizeGL(int width, int height)
     glDeleteFramebuffers(1, &partialBlurFbo);
     glDeleteTextures(1, &BlurTexture);
     glDeleteFramebuffers(1, &blurFbo);
+
+    glDeleteTextures(1, &dofTexture);
+    glDeleteFramebuffers(1, &dofFbo);
 
     InitBuffers();
 }
@@ -154,7 +162,7 @@ void MyOpenGLWidget::paintGL()
             ComponentRender* rendToDraw = static_cast<ComponentRender*>(toDraw[i]->GetComponent(ComponentType::Component_Render));
             if(rendToDraw != nullptr)
             {
-                if(!blurIsOn)
+                if(!blurIsOn && !dofIsOn)
                 {
                     makeCurrent();
                 }
@@ -174,18 +182,36 @@ void MyOpenGLWidget::paintGL()
 
             glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
             glClear(GL_COLOR_BUFFER_BIT);
+
             if(quadProgram.bind())
             {
                 quadProgram.setUniformValue("colorTexture", 0);
                 glActiveTexture(GL_TEXTURE0);
-                if(blurIsOn)
-                {
-                    glBindTexture(GL_TEXTURE_2D, BlurTexture);
-                }
-                else
-                {
-                    glBindTexture(GL_TEXTURE_2D, colorTexture);
-                }
+                glBindTexture(GL_TEXTURE_2D, BlurTexture);
+
+                vao.bind();
+                glDrawArrays(GL_TRIANGLES, 0, 6);
+                vao.release();
+                quadProgram.release();
+            }
+        }
+
+        else if(dofIsOn)
+        {
+            blurShader();
+            dofShader();
+
+            QOpenGLFramebufferObject::bindDefault();
+
+            glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+            glClear(GL_COLOR_BUFFER_BIT);
+
+            if(quadProgram.bind())
+            {
+                quadProgram.setUniformValue("colorTexture", 0);
+                glActiveTexture(GL_TEXTURE0);
+                glBindTexture(GL_TEXTURE_2D, dofTexture);
+
                 vao.bind();
                 glDrawArrays(GL_TRIANGLES, 0, 6);
                 vao.release();
@@ -220,7 +246,7 @@ void MyOpenGLWidget::InitBuffers()
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, screenWidth, screenHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, screenWidth, screenHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);    
 
     glGenTextures(1, &depthTexture);
     glBindTexture(GL_TEXTURE_2D, depthTexture);
@@ -288,6 +314,17 @@ void MyOpenGLWidget::InitBuffers()
     glBindFramebuffer(GL_FRAMEBUFFER, blurFbo);
     glFramebufferTexture2D(GL_FRAMEBUFFER,GL_COLOR_ATTACHMENT0,GL_TEXTURE_2D, BlurTexture,0);
 
+    glGenTextures(1, &dofTexture);
+    glBindTexture(GL_TEXTURE_2D, dofTexture);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, screenWidth, screenHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+
+    glGenFramebuffers(1, &dofFbo);
+    glBindFramebuffer(GL_FRAMEBUFFER, dofFbo);
+    glFramebufferTexture2D(GL_FRAMEBUFFER,GL_COLOR_ATTACHMENT0,GL_TEXTURE_2D, dofTexture,0);
 }
 
 void MyOpenGLWidget::GenerateQuad()
@@ -403,9 +440,56 @@ void MyOpenGLWidget::SetLightColor(QVector3D lightColor)
     this->lightColor = lightColor;
 }
 
+void MyOpenGLWidget::SetNearPlane(float nearPl)
+{
+    nearPlaneValue = nearPl;
+}
+
+void MyOpenGLWidget::SetFarPlane(float farPl)
+{
+    farPlaneValue = farPl;
+}
+
+void MyOpenGLWidget::SetNearFallOff(float nearFO)
+{
+    nearFallOffValue = nearFO;
+}
+
+void MyOpenGLWidget::SetFarFallOff(float farFO)
+{
+    farFallOffValue = farFO;
+}
+
+float MyOpenGLWidget::GetNearPlane()
+{
+    return nearPlaneValue;
+}
+
+float MyOpenGLWidget::GetFarPlane()
+{
+    return farPlaneValue;
+}
+
+float MyOpenGLWidget::GetNearFallOff()
+{
+    return nearFallOffValue;
+}
+
+float MyOpenGLWidget::GetFarFallOff()
+{
+    return farFallOffValue;
+}
+
 void MyOpenGLWidget::SwitchBlur()
 {
     blurIsOn = !blurIsOn;
+    dofIsOn = false;
+}
+
+void MyOpenGLWidget::SwitchDoF()
+{
+    dofIsOn = !dofIsOn;
+    blurIsOn = false;
 }
 
 void MyOpenGLWidget::blurShader()
@@ -441,5 +525,38 @@ void MyOpenGLWidget::blurShader()
 
        blurProgram.release();
     }
+}
 
+void MyOpenGLWidget::dofShader()
+{
+    glBindFramebuffer(GL_FRAMEBUFFER, dofFbo);
+    glDrawBuffer(GL_COLOR_ATTACHMENT0);
+    depthProgram.bind();
+    depthProgram.setUniformValue("sampleTexture", 0);
+    depthProgram.setUniformValue("blurTexture", 1);
+    depthProgram.setUniformValue("depthTexture", 2);
+
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, colorTexture);
+    glActiveTexture(GL_TEXTURE1);
+    glBindTexture(GL_TEXTURE_2D, BlurTexture);
+    glActiveTexture(GL_TEXTURE2);
+    glBindTexture(GL_TEXTURE_2D, depthTexture);
+
+    depthProgram.setUniformValue("nearPlane",  nearPlaneValue);
+    depthProgram.setUniformValue("farPlane", farPlaneValue);
+
+    depthProgram.setUniformValue("nearFallOff",  nearFallOffValue);
+    depthProgram.setUniformValue("farFallOff", farFallOffValue);
+
+    vao.bind();
+    glDrawArrays(GL_TRIANGLES, 0, 6);
+    vao.release();
+
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glActiveTexture(GL_TEXTURE1);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    depthProgram.release();
 }

@@ -44,14 +44,27 @@ public:
     void SetLightDirection(QVector3D lightDir);
     void SetLightColor(QVector3D lightColor);
 
+    void SetNearPlane(float nearPL);
+    void SetFarPlane(float farPL);
+    void SetNearFallOff(float nearFO);
+    void SetFarFallOff(float farFO);
+
+    float GetNearPlane();
+    float GetFarPlane();
+    float GetNearFallOff();
+    float GetFarFallOff();
+
     void SwitchBlur();
+    void SwitchDoF();
 
     void blurShader();
+    void dofShader();
 
 public:
     QOpenGLShaderProgram program;
     QOpenGLShaderProgram quadProgram;
     QOpenGLShaderProgram blurProgram;
+    QOpenGLShaderProgram depthProgram;
 
     QOpenGLBuffer vboQuadBlur;
     QOpenGLVertexArrayObject vaoQuadBlur;
@@ -71,8 +84,10 @@ private:
     GLuint fbo;
     GLuint partialBlurTexture;
     GLuint BlurTexture;
+    GLuint dofTexture;
     GLuint partialBlurFbo;
     GLuint blurFbo;
+    GLuint dofFbo;
 
     QOpenGLBuffer vbo;
     QOpenGLVertexArrayObject vao;
@@ -87,6 +102,7 @@ private:
 
     RendererMode mode = RendererMode::Lighting;
     bool blurIsOn = false;
+    bool dofIsOn = false;
 
     Mesh *quadMesh = nullptr;
 
@@ -100,6 +116,11 @@ private:
     float xLightDir = 0;
     float yLightDir = 1;
     float zLightDir = 0;
+
+    float nearPlaneValue = 0.83f;
+    float farPlaneValue = 0.92f;
+    float nearFallOffValue = 0.86f;
+    float farFallOffValue = 0.9f;
 
     QVector3D lightColor;
 
