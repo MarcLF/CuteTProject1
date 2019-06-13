@@ -57,3 +57,9 @@ void Entity::LoadObjModel(QString fileName)
 
     renderComp->AddMesh(fileName.toLocal8Bit().data());
 }
+
+void Entity::SetMesh(Mesh *toAdd)
+{
+    ComponentRender* renderComp = (ComponentRender*)GetComponent(Component_Render);
+    renderComp->AddMesh(toAdd);
+}

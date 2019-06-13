@@ -9,10 +9,6 @@
 #include "vertexformat.h"
 #include "submesh.h"
 
-#define PI 3.14159265358979323846f
-#define RADTODEG(angle_in_radiants) (angle_in_radiants*180.0f)/PI
-#define DEGTORAD(angle_in_degrees) (angle_in_degrees*PI)/180.0f
-
 QOpenGLFunctions_3_3_Core * gl = nullptr;
 
 MyOpenGLWidget::MyOpenGLWidget(QWidget *parent) : QOpenGLWidget(parent)

@@ -7,6 +7,7 @@
 #include <QFile>
 
 class Entity;
+class Mesh;
 
 namespace Ui {
 class Hierarchy;
@@ -20,14 +21,14 @@ public:
     explicit Hierarchy(QWidget *parent = 0);
     ~Hierarchy();
 
-    void saveEntities(QFile &savefile);
-    void loadEntities(QString path);
-
     void ChangeItemName(Entity* entity, QString name);
+
+    void UpdateComboBoxes(QString newItem);
 
 public slots:
     void AddEntity();
-    void AddEntityWithObj(QString fileName);
+    Entity* AddEntityWithObj(QString fileName);
+    Entity* AddEntityWithMesh(Mesh* toAdd);
     void RemoveEntity();
     void SelectEntity(QListWidgetItem* item);
     std::vector<Entity*> GetEntityList();

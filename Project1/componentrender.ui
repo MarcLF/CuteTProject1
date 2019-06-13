@@ -53,21 +53,6 @@
         <string>None</string>
        </property>
       </item>
-      <item>
-       <property name="text">
-        <string>Patrick</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Sponza</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>PalmTree</string>
-       </property>
-      </item>
      </widget>
     </item>
    </layout>

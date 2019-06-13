@@ -14,6 +14,7 @@ class Inspector;
 class MyOpenGLWidget;
 class LightDirection;
 class DoFOptions;
+class Resource;
 
 
 class MainWindow : public QMainWindow
@@ -28,12 +29,10 @@ public:
 
     Inspector* GetInspector();
     Hierarchy* GetHierarchy();
+    Resource *GetResources();
     void       dragEnterEvent(QDragEnterEvent *e);
     void       dropEvent(QDropEvent *e);
 public slots:
-
-    void openProject();
-    void saveProject();
     void ChangeToAlbedo();
     void ChangeToLighting();
     void ChangeToNormals();
@@ -58,6 +57,7 @@ private:
     LightDirection *lightDirection;
     DoFOptions* dofOptions;
     QColorDialog* lightColorPicker;
+    Resource* resources;
 };
 
 #endif // MAINWINDOW_H

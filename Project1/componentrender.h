@@ -19,8 +19,11 @@ public:
     ~ComponentRender();
 
     void AddMesh(const char* fileName);
+    void AddMesh(Mesh* toAdd);
     void Draw();
     void WorkMeshes();
+
+    void AddModelToComboBox(QString modelName, bool isMine = false);
 
 private:
     Ui::ComponentRender *ui;

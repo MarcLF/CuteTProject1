@@ -7,6 +7,7 @@
 
 class ComponentTransform;
 class ComponentRender;
+class Mesh;
 
 class Entity
 {
@@ -21,6 +22,7 @@ public:
     std::vector<Component*> GetComponents();
     void AddComponent(Component newComponent);
     void LoadObjModel(QString fileName);
+    void SetMesh(Mesh* toAdd);
 
 protected:
     std::string name = "Entity";

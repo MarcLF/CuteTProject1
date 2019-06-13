@@ -6,6 +6,10 @@
 #include "myopenglwidget.h"
 #include "lightdirection.h"
 #include "dofoptions.h"
+#include "mesh.h"
+#include "resource.h"
+#include "entity.h"
+#include "componentrender.h"
 
 #include <QFile>
 #include <QJsonObject>
@@ -21,6 +25,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     window = this;
+
+    resources = new Resource();
 
     hierarchy = new Hierarchy(this);
     ui->Hierarchywidget->setWidget(hierarchy);
@@ -40,8 +46,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     dofOptions = new DoFOptions(openGLWidget);
 
-    connect(ui->actionOpen_Project, SIGNAL(triggered()), this, SLOT(openProject()));
-    connect(ui->actionSave_Project, SIGNAL(triggered()), this, SLOT(saveProject()));
     connect(ui->actionQuit, SIGNAL(triggered()), qApp, SLOT(quit()));
 
     connect(ui->actionAlbedo, SIGNAL(triggered()), this, SLOT(ChangeToAlbedo()));
@@ -59,19 +63,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
+    delete resources;
     delete ui;
-}
-
-void MainWindow::openProject()
-{
-    hierarchy->loadEntities("save.json");
-}
-
-void MainWindow::saveProject()
-{
-    QFile saveFile("save.json");
-
-    hierarchy->saveEntities(saveFile);
 }
 
 void MainWindow::ChangeToAlbedo()
@@ -134,6 +127,11 @@ Hierarchy *MainWindow::GetHierarchy()
     return hierarchy;
 }
 
+Resource *MainWindow::GetResources()
+{
+    return resources;
+}
+
 MainWindow * MainWindow::GetWindow()
 {
     return window;
@@ -148,13 +146,43 @@ void MainWindow::dragEnterEvent(QDragEnterEvent *e)
 
 void MainWindow::dropEvent(QDropEvent *e)
 {
-    foreach (const QUrl &url, e->mimeData()->urls()) {
+    foreach (const QUrl &url, e->mimeData()->urls())
+    {
         QString fileName = url.toLocalFile();
         QString extension = fileName.section('.', -1);
+        QString modelName = fileName.section('/', -1);
 
         if(extension == "obj")
         {
-         hierarchy->AddEntityWithObj(fileName);
+            Entity* temp = nullptr;
+            Mesh* isLoaded = resources->GetModel(modelName);
+            if(isLoaded != nullptr)
+            {
+               temp = hierarchy->AddEntityWithMesh(isLoaded);
+            }
+            else
+            {
+               hierarchy->UpdateComboBoxes(modelName);
+               temp = hierarchy->AddEntityWithObj(fileName);
+            }
+            if(temp != nullptr)
+            {
+                ComponentRender* renderComp = (ComponentRender*)temp->GetComponent(Component_Render);
+                if(renderComp != nullptr)
+                {
+                    for(auto it : resources->GetModelMap().keys())
+                    {
+                        if(modelName == it)
+                        {
+                            renderComp->AddModelToComboBox(it, true);
+                        }
+                        else
+                        {
+                            renderComp->AddModelToComboBox(it);
+                        }
+                    }
+                }
+            }
         }
     }
 }

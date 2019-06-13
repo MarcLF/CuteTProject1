@@ -63,18 +63,9 @@
      <x>0</x>
      <y>0</y>
      <width>1100</width>
-     <height>20</height>
+     <height>21</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuFile">
-    <property name="title">
-     <string>File</string>
-    </property>
-    <addaction name="actionOpen_Project"/>
-    <addaction name="actionSave_Project"/>
-    <addaction name="separator"/>
-    <addaction name="actionQuit"/>
-   </widget>
    <widget class="QMenu" name="menuRenderer">
     <property name="title">
      <string>Renderer</string>
@@ -100,7 +91,6 @@
     </property>
     <addaction name="actionOptions"/>
    </widget>
-   <addaction name="menuFile"/>
    <addaction name="menuRenderer"/>
    <addaction name="menuLight_Settings"/>
    <addaction name="menuDoF_Options"/>
