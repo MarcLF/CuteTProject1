@@ -7,6 +7,9 @@ Carmelita Engine is an Engine built in QT and C++ made by Marc López Fábregas,
 
 For this delivery we've included several new features including 3D rendering using OpenGL and the hability to swap between diferent render models.
 
+### Resource System for Meshes
+Using a resources system, meshes aren't duplicated in memory, they're just charged once and they're reutilized through pointers in the objects that needs that mesh.
+
 ### 3D Rendering
 Through establishing a path of a particular model with a set of textures we can load it directly into the scene.
 
@@ -47,6 +50,11 @@ The more distinguishable a darker object is.
 Blur effect mudges/blurs every object in the scene.
 
 ![Blur](https://gyazo.com/6a56571522beb1c1a60b6f598791d47d.PNG?raw=true)
+
+### Depth of Field
+The depht of field effects combines the final image with blur in front and behind a determinated section to create a good sensation of depth. The parameters to tweak the depht of field effect are available in the DoF options tab in the menu bar.
+
+![DephtOfField](https://i.gyazo.com/2c7300672df72e7b30f1aa76dcc6c184.png)
 
 ## Features P1:
 ![Carmelita](https://github.com/MarcLF/CuteTProject1/blob/master/DocumentationImages/CARMELITA.PNG?raw=true)
